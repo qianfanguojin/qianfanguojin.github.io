@@ -16,6 +16,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.9.0">
+	<script type="text/javascript" src="/js/src/clicklove.js"></script>
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -97,13 +98,13 @@
   };
 </script>
 
-  <meta name="description" content="前言​    很多人可能都有这样的情况，当我们想要去知道一样东西的时候，看到许多大佬们写的博客，不禁发自肺腑的感叹，什么时候我才能像他们一样，在得到大佬的推荐下后，我自己搭建了Hexo+Github的博客系统，这里将其记录下来，希望能帮助到你们。  该记录全程为Windows系统下，其他操作系统自行处理。  准备工作 一台电脑 （-_-） 一个注册好的Github账号 一款shell工具（我们可以">
+  <meta name="description" content="程序猿作为技术人员，都应该拥有一个自己的技术博客，在他人推荐下，我个人搭建了Hexo+Github的博客系统，这里将其过程记录下来，希望能帮助到你们。">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo博客搭建记录（一）：本地搭建以及部署到Github">
 <meta property="og:url" content="https://qianfanguojin.github.io/2019/07/18/Hexo博客搭建记录（一）：本地搭建以及部署到Github/index.html">
 <meta property="og:site_name" content="谢同学的博客">
-<meta property="og:description" content="前言​    很多人可能都有这样的情况，当我们想要去知道一样东西的时候，看到许多大佬们写的博客，不禁发自肺腑的感叹，什么时候我才能像他们一样，在得到大佬的推荐下后，我自己搭建了Hexo+Github的博客系统，这里将其记录下来，希望能帮助到你们。  该记录全程为Windows系统下，其他操作系统自行处理。  准备工作 一台电脑 （-_-） 一个注册好的Github账号 一款shell工具（我们可以">
+<meta property="og:description" content="程序猿作为技术人员，都应该拥有一个自己的技术博客，在他人推荐下，我个人搭建了Hexo+Github的博客系统，这里将其过程记录下来，希望能帮助到你们。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://qianfanguojin.github.io/img/node.png">
 <meta property="og:image" content="https://qianfanguojin.github.io/img/node1.png">
@@ -116,10 +117,10 @@
 <meta property="og:image" content="https://qianfanguojin.github.io/img/config.png">
 <meta property="og:image" content="https://qianfanguojin.github.io/img/vim-wq.png">
 <meta property="og:image" content="https://qianfanguojin.github.io/img/github-login.png">
-<meta property="og:updated_time" content="2019-07-19T03:28:48.264Z">
+<meta property="og:updated_time" content="2019-07-20T07:15:50.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客搭建记录（一）：本地搭建以及部署到Github">
-<meta name="twitter:description" content="前言​    很多人可能都有这样的情况，当我们想要去知道一样东西的时候，看到许多大佬们写的博客，不禁发自肺腑的感叹，什么时候我才能像他们一样，在得到大佬的推荐下后，我自己搭建了Hexo+Github的博客系统，这里将其记录下来，希望能帮助到你们。  该记录全程为Windows系统下，其他操作系统自行处理。  准备工作 一台电脑 （-_-） 一个注册好的Github账号 一款shell工具（我们可以">
+<meta name="twitter:description" content="程序猿作为技术人员，都应该拥有一个自己的技术博客，在他人推荐下，我个人搭建了Hexo+Github的博客系统，这里将其过程记录下来，希望能帮助到你们。">
 <meta name="twitter:image" content="https://qianfanguojin.github.io/img/node.png">
 
 
@@ -181,6 +182,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
 
   
   
@@ -272,7 +274,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">2</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">4</span></a>
 
   </li>
         
@@ -290,7 +292,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">2</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">3</span></a>
 
   </li>
         
@@ -421,7 +423,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-19 11:28:48" itemprop="dateModified" datetime="2019-07-19T11:28:48+08:00">2019-07-19</time>
+                <time title="修改时间：2019-07-20 15:15:50" itemprop="dateModified" datetime="2019-07-20T15:15:50+08:00">2019-07-20</time>
               </span>
             
           
@@ -503,7 +505,9 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    很多人可能都有这样的情况，当我们想要去知道一样东西的时候，看到许多大佬们写的博客，不禁发自肺腑的感叹，什么时候我才能像他们一样，在得到大佬的推荐下后，我自己搭建了Hexo+Github的博客系统，这里将其记录下来，希望能帮助到你们。</p>
+        <p>程序猿作为技术人员，都应该拥有一个自己的技术博客，在他人推荐下，我个人搭建了Hexo+Github的博客系统，这里将其过程记录下来，希望能帮助到你们。</p>
+<a id="more"></a>
+
 <blockquote>
 <p>该记录全程为Windows系统下，其他操作系统自行处理。</p>
 </blockquote>
@@ -511,13 +515,13 @@
 <li>一台电脑 （-_-）</li>
 <li>一个注册好的Github账号</li>
 <li>一款shell工具（我们可以用Git Bash代替）</li>
-<li>安装Node.js环境</li>
-<li>安装Git</li>
+<li>Node.js环境</li>
+<li>Git</li>
 </ol>
 <hr>
 <h3 id="一、安装配置Node-js"><a href="#一、安装配置Node-js" class="headerlink" title="一、安装配置Node.js"></a>一、安装配置Node.js</h3><p>Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。<br>Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效                   </p>
 <p>hexo 是基于Node.js来构建博客的，得益于Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。</p>
-<p>首先我们去官网 <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> </p>
+<p>首先我们去官网 <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 下载安装包</p>
 <p>网站会自动识别你的操作系统，这里我们选择<strong>LTS</strong> 也就是长期支持版。<img src="/img/node.png" alt></p>
 <p>安装步骤没有什么要求，点下一步就是了，如不出意外，你的开始菜单里面应该有这两个文件。</p>
 <p><img src="/img/node1.png" alt></p>
@@ -527,27 +531,25 @@
 <p>如有</p>
 <p><img src="/img/node2.png" alt></p>
 <p>版本数字不一定和我一样，有的话说明安装成功</p>
-<h3 id="二、安装Git"><a href="#二、安装Git" class="headerlink" title="二、安装Git"></a>二、安装Git</h3><p>Git是什么，Git是一种版本控制系统，区别于svn，是目前最先进的一种版本控制系统，这里我不详细介绍，大家有想深入了解的话可以去这里  <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener"> 廖雪峰的 Git 教程</a><br>我们这里安装GIt的目的，一是为了下载从Github下载 <code>hexo</code> 的一些工具资源，二是其提供了<code>Git Bash</code> shell 工具，我们的Hexo配置操作都需要用到。</p>
-<p>大多数时候，我们下载工具都是去官网下载，这里我给出Git的官网  <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">官网下载Git</a>, 但Git的官网下载速度感人，如无爬山工具，也可以这里下载 <a href="https://www.lanzous.com/i47zcgj" target="_blank" rel="noopener">镜像下载Git</a> 。                                                                                                                                           安装步骤依然是一直点下一步就是了。</p>
+<hr>
+<h3 id="二、安装Git"><a href="#二、安装Git" class="headerlink" title="二、安装Git"></a>二、安装Git</h3><p>Git是什么，Git是一种版本控制系统，区别于svn，是目前最先进的一种版本控制系统，这里我不详细介绍，大家有想深入了解的话可以去这里  <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener"> 廖雪峰的 Git 教程</a><br>我们这里安装Git的目的，一是为了下载从Github下载 <code>hexo</code> 的一些工具资源，二是其提供了<code>Git Bash</code> shell 工具，我们的Hexo配置操作都需要用到。</p>
+<p>Git的官网  <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">官网下载Git</a>, 但Git的官网下载速度会抽风，如无爬山工具，也可以这里下载 <a href="https://www.lanzous.com/i47zcgj" target="_blank" rel="noopener">镜像下载Git</a> 。                                                                                                                                           安装步骤依然是一直点下一步就是了。</p>
 <p><span style="color:red">注意：</span> </p>
 <blockquote>
 <p>安装完成后，还有记得要配置Git本地的邮箱和用户名，如不配置，后面的操作可能会出现问题。<br>具体的配置可以参考 <a href="https://www.liaoxuefeng.com/wiki/896043488029600/896067074338496" target="_blank" rel="noopener">廖雪峰 ：Git安装与配置</a></p>
 </blockquote>
+<hr>
 <h3 id="三、配置本地Hexo"><a href="#三、配置本地Hexo" class="headerlink" title="三、配置本地Hexo"></a>三、配置本地Hexo</h3><h4 id="1-配置hexo全局控制命令"><a href="#1-配置hexo全局控制命令" class="headerlink" title="1.配置hexo全局控制命令"></a>1.配置hexo全局控制命令</h4><p>​    在cmd或者其他命令行工具下输入如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>用npm 命令时可能会提示warning,只要不是error，一般来说都不用太过担心。<br>另一个就是执行<code>npm install</code>下载时可能会很久不动好像卡了一样，不用太担心，这        都是正常情况，可以多等一会，或者使用爬山工具。</p>
 </blockquote>
-<h4 id="2-下载Hexo-工具"><a href="#2-下载Hexo-工具" class="headerlink" title="2.下载Hexo 工具"></a>2.下载Hexo 工具</h4><ul>
-<li><p>初始化博客目录</p>
-<p>首先准备一个目录存放你的博客网站文件，例如我的是 <strong>/e/blog</strong>，也就是在E盘根目录新建了一个<strong>blog</strong>文件夹</p>
-<p>然后我们进入该目录，点击鼠标右键，然后点击 <code>git bash</code> 出现一个命令窗口，接下来我们的大多数操作都用它来完成。</p>
+<h4 id="2-下载Hexo-工具"><a href="#2-下载Hexo-工具" class="headerlink" title="2.下载Hexo 工具"></a>2.下载Hexo 工具</h4><h5 id="2-1初始化博客目录"><a href="#2-1初始化博客目录" class="headerlink" title="2.1初始化博客目录"></a>2.1初始化博客目录</h5><p>  首先准备一个目录存放你的博客网站文件，例如我的是 <strong>/e/blog</strong>，也就是在E盘根目录新建了一个<strong>blog</strong>文件夹</p>
+<p>  然后我们进入该目录，点击鼠标右键，然后点击 <code>git bash</code> 出现一个命令窗口，接下来我们的大多数操作都用它来完成。</p>
 <blockquote>
 <p><code>Git Bash</code>在这里并不是唯一的选择，如您熟悉其他命令工具，也可以使用其他工具，这里使用<code>Git Bash</code>是为了减少更多不必要的麻烦</p>
 </blockquote>
-</li>
-</ul>
 <p>在 <code>Git Bash</code>窗口下输入如下命令：        </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 
@@ -559,16 +561,13 @@
 </blockquote>
 <p>若出现：<br><img src="/img/hexo-init1.png" alt></p>
 <p>则表示文件下载成功。</p>
-<ul>
-<li><p>本地生成运行</p>
-<p>在<code>Git Bash</code>窗口下，依次执行：</p>
+<h5 id="2-2-本地生成运行"><a href="#2-2-本地生成运行" class="headerlink" title="2.2 本地生成运行"></a>2.2 本地生成运行</h5><p>在<code>Git Bash</code>窗口下，依次执行：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 
 <p>这样，Hexo会默认运行在你本机的4000端口上，然后我们在浏览器中输入<code>http://localhost:4000</code> 即可显示如下页面：</p>
 <p><img src="/img/hexo-s.png" alt></p>
 <p>这个页面是hexo默认初始化的一个页面，主题为landscape。</p>
-</li>
-</ul>
+<hr>
 <h3 id="三、部署到GitPage"><a href="#三、部署到GitPage" class="headerlink" title="三、部署到GitPage"></a>三、部署到GitPage</h3><blockquote>
 <p>这个步骤开始前，请确保你已经注册了Github账号，且已经配置好了相关信息，配置方法请向上翻阅  <strong>二、安装Git</strong>  环节下。</p>
 </blockquote>
@@ -606,6 +605,7 @@
 <blockquote>
 <p>GitPage效果并不是立即生效的，如果出现访问失败，可以等一下再访问。</p>
 </blockquote>
+<hr>
 <h3 id="四、参考资料"><a href="#四、参考资料" class="headerlink" title="四、参考资料"></a>四、参考资料</h3><ol>
 <li><a href="https://blog.csdn.net/nightmare_dimple/article/details/86661465" target="_blank" rel="noopener">https://blog.csdn.net/nightmare_dimple/article/details/86661465</a></li>
 <li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo官方文档</a></li>
@@ -710,10 +710,6 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/18/MY-First/" rel="next" title="MY First">
-                <i class="fa fa-chevron-left"></i> MY First
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
@@ -815,7 +811,9 @@
         
           
         
-        <span class="site-state-item-count">2</span>
+          
+        
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -836,7 +834,11 @@
         
           
         
-        <span class="site-state-item-count">2</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -896,7 +898,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、安装配置Node-js"><span class="nav-number">1.2.</span> <span class="nav-text">一、安装配置Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安装Git"><span class="nav-number">1.3.</span> <span class="nav-text">二、安装Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、配置本地Hexo"><span class="nav-number">1.4.</span> <span class="nav-text">三、配置本地Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-配置hexo全局控制命令"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.配置hexo全局控制命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-下载Hexo-工具"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.下载Hexo 工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、部署到GitPage"><span class="nav-number">1.5.</span> <span class="nav-text">三、部署到GitPage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在Github创建仓库。"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.在Github创建仓库。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Hexo-配置"><span class="nav-number">1.5.2.</span> <span class="nav-text">2.Hexo 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-完成部署"><span class="nav-number">1.5.3.</span> <span class="nav-text">3.完成部署</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、参考资料"><span class="nav-number">1.6.</span> <span class="nav-text">四、参考资料</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、安装配置Node-js"><span class="nav-text">一、安装配置Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安装Git"><span class="nav-text">二、安装Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、配置本地Hexo"><span class="nav-text">三、配置本地Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-配置hexo全局控制命令"><span class="nav-text">1.配置hexo全局控制命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-下载Hexo-工具"><span class="nav-text">2.下载Hexo 工具</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1初始化博客目录"><span class="nav-text">2.1初始化博客目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-本地生成运行"><span class="nav-text">2.2 本地生成运行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、部署到GitPage"><span class="nav-text">三、部署到GitPage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在Github创建仓库。"><span class="nav-text">1.在Github创建仓库。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Hexo-配置"><span class="nav-text">2.Hexo 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-完成部署"><span class="nav-text">3.完成部署</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、参考资料"><span class="nav-text">四、参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -938,7 +940,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">4k</span>
+    <span title="站点总字数">5k</span>
   
 
   
@@ -949,7 +951,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">7 分钟</span>
+    <span title="站点阅读时长">10 分钟</span>
   
 </div>
 
@@ -1141,4 +1143,7 @@
   
 
 </body>
+
 </html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
