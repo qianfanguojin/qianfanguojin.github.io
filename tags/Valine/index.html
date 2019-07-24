@@ -586,7 +586,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">23k</span>
   
 
   
@@ -597,7 +597,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">41 分钟</span>
   
 </div>
 
@@ -737,6 +737,34 @@
   
 
   
+  
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'BA3au90C8umfxxCaMQesrGUT-gzGzoHsz',
+    appKey: 'K7NhnEekbnBOe9NnsRa1mnsr',
+    placeholder: '欢迎畅所欲言',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
 
 
 
