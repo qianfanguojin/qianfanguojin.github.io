@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言Git 工具的出现与使用极大的方便了广大开发者协作交流的工作，本文主要是记录一些作者平时用到的一些命令，方便以后查找。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-24T14:10:23.625Z">
+<meta property="og:updated_time" content="2019-07-24T14:35:23.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git学习探索：常用命令">
 <meta name="twitter:description" content="前言Git 工具的出现与使用极大的方便了广大开发者协作交流的工作，本文主要是记录一些作者平时用到的一些命令，方便以后查找。">
@@ -264,7 +264,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">8</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">11</span></a>
 
   </li>
         
@@ -282,7 +282,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">3</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">5</span></a>
 
   </li>
         
@@ -300,7 +300,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">7</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">8</span></a>
 
   </li>
 
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-24 22:10:23" itemprop="dateModified" datetime="2019-07-24T22:10:23+08:00">2019-07-24</time>
+                <time title="修改时间：2019-07-24 22:35:23" itemprop="dateModified" datetime="2019-07-24T22:35:23+08:00">2019-07-24</time>
               </span>
             
           
@@ -476,7 +476,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">808</span>
+              <span title="本文字数">1k</span>
             </span>
           
 
@@ -488,7 +488,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">1 分钟</span>
+              <span title="阅读时长">2 分钟</span>
             </span>
           
 
@@ -531,7 +531,7 @@
 
 <p><code>localbranch</code> 是你要推送的本地分支，<code>remote branch</code> 是你要推送到的远程分支</p>
 </li>
-<li><p>推送时不明确指定远程分支</p>
+<li><p>推送时只指定本地分支，不明确指定远程分支</p>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">push</span> --<span class="keyword">set</span>-upstream 远程主机名 &lt;local branch&gt;</span><br></pre></td></tr></table></figure>
 
 <p>区别于上方，如果在推送时不指定远程分支，则表示将本地分支推送与之存在”追踪关系”的远程分支(通常两者同名)，如果该远程分支不存在，则会被新建。</p>
@@ -540,6 +540,21 @@
 <p>附：</p>
 <p>查看分支的追踪关系的命令：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">branch </span>-vv</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>推送时本地远程分支都不指定</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">push</span> <span class="built_in">origin</span></span><br></pre></td></tr></table></figure>
+
+<p>本地当前分支将会推送到与本地当前分支同名的远程分支上(需先关联同名远程分支)</p>
+</li>
+</ul>
+<h3 id="3-git-branch"><a href="#3-git-branch" class="headerlink" title="3. git branch"></a>3. git branch</h3><ol>
+<li><p>重命名分支</p>
+<p>使用<code>-m</code> 参数来操控对已经创建的分支进行更名，<code>old_branch</code>为修改前的分支名<code>new_branch</code>为修改后的分支名。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">branch </span>-m old_branch new_branch</span><br></pre></td></tr></table></figure>
+
+
+
+
 
 
 
@@ -554,7 +569,7 @@
 
 
 </li>
-</ul>
+</ol>
 <h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a href="https://blog.csdn.net/litianze99/article/details/52452521" target="_blank" rel="noopener">https://blog.csdn.net/litianze99/article/details/52452521</a></p>
 
       
@@ -754,7 +769,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -777,7 +792,11 @@
         
           
         
-        <span class="site-state-item-count">3</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -810,7 +829,13 @@
         
           
         
-        <span class="site-state-item-count">8</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -870,7 +895,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-git-remote"><span class="nav-text">1.git remote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-git-push"><span class="nav-text">2.git push</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-分支关联操作"><span class="nav-text">1. 分支关联操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-text">参考链接：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-git-remote"><span class="nav-text">1.git remote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-git-push"><span class="nav-text">2.git push</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-分支关联操作"><span class="nav-text">1. 分支关联操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-git-branch"><span class="nav-text">3. git branch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-text">参考链接：</span></a></li></ol></div>
             
 
           </div>
@@ -912,7 +937,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">23k</span>
+    <span title="站点总字数">27k</span>
   
 
   
@@ -923,7 +948,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">42 分钟</span>
+    <span title="站点阅读时长">49 分钟</span>
   
 </div>
 
