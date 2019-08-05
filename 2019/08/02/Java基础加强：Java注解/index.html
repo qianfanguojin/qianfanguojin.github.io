@@ -115,7 +115,7 @@
 <meta property="og:image" content="https://qianfanguojin.github.io/img/JavaAnnotation/05.png">
 <meta property="og:image" content="https://qianfanguojin.github.io/img/JavaAnnotation/06.png">
 <meta property="og:image" content="https://qianfanguojin.github.io/img/JavaAnnotation/07.png">
-<meta property="og:updated_time" content="2019-08-02T10:06:02.114Z">
+<meta property="og:updated_time" content="2019-08-03T10:29:48.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础加强：Java注解">
 <meta name="twitter:description" content="前言上篇我们讲述了框架中核心技术 Java 反射 的使用，介绍了它功能的强大之处。 本篇我们讲述另一个框架使用的重要技术，Java 注解">
@@ -406,13 +406,23 @@
                 
               
 
-              <time title="创建时间：2019-08-02 18:00:12 / 修改时间：18:06:02" itemprop="dateCreated datePublished" datetime="2019-08-02T18:00:12+08:00">2019-08-02</time>
+              <time title="创建时间：2019-08-02 18:00:12" itemprop="dateCreated datePublished" datetime="2019-08-02T18:00:12+08:00">2019-08-02</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-03 18:29:48" itemprop="dateModified" datetime="2019-08-03T18:29:48+08:00">2019-08-03</time>
+              </span>
             
           
 
@@ -474,7 +484,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">22k</span>
+              <span title="本文字数">23k</span>
             </span>
           
 
@@ -486,7 +496,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">41 分钟</span>
+              <span title="阅读时长">42 分钟</span>
             </span>
           
 
@@ -784,23 +794,30 @@
 </li>
 </ul>
 <h2 id="4-jdk-8-对注解功能的增强"><a href="#4-jdk-8-对注解功能的增强" class="headerlink" title="4. jdk 8 对注解功能的增强"></a>4. jdk 8 对注解功能的增强</h2><h3 id="4-1-新增元注解-Repeatable"><a href="#4-1-新增元注解-Repeatable" class="headerlink" title="4.1 新增元注解@Repeatable"></a>4.1 新增元注解@Repeatable</h3><p>@Repeatable 注解在Java 8 中加入，它表示的注解可以在同一个位置重复使用。比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Role(&quot;USER&quot;)</span><br><span class="line">@Role(&quot;ADMIN&quot;)</span><br><span class="line">public class Person&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Role</span>(<span class="string">"USER"</span>)</span><br><span class="line"><span class="meta">@Role</span>(<span class="string">"ADMIN"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>我们可以这样理解，一个人可以有多种角色，它是用户，又是管理员。在 java8 之前，如果我们要实现一个注解表示多个相同类型但不同的值，我们必须要在注解内部声明数组，比如@Target注解：</p>
+<p>在 java8 之前，如果我们要实现一个注解表示多个相同类型但不同的值，我们必须要在注解内部声明数组，比如@Target注解：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.ANNOTATION_TYPE)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Target &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns an array of the kinds of elements an annotation type</span></span><br><span class="line"><span class="comment">     * can be applied to.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> an array of the kinds of elements an annotation type</span></span><br><span class="line"><span class="comment">     * can be applied to</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">//返回注释类型的元素种类的数组</span></span><br><span class="line">    ElementType[] value();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>然后我们在使用时只能声明一次注解，然后指定多个值形成数组:</p>
+<p>我们在使用时在注解上只能声明一次 Target注解，然后指定多个值形成数组，来表示注解可以在多个地方使用:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE,ElementType.METHOD,ElementType.FIELD&#125;)</span><br></pre></td></tr></table></figure>
 
-<p>而Java8又提供了另一种解决方式：</p>
-<p>首先定义可以重复使用的注解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Role注解，允许重复使用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Repeatable</span>(Roles.class) <span class="comment">//指定注解要放置的容器</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@interface</span> Role&#123;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而Java8又提供了另一种解决方式：使用@Repeatable 注解表明该注解可以在同一元素上重复使用。假设我想使Role 注解可以重复声明在类上，实现这个功能需要两步：</p>
+<p>第一步在 Role 注解上加@Repeatable注解，并指定多个重复的Role注解存放的容器，该容器也是一个注解类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Role注解，被允许重复使用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Repeatable</span>(Roles.class) <span class="comment">//指定该注解可以重复声明，并指定该注解声明后放置的容器注解</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@interface</span> Role&#123;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>然后我们可以在同一个地方使用注解了，但是每个Role注解里面的身份信息不一样，我们应该需要一个容器保存该注解不同的形式，于是我们定义容器：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Role注解的容器，接收相同的Role注解</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> Roles&#123;</span><br><span class="line">    Role[] value();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二步创建 Role注解的容器Roles注解，在Roles注解中声明一个 Role [] 注解数组存放多个Role注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Role注解的容器，接收相同的Role注解</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> Roles&#123;</span><br><span class="line">    Role[] value();<span class="comment">//数组负责保留多个Role注解</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>在这里有一个Role元素数组负责保留声明的多个 Role 注解。</p>
-<p>为了处理这种重复注解，java8在 AnnotatedElement 接口中增加了两个方法，用法如下：</p>
+<p>然后我们就可以在同一元素上使用Role注解了。</p>
+<p>事实上这只是一种语法糖而已，我举个例子，假设我们在Person类上声明了两个相同Role注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Role</span>(<span class="string">"USER"</span>)</span><br><span class="line"><span class="meta">@Role</span>(<span class="string">"ADMIN"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这两个 Role 注解会自动合并到 Roles 注解中，相当于这样定义一个Roles注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Roles</span>(&#123;<span class="meta">@Role</span>(<span class="string">"USER"</span>,<span class="meta">@Role</span>(<span class="string">"ADMIN"</span>))&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而事实是这样定义和上面定义的效果是一样的，上面的定义看起来可能就更直观一点。</p>
+<p>为了处理这种重复注解，java8也在 AnnotatedElement 接口中新增了两个方法，用法如下：</p>
 <table>
 <thead>
 <tr>
@@ -820,16 +837,17 @@
 <td align="center">返回该元素上指定注解类型，重复使用的注解，不包括继承自父类的。</td>
 </tr>
 </tbody></table>
-<p>对于 getAnnotationsByType 首先该方法会调用getDeclaredAnnotationsByType 寻找当前元素中是否有指定注解类型重复声明的注解，如有则返回当前元素定义的所有注解。</p>
-<p>如找不到，并且注解是声明在一个类上，而且注解是可继承的(使用了@Inherited)，则就去父类寻找是否有指定注解类型重复声明的注解。</p>
+<p><strong>注意：</strong></p>
+<p>对于 getAnnotationsByType 方法，该方法会最先调用 getDeclaredAnnotationsByType 方法寻找当前元素（类，成员变量，成员方法）上是否有指定注解类型而且被重复声明的注解，如有则返回当前元素上定义的指定注解类型的所有注解。</p>
+<p>如找不到，并且注解是声明在一个类上，而该注解又是可继承的(使用了@Inherited)，则就去父类寻找是否有指定注解类型重复声明的注解。</p>
 <p>两者只能取一，意思是如果你开始获取到子类有指定注解类型的重复注解，那么就不会再去寻找父类是否有该指定类型的重复注解，子类找不到再去寻找父类。</p>
 <p>简单的使用示例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Role</span>(<span class="string">"USER"</span>)</span><br><span class="line"><span class="meta">@Role</span>(<span class="string">"ADMIN"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">Child</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.annotation.Person"</span>);</span><br><span class="line">        Role[] annotationsByType = cls.getAnnotationsByType(Role.class);</span><br><span class="line">        <span class="keyword">for</span> (Role r: annotationsByType)&#123;</span><br><span class="line">            System.out.println(r.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Role</span>(<span class="string">"MAN"</span>)</span><br><span class="line"><span class="meta">@Role</span>(<span class="string">"Child"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Role注解，允许重复使用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Inherited</span> <span class="comment">//Roles 和 Role 两个注解都要定义为可继承，否则子类无法获取父类的重复注解</span></span><br><span class="line"><span class="meta">@Repeatable</span>(Roles.class) <span class="comment">//声明该注解可重复使用，并指定该注解要放置的容器</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@interface</span> Role&#123;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Role注解的容器，接收相同的Role注解</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> Roles&#123;</span><br><span class="line">    Role[] value();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明两个重复注解</span></span><br><span class="line"><span class="meta">@Role</span>(<span class="string">"USER"</span>)</span><br><span class="line"><span class="meta">@Role</span>(<span class="string">"ADMIN"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">Child</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        Class&lt;?&gt; cls = Class.forName(<span class="string">"cn.annotation.Person"</span>);</span><br><span class="line">        Role[] annotationsByType = cls.getAnnotationsByType(Role.class);</span><br><span class="line">        <span class="keyword">for</span> (Role r: annotationsByType)&#123;</span><br><span class="line">            System.out.println(r.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//声明两个重复注解</span></span><br><span class="line"><span class="meta">@Role</span>(<span class="string">"MAN"</span>)</span><br><span class="line"><span class="meta">@Role</span>(<span class="string">"Child"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Role注解，允许重复使用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Inherited</span> <span class="comment">//Roles 和 Role 两个注解都要定义为可继承，否则子类无法获取父类的重复注解</span></span><br><span class="line"><span class="meta">@Repeatable</span>(Roles.class) <span class="comment">//声明该注解可重复使用，并指定该注解要放置的容器</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@interface</span> Role&#123;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Role注解的容器，接收相同的Role注解</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> Roles&#123;</span><br><span class="line">    Role[] value();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出结果：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@cn</span>.annotation.Role(value=USER)</span><br><span class="line"><span class="meta">@cn</span>.annotation.Role(value=ADMIN)</span><br></pre></td></tr></table></figure>
 
-<p>根据上面的说明，子类父类只能选一，我要获取父类的则必须把子类同名的重复注解注释：</p>
+<p>根据上面的说明，子类父类只能获取到其中之一的重复注解，我要获取父类的则必须把子类同名的重复注解注释：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Role("USER")</span></span><br><span class="line"><span class="comment">//@Role("ADMIN")</span></span><br></pre></td></tr></table></figure>
 
 <p>此时我们再运行，结果为：</p>
@@ -1224,7 +1242,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">73k</span>
+    <span title="站点总字数">74k</span>
   
 
   
@@ -1235,7 +1253,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">2:13</span>
+    <span title="站点阅读时长">2:14</span>
   
 </div>
 
