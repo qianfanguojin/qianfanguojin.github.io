@@ -395,7 +395,7 @@
                 
               
 
-              <time title="创建时间：2019-08-21 22:21:52 / 修改时间：22:59:08" itemprop="dateCreated datePublished" datetime="2019-08-21T22:21:52+08:00">2019-08-21</time>
+              <time title="创建时间：2019-08-21 22:21:52 / 修改时间：23:34:05" itemprop="dateCreated datePublished" datetime="2019-08-21T22:21:52+08:00">2019-08-21</time>
             </span>
           
 
@@ -455,7 +455,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.1k</span>
+              <span title="本文字数">1.2k</span>
             </span>
           
 
@@ -487,46 +487,16 @@
 
       
         
+          <h2 id="一、问题来因"><a href="#一、问题来因" class="headerlink" title="一、问题来因"></a>一、问题来因</h2><p>今天在整合项目时需要将码云上的仓库<code>clone</code>下来，在Git Bash 里执行 clone命令报错<code>protocol &#39;&#39;https&#39;&#39; is not supported</code>，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。</p>
+          <!--noindex-->
           
-            <h2 id="一、问题来因"><a href="#一、问题来因" class="headerlink" title="一、问题来因"></a>一、问题来因</h2><p>今天在整合项目时需要将码云上的仓库<code>clone</code>下来，在Git Bash 里执行 clone命令报错<code>protocol &#39;&#39;https&#39;&#39; is not supported</code>，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。</p>
-<h2 id="二、寻找解决方案"><a href="#二、寻找解决方案" class="headerlink" title="二、寻找解决方案"></a>二、寻找解决方案</h2><p>开始在CSDN上找各种解决办法，并没有任何成果，遇到的问题情况和我都不一样。</p>
-<p>我一直秉承的思想是问题不能只有解决了才行，我们应该去找到问题产生的原因。</p>
-<p>最后在<code>stackoverflow</code>上找到了解决方案和原因，其中是这么写到的：</p>
-<blockquote>
-<p>You tried to paste it using</p>
-<ul>
-<li>CTRL +V</li>
-</ul>
-<p>before and it didn’t work so you went ahead and pasted it with classic</p>
-<ul>
-<li>Right Click - Paste**.</li>
-</ul>
-<p>Sadly whenever you enter CTRL +V on <strong>terminal</strong> it adds</p>
-<ul>
-<li>a <strong>hidden</strong> <strong>^?</strong></li>
-</ul>
-<p>(at least on my machine it encoded like that).</p>
-<p>the character that you only appears after you</p>
-<ul>
-<li>backspace</li>
-</ul>
-<p>(go ahead an try it on git bash).</p>
-<p>So your link becomes <code>^?https://...</code></p>
-<p><strong>which is invalid.</strong></p>
-</blockquote>
-<p>什么意思呢？就是说我们在粘贴地址时使用了 <code>CTRL +V</code>, 在Git Bash中没有效果，然后我们就会使用右键菜单中的粘贴，但是不幸的是，使用 <code>CTRL +V</code>会在Git Bash 中添加一个隐藏的符号 <code>^?</code>。</p>
-<p>当你在粘贴仓库链接时使用了<code>CTRL +V</code>后</p>
-<p>在GIt Bash 中你的克隆语句可能显示是这样正常的：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="comment">//gitee.com/qianfanguojin/homework_1.git</span></span><br></pre></td></tr></table></figure>
-
-<p>但真实语句其实是这样的：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone ^?https:<span class="comment">//gitee.com/qianfanguojin/homework_1.git</span></span><br></pre></td></tr></table></figure>
-
-<p>链接前面多了符号，协议变成了<code>^https</code>，肯定不能克隆成功，提示协议不支持。</p>
-<h2 id="三、问题解决办法"><a href="#三、问题解决办法" class="headerlink" title="三、问题解决办法"></a>三、问题解决办法</h2><p>解决问题的办法也很简单，将使用了<code>CTRL +V</code>的克隆语句删除重新编写，但是记得粘贴链接时不要使用<code>CTRL +V</code>即可。</p>
-<p>这个问题也提醒我们不要在 命令行中乱用 <code>CTRL +V</code>或是<code>CTRL +C</code>这类快捷键，可能会出现莫名其妙的BUG。</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/21/Git问题：Git-clone-时遇到fatal-protocol-https-is-not-supported问题解决方案/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -2760,7 +2730,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">3:52</span>
+    <span title="站点阅读时长">3:53</span>
   
 </div>
 

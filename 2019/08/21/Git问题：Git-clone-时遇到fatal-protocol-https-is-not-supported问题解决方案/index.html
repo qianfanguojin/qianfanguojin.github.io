@@ -96,18 +96,18 @@
   };
 </script>
 
-  <meta name="description" content="一、问题来因今天在整合项目时需要将码云上的仓库clone下来，在Git Bash 里执行 clone命令报错protocol &amp;#39;&amp;#39;https&amp;#39;&amp;#39; is not supported，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。 二、寻找解决方案开始在CSDN上找各种解决办法，并没有任何成果，遇到的问题情况和我都不一样。 我一直秉承的思想是问题不能">
+  <meta name="description" content="一、问题来因今天在整合项目时需要将码云上的仓库clone下来，在Git Bash 里执行 clone命令报错protocol &amp;#39;&amp;#39;https&amp;#39;&amp;#39; is not supported，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。">
 <meta name="keywords" content="Git,Git问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git问题：Git clone 时遇到fatal: protocol &#39;https&#39; is not supported问题解决方案">
 <meta property="og:url" content="https://qianfanguojin.github.io/2019/08/21/Git问题：Git-clone-时遇到fatal-protocol-https-is-not-supported问题解决方案/index.html">
 <meta property="og:site_name" content="谢同学的博客">
-<meta property="og:description" content="一、问题来因今天在整合项目时需要将码云上的仓库clone下来，在Git Bash 里执行 clone命令报错protocol &amp;#39;&amp;#39;https&amp;#39;&amp;#39; is not supported，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。 二、寻找解决方案开始在CSDN上找各种解决办法，并没有任何成果，遇到的问题情况和我都不一样。 我一直秉承的思想是问题不能">
+<meta property="og:description" content="一、问题来因今天在整合项目时需要将码云上的仓库clone下来，在Git Bash 里执行 clone命令报错protocol &amp;#39;&amp;#39;https&amp;#39;&amp;#39; is not supported，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-21T14:59:08.797Z">
+<meta property="og:updated_time" content="2019-08-21T15:34:05.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git问题：Git clone 时遇到fatal: protocol &#39;https&#39; is not supported问题解决方案">
-<meta name="twitter:description" content="一、问题来因今天在整合项目时需要将码云上的仓库clone下来，在Git Bash 里执行 clone命令报错protocol &amp;#39;&amp;#39;https&amp;#39;&amp;#39; is not supported，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。 二、寻找解决方案开始在CSDN上找各种解决办法，并没有任何成果，遇到的问题情况和我都不一样。 我一直秉承的思想是问题不能">
+<meta name="twitter:description" content="一、问题来因今天在整合项目时需要将码云上的仓库clone下来，在Git Bash 里执行 clone命令报错protocol &amp;#39;&amp;#39;https&amp;#39;&amp;#39; is not supported，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。">
 
 
 
@@ -394,7 +394,7 @@
                 
               
 
-              <time title="创建时间：2019-08-21 22:21:52 / 修改时间：22:59:08" itemprop="dateCreated datePublished" datetime="2019-08-21T22:21:52+08:00">2019-08-21</time>
+              <time title="创建时间：2019-08-21 22:21:52 / 修改时间：23:34:05" itemprop="dateCreated datePublished" datetime="2019-08-21T22:21:52+08:00">2019-08-21</time>
             </span>
           
 
@@ -462,7 +462,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.1k</span>
+              <span title="本文字数">1.2k</span>
             </span>
           
 
@@ -494,6 +494,8 @@
 
       
         <h2 id="一、问题来因"><a href="#一、问题来因" class="headerlink" title="一、问题来因"></a>一、问题来因</h2><p>今天在整合项目时需要将码云上的仓库<code>clone</code>下来，在Git Bash 里执行 clone命令报错<code>protocol &#39;&#39;https&#39;&#39; is not supported</code>，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。</p>
+<a id="more"></a>
+
 <h2 id="二、寻找解决方案"><a href="#二、寻找解决方案" class="headerlink" title="二、寻找解决方案"></a>二、寻找解决方案</h2><p>开始在CSDN上找各种解决办法，并没有任何成果，遇到的问题情况和我都不一样。</p>
 <p>我一直秉承的思想是问题不能只有解决了才行，我们应该去找到问题产生的原因。</p>
 <p>最后在<code>stackoverflow</code>上找到了解决方案和原因，其中是这么写到的：</p>
@@ -530,6 +532,7 @@
 <p>链接前面多了符号，协议变成了<code>^https</code>，肯定不能克隆成功，提示协议不支持。</p>
 <h2 id="三、问题解决办法"><a href="#三、问题解决办法" class="headerlink" title="三、问题解决办法"></a>三、问题解决办法</h2><p>解决问题的办法也很简单，将使用了<code>CTRL +V</code>的克隆语句删除重新编写，但是记得粘贴链接时不要使用<code>CTRL +V</code>即可。</p>
 <p>这个问题也提醒我们不要在 命令行中乱用 <code>CTRL +V</code>或是<code>CTRL +C</code>这类快捷键，可能会出现莫名其妙的BUG。</p>
+<h2 id="四、参考链接"><a href="#四、参考链接" class="headerlink" title="四、参考链接"></a>四、参考链接</h2><p><a href="https://stackoverflow.com/questions/53988638/git-fatal-protocol-https-is-not-supported" target="_blank" rel="noopener">https://stackoverflow.com/questions/53988638/git-fatal-protocol-https-is-not-supported</a></p>
 
       
     </div>
@@ -885,7 +888,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、问题来因"><span class="nav-text">一、问题来因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、寻找解决方案"><span class="nav-text">二、寻找解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、问题解决办法"><span class="nav-text">三、问题解决办法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、问题来因"><span class="nav-text">一、问题来因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、寻找解决方案"><span class="nav-text">二、寻找解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、问题解决办法"><span class="nav-text">三、问题解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、参考链接"><span class="nav-text">四、参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -938,7 +941,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">3:52</span>
+    <span title="站点阅读时长">3:53</span>
   
 </div>
 
