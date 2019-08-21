@@ -96,20 +96,18 @@
   };
 </script>
 
-  <meta name="description" content="前言Hexo 是一个方便快速的博客系统，但事无巨细，对于像我这样的小白来说，使用时还是会遇到许多小问题，这篇文章主要是记录Hexo的小问题解决方案。">
-<meta name="keywords" content="Hexo,Hexo 问题">
+  <meta name="description" content="一、问题来因今天在整合项目时需要将码云上的仓库clone下来，在Git Bash 里执行 clone命令报错protocol &amp;#39;&amp;#39;https&amp;#39;&amp;#39; is not supported，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。 二、寻找解决方案开始在CSDN上找各种解决办法，并没有任何成果，遇到的问题情况和我都不一样。 我一直秉承的思想是问题不能">
+<meta name="keywords" content="Git,Git问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo食用的一些小问题">
-<meta property="og:url" content="https://qianfanguojin.github.io/2019/07/20/Hexo食用的一些小问题/index.html">
+<meta property="og:title" content="Git问题：Git clone 时遇到fatal: protocol &#39;https&#39; is not supported问题解决方案">
+<meta property="og:url" content="https://qianfanguojin.github.io/2019/08/21/Git问题：Git-clone-时遇到fatal-protocol-https-is-not-supported问题解决方案/index.html">
 <meta property="og:site_name" content="谢同学的博客">
-<meta property="og:description" content="前言Hexo 是一个方便快速的博客系统，但事无巨细，对于像我这样的小白来说，使用时还是会遇到许多小问题，这篇文章主要是记录Hexo的小问题解决方案。">
+<meta property="og:description" content="一、问题来因今天在整合项目时需要将码云上的仓库clone下来，在Git Bash 里执行 clone命令报错protocol &amp;#39;&amp;#39;https&amp;#39;&amp;#39; is not supported，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。 二、寻找解决方案开始在CSDN上找各种解决办法，并没有任何成果，遇到的问题情况和我都不一样。 我一直秉承的思想是问题不能">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://qianfanguojin.github.io/img/add-tag-ca.png">
-<meta property="og:updated_time" content="2019-08-02T09:58:39.885Z">
+<meta property="og:updated_time" content="2019-08-21T14:59:08.797Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo食用的一些小问题">
-<meta name="twitter:description" content="前言Hexo 是一个方便快速的博客系统，但事无巨细，对于像我这样的小白来说，使用时还是会遇到许多小问题，这篇文章主要是记录Hexo的小问题解决方案。">
-<meta name="twitter:image" content="https://qianfanguojin.github.io/img/add-tag-ca.png">
+<meta name="twitter:title" content="Git问题：Git clone 时遇到fatal: protocol &#39;https&#39; is not supported问题解决方案">
+<meta name="twitter:description" content="一、问题来因今天在整合项目时需要将码云上的仓库clone下来，在Git Bash 里执行 clone命令报错protocol &amp;#39;&amp;#39;https&amp;#39;&amp;#39; is not supported，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。 二、寻找解决方案开始在CSDN上找各种解决办法，并没有任何成果，遇到的问题情况和我都不一样。 我一直秉承的思想是问题不能">
 
 
 
@@ -117,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="https://qianfanguojin.github.io/2019/07/20/Hexo食用的一些小问题/">
+  <link rel="canonical" href="https://qianfanguojin.github.io/2019/08/21/Git问题：Git-clone-时遇到fatal-protocol-https-is-not-supported问题解决方案/">
 
 
 
@@ -128,7 +126,7 @@
 </script>
 
   
-  <title>Hexo食用的一些小问题 | 谢同学的博客</title>
+  <title>Git问题：Git clone 时遇到fatal: protocol 'https' is not supported问题解决方案 | 谢同学的博客</title>
   
 
 
@@ -353,7 +351,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://qianfanguojin.github.io/2019/07/20/Hexo食用的一些小问题/">
+    <link itemprop="mainEntityOfPage" href="https://qianfanguojin.github.io/2019/08/21/Git问题：Git-clone-时遇到fatal-protocol-https-is-not-supported问题解决方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
@@ -370,7 +368,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Hexo食用的一些小问题
+          <h2 class="post-title" itemprop="name headline">Git问题：Git clone 时遇到fatal: protocol 'https' is not supported问题解决方案
 
               
             
@@ -396,23 +394,13 @@
                 
               
 
-              <time title="创建时间：2019-07-20 15:59:07" itemprop="dateCreated datePublished" datetime="2019-07-20T15:59:07+08:00">2019-07-20</time>
+              <time title="创建时间：2019-08-21 22:21:52 / 修改时间：22:59:08" itemprop="dateCreated datePublished" datetime="2019-08-21T22:21:52+08:00">2019-08-21</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-02 17:58:39" itemprop="dateModified" datetime="2019-08-02T17:58:39+08:00">2019-08-02</time>
-              </span>
             
           
 
@@ -425,7 +413,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo博客/" itemprop="url" rel="index"><span itemprop="name">Hexo博客</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
 
                 
                 
@@ -443,8 +431,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/07/20/Hexo食用的一些小问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/20/Hexo食用的一些小问题/" itemprop="commentCount"></span>
+                <a href="/2019/08/21/Git问题：Git-clone-时遇到fatal-protocol-https-is-not-supported问题解决方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/21/Git问题：Git-clone-时遇到fatal-protocol-https-is-not-supported问题解决方案/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -474,7 +462,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.8k</span>
+              <span title="本文字数">1.1k</span>
             </span>
           
 
@@ -486,7 +474,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">3 分钟</span>
+              <span title="阅读时长">2 分钟</span>
             </span>
           
 
@@ -505,113 +493,43 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Hexo 是一个方便快速的博客系统，但事无巨细，对于像我这样的小白来说，使用时还是会遇到许多小问题，这篇文章主要是记录Hexo的小问题解决方案。</p>
-<a id="more"></a>
-
-<h3 id="1-如何新建文章（博客）？"><a href="#1-如何新建文章（博客）？" class="headerlink" title="1. 如何新建文章（博客）？"></a>1. 如何新建文章（博客）？</h3><p>假设我要新建标题为 <strong>小白的逆袭之路</strong> 文章，我们进入Hexo博客主目录，在命令行操作下执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post &quot;小白的逆袭之路&quot;</span><br></pre></td></tr></table></figure>
-
-<p>文章即会被创建在<code>博客主目录/source/_posts</code> 目录中</p>
-<h3 id="2-如何删除博客"><a href="#2-如何删除博客" class="headerlink" title="2. 如何删除博客"></a>2. 如何删除博客</h3><p>进入<code>博客主目录/source/_posts</code>目录，找到你想删除的文章，鼠标右键删除即可。</p>
-<h3 id="3-如何编辑博客"><a href="#3-如何编辑博客" class="headerlink" title="3. 如何编辑博客"></a>3. 如何编辑博客</h3><blockquote>
-<p>hexo 编写文章使用的是Github的GFM语法的Markdown格式，在编辑文章之前，我强烈建议大家先去了解hexo下Markdown的基本语法，上手非常简单</p>
-</blockquote>
-<ol>
-<li><p>使用专门的 Markdown 编辑器</p>
-<p>目前市面上有许多Markdown编辑器，这里我墙裂推荐大家使用 <code>Typora</code> 使用方式以及介绍可以参考 <a href="https://sspai.com/post/54912" target="_blank" rel="noopener">少数派：Typora 完全使用详解</a></p>
-<p>配置好 <code>Typora</code>后我们编辑文章时只要点击我们要编辑的以<code>md</code>结尾的博客文件，鼠标右键&gt;打开方式&gt;用<code>Typora</code>打开</p>
-<p>即可用<code>Typora</code>编辑器进行编辑。</p>
-</li>
-</ol>
-<ol start="2">
-<li><p>利用Git Bash的<code>vim编辑器</code>,执行命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim 小白的逆袭之路.md</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="3">
-<li>其他的一些文本编辑器类。</li>
-</ol>
-<h3 id="4-如何为文章添加标签（tags）以及分类（categories）"><a href="#4-如何为文章添加标签（tags）以及分类（categories）" class="headerlink" title="4. 如何为文章添加标签（tags）以及分类（categories）"></a>4. 如何为文章添加标签（tags）以及分类（categories）</h3><p>在我们编辑文章时，文章头部都会有这样的格式：</p>
-<p><img src="/img/add-tag-ca.png" alt></p>
-<p>Hexo 称其为Front-matter 用于指定个别文件的变量，Hexo设定了多种参数：</p>
-<table>
-<thead>
-<tr>
-<th align="center">参数</th>
-<th align="center">描述</th>
-<th align="center">默认值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">layout</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">title</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<p>tag 对应你想对该文章设置的标签 ，书写格式为：- 标签名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 小白的逆袭之路</span><br><span class="line">tags: </span><br><span class="line">	- 小白    #标签1</span><br><span class="line">	- 励志    #标签2</span><br></pre></td></tr></table></figure>
-
-<p>categories 指定分类，书写格式为：- 分类名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: 小白的逆袭之路</span><br><span class="line">tags: </span><br><span class="line">	- 小白    #标签1</span><br><span class="line">	- 励志    #标签2</span><br><span class="line">categories: </span><br><span class="line">	- Dream #父分类</span><br><span class="line">	- Light Dream #子分类</span><br></pre></td></tr></table></figure>
-
-<p>仔细观察的朋友估计已经看出来了，我在分类名后面分别注释了 <code>父分类</code>以及<code>子分类</code>，为什么是这样子呢，根据官方的说明：</p>
+        <h2 id="一、问题来因"><a href="#一、问题来因" class="headerlink" title="一、问题来因"></a>一、问题来因</h2><p>今天在整合项目时需要将码云上的仓库<code>clone</code>下来，在Git Bash 里执行 clone命令报错<code>protocol &#39;&#39;https&#39;&#39; is not supported</code>，经过一番查找，找到了原因，分享给大家，其实也是我们常犯的一个错误。</p>
+<h2 id="二、寻找解决方案"><a href="#二、寻找解决方案" class="headerlink" title="二、寻找解决方案"></a>二、寻找解决方案</h2><p>开始在CSDN上找各种解决办法，并没有任何成果，遇到的问题情况和我都不一样。</p>
+<p>我一直秉承的思想是问题不能只有解决了才行，我们应该去找到问题产生的原因。</p>
+<p>最后在<code>stackoverflow</code>上找到了解决方案和原因，其中是这么写到的：</p>
 <blockquote>
-<p>在Hexo 中，分类和标签有着明显的差别：分类具有顺序性和层次性，而标签没有顺序和层次行。</p>
-<p>区别于WordPress ，WordPress支持对一篇文章设置多个分类，这些分类可以是同级的，也可以是父子分类。但是Hexo不支持指定多个同级分类。例如上面的指定方法，会将分类<code>Light Dream</code> 变为 <code>Dream</code> 的子类，而不是并列分类。因此，在进行您的文章分类时，请尽可能准确的分类。</p>
+<p>You tried to paste it using</p>
+<ul>
+<li>CTRL +V</li>
+</ul>
+<p>before and it didn’t work so you went ahead and pasted it with classic</p>
+<ul>
+<li>Right Click - Paste**.</li>
+</ul>
+<p>Sadly whenever you enter CTRL +V on <strong>terminal</strong> it adds</p>
+<ul>
+<li>a <strong>hidden</strong> <strong>^?</strong></li>
+</ul>
+<p>(at least on my machine it encoded like that).</p>
+<p>the character that you only appears after you</p>
+<ul>
+<li>backspace</li>
+</ul>
+<p>(go ahead an try it on git bash).</p>
+<p>So your link becomes <code>^?https://...</code></p>
+<p><strong>which is invalid.</strong></p>
 </blockquote>
-<h3 id="5-修改主题配置正确但刷新未显示修改的内容。"><a href="#5-修改主题配置正确但刷新未显示修改的内容。" class="headerlink" title="5. 修改主题配置正确但刷新未显示修改的内容。"></a>5. 修改主题配置正确但刷新未显示修改的内容。</h3><p>在每次我们进行主题或者是对站点配置修改后，执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>什么意思呢？就是说我们在粘贴地址时使用了 <code>CTRL +V</code>, 在Git Bash中没有效果，然后我们就会使用右键菜单中的粘贴，但是不幸的是，使用 <code>CTRL +V</code>会在Git Bash 中添加一个隐藏的符号 <code>^?</code>。</p>
+<p>当你在粘贴仓库链接时使用了<code>CTRL +V</code>后</p>
+<p>在GIt Bash 中你的克隆语句可能显示是这样正常的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="comment">//gitee.com/qianfanguojin/homework_1.git</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="6-TypeError-Cannot-read-property-‘length’-of-null"><a href="#6-TypeError-Cannot-read-property-‘length’-of-null" class="headerlink" title="6.  TypeError: Cannot read property ‘length’ of null"></a>6.  TypeError: Cannot read property ‘length’ of null</h3><p>开始遇到这个问题的时候一脸懵逼，再加上对 js 不熟，所以困扰许久。</p>
-<p>首先我们查看异常内容，里面有这一段：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules\highlight.js\lib\highlight.js:388:42</span><br></pre></td></tr></table></figure>
+<p>但真实语句其实是这样的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone ^?https:<span class="comment">//gitee.com/qianfanguojin/homework_1.git</span></span><br></pre></td></tr></table></figure>
 
-<p>然后我寻找源码看到这段注释：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">Syntax highlighting with language autodetection.</span><br><span class="line">https://highlightjs.org/</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
-
-<p>语法高亮自动侦测语言？然后我想起来配置文件好像有个侦测语言的，查看了一下站点配置文件找到highlight：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">highlight:</span><br><span class="line">  enable: true</span><br><span class="line">  line_number: true</span><br><span class="line">  auto_detect: true #自动判断代码语言</span><br><span class="line">  tab_replace:</span><br></pre></td></tr></table></figure>
-
-<p>看到了auto_detect ，自动判断代码语言，所以应该就是这里。</p>
-<p>那么是哪里出了问题呢，我的文章中代码比较复杂但是都指定了语言，这里的自动侦测语言可能遇到比较复杂的代码会检测出问题。</p>
-<p>于是我将 auto_detect 改为false，重新运行生成 hexo g，成功。</p>
+<p>链接前面多了符号，协议变成了<code>^https</code>，肯定不能克隆成功，提示协议不支持。</p>
+<h2 id="三、问题解决办法"><a href="#三、问题解决办法" class="headerlink" title="三、问题解决办法"></a>三、问题解决办法</h2><p>解决问题的办法也很简单，将使用了<code>CTRL +V</code>的克隆语句删除重新编写，但是记得粘贴链接时不要使用<code>CTRL +V</code>即可。</p>
+<p>这个问题也提醒我们不要在 命令行中乱用 <code>CTRL +V</code>或是<code>CTRL +C</code>这类快捷键，可能会出现莫名其妙的BUG。</p>
 
       
     </div>
@@ -691,7 +609,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://qianfanguojin.github.io/2019/07/20/Hexo食用的一些小问题/" title="Hexo食用的一些小问题">https://qianfanguojin.github.io/2019/07/20/Hexo食用的一些小问题/</a>
+    <a href="https://qianfanguojin.github.io/2019/08/21/Git问题：Git-clone-时遇到fatal-protocol-https-is-not-supported问题解决方案/" title="Git问题：Git clone 时遇到fatal: protocol 'https' is not supported问题解决方案">https://qianfanguojin.github.io/2019/08/21/Git问题：Git-clone-时遇到fatal-protocol-https-is-not-supported问题解决方案/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -707,9 +625,9 @@
         
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+            <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
           
-            <a href="/tags/Hexo-问题/" rel="tag"><i class="fa fa-tag"></i> Hexo 问题</a>
+            <a href="/tags/Git问题/" rel="tag"><i class="fa fa-tag"></i> Git问题</a>
           
         </div>
       
@@ -722,8 +640,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/20/Hexo博客搭建记录（二）：主题设置以及美化/" rel="next" title="Hexo博客搭建记录（二）：基本主题设置以及美化">
-                <i class="fa fa-chevron-left"></i> Hexo博客搭建记录（二）：基本主题设置以及美化
+              <a href="/2019/08/13/使用Git和码云来记录自己的学习/" rel="next" title="使用Git和码云来记录自己的学习">
+                <i class="fa fa-chevron-left"></i> 使用Git和码云来记录自己的学习
               </a>
             
           </div>
@@ -731,10 +649,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/23/Hexo博客进阶：为Next主题添加Valine评论系统/" rel="prev" title="Hexo博客进阶：为Next主题添加Valine评论系统">
-                Hexo博客进阶：为Next主题添加Valine评论系统 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -971,7 +885,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-如何新建文章（博客）？"><span class="nav-text">1. 如何新建文章（博客）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-如何删除博客"><span class="nav-text">2. 如何删除博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-如何编辑博客"><span class="nav-text">3. 如何编辑博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-如何为文章添加标签（tags）以及分类（categories）"><span class="nav-text">4. 如何为文章添加标签（tags）以及分类（categories）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-修改主题配置正确但刷新未显示修改的内容。"><span class="nav-text">5. 修改主题配置正确但刷新未显示修改的内容。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-TypeError-Cannot-read-property-‘length’-of-null"><span class="nav-text">6.  TypeError: Cannot read property ‘length’ of null</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、问题来因"><span class="nav-text">一、问题来因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、寻找解决方案"><span class="nav-text">二、寻找解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、问题解决办法"><span class="nav-text">三、问题解决办法</span></a></li></ol></div>
             
 
           </div>
