@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://qianfanguojin.github.io/2019/10/31/JavaScript-2019-10-31-JavaScript%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOM%E5%AF%B9%E8%B1%A1%E6%A6%82%E8%BF%B0/</loc>
+    
+    <lastmod>2019-11-05T13:51:21.412Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://qianfanguojin.github.io/2019/10/17/JavaScript-2019-10-17-JavaScript%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E7%AE%80%E5%8D%95%E7%9A%84DOM%E5%92%8C%E4%BA%8B%E4%BB%B6%E6%A1%88%E4%BE%8B/</loc>
+    
+    <lastmod>2019-11-05T13:51:21.412Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://qianfanguojin.github.io/2019/08/28/JavaScript-2019-08-28-JavaScript%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/</loc>
+    
+    <lastmod>2019-11-05T13:51:21.396Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://qianfanguojin.github.io/2019/08/28/JavaScript-2019-08-28-JavaScript%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1/</loc>
+    
+    <lastmod>2019-11-05T13:51:21.396Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://qianfanguojin.github.io/2019/08/28/JavaScript-2019-08-28-JavaScript%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</loc>
+    
+    <lastmod>2019-11-05T13:51:21.396Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://qianfanguojin.github.io/2019/09/23/%E4%B8%BA%E4%BD%A0%E7%9A%84MacOS-X%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85VMware-Tools/</loc>
+    
+    <lastmod>2019-09-24T11:35:55.069Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://qianfanguojin.github.io/2019/07/25/JavaWeb%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AHTML%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%A0%87%E7%AD%BE/</loc>
     
     <lastmod>2019-09-05T03:25:05.360Z</lastmod>
@@ -68,27 +110,6 @@
     <loc>https://qianfanguojin.github.io/2019/08/09/JDBC%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/</loc>
     
     <lastmod>2019-08-28T14:43:02.824Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://qianfanguojin.github.io/2019/08/28/JavaScript%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1/</loc>
-    
-    <lastmod>2019-08-28T05:22:44.548Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://qianfanguojin.github.io/2019/08/28/JavaScript%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</loc>
-    
-    <lastmod>2019-08-28T05:12:34.137Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://qianfanguojin.github.io/2019/08/28/JavaScript%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/</loc>
-    
-    <lastmod>2019-08-28T04:32:53.131Z</lastmod>
     
   </url>
   
