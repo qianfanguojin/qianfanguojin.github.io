@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,17 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="不管是运行tomcat还是使用各种Java的服务，jdk都是必不可少的，下面就介绍如何在Linux下安并配置jdk1.8">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2019/12/19/NQYfwSBn7PIdblr.png">
-<meta property="og:image" content="https://i.loli.net/2019/12/19/cpRVowsAGy7qXST.png">
-<meta property="og:image" content="https://i.loli.net/2019/12/19/EVCxd8A3Ofqt4Iw.png">
-<meta property="og:image" content="https://i.loli.net/2019/12/19/EeKoycGJtmnRXd7.png">
-<meta property="og:image" content="https://i.loli.net/2019/12/19/WS9AEItTYyfqioK.png">
-<meta property="og:image" content="https://i.loli.net/2019/12/19/HMqxGP2BThrpVjg.png">
 <meta property="og:updated_time" content="2020-02-26T03:48:05.007Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux之路：Centos安装jdk1.8">
 <meta name="twitter:description" content="不管是运行tomcat还是使用各种Java的服务，jdk都是必不可少的，下面就介绍如何在Linux下安并配置jdk1.8">
-<meta name="twitter:image" content="https://i.loli.net/2019/12/19/NQYfwSBn7PIdblr.png">
 
 
 
@@ -365,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -376,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -541,7 +542,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span> <span class="comment">#进入usr/local目录</span></span><br><span class="line">wget http://qunying.gxkjbg.com:8080/201704/tools/jdk-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
 
 <p>如图：</p>
-<p><img src="https://i.loli.net/2019/12/19/NQYfwSBn7PIdblr.png" alt="01.png"></p>
+<p><img alt="01.png" data-src="https://i.loli.net/2019/12/19/NQYfwSBn7PIdblr.png"></p>
 <p>下载完成后，先在<code>/usr/loca/</code>目录下新建 <code>java</code>文件夹：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir java</span><br></pre></td></tr></table></figure>
 
@@ -549,7 +550,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf jdk-linux-x64.tar.gz ./java/</span><br></pre></td></tr></table></figure>
 
 <p>查看文件信息如图：</p>
-<p><img src="https://i.loli.net/2019/12/19/cpRVowsAGy7qXST.png" alt="02.png"></p>
+<p><img alt="02.png" data-src="https://i.loli.net/2019/12/19/cpRVowsAGy7qXST.png"></p>
 <h3 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2. 配置环境变量"></a>2. 配置环境变量</h3><p>给Linux中配置环境变量有多种方法，如果有想了解的可以查看这篇文章：</p>
 <p><a href="https://www.cnblogs.com/youyoui/p/10680329.html" target="_blank" rel="noopener">Linux中配置环境变量</a></p>
 <p>这里我们使用修改配置文件的方法</p>
@@ -559,7 +560,7 @@
 <p>在文本末尾加上如下内容：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置JAVA环境变量</span></span><br><span class="line">JAVA_HOME=/usr/<span class="built_in">local</span>/java/jdk1.8.0_131</span><br><span class="line">PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span> CLASSPATH=<span class="variable">$JAVA_HOME</span>/jre/lib/ext:<span class="variable">$JAVA_HOME</span>/lib/tools.jar </span><br><span class="line"><span class="built_in">export</span> PATH JAVA_HOME CLASSPATH</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://i.loli.net/2019/12/19/EVCxd8A3Ofqt4Iw.png" alt="03-1.png"></p>
+<p><img alt="03-1.png" data-src="https://i.loli.net/2019/12/19/EVCxd8A3Ofqt4Iw.png"></p>
 <p>最后记得 <code>esc</code>  <code>:wq</code> 保存</p>
 <p>回到控制台，使用source /etc/profile让profile文件立即生效：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
@@ -567,9 +568,9 @@
 <h3 id="3-检查效果"><a href="#3-检查效果" class="headerlink" title="3. 检查效果"></a>3. 检查效果</h3><p>在控制台分别执行 <code>java</code> ， <code>javac</code> <code>java -version</code>查看效果：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java</span><br><span class="line">javac</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://i.loli.net/2019/12/19/EeKoycGJtmnRXd7.png" alt="05.png"></p>
-<p><img src="https://i.loli.net/2019/12/19/WS9AEItTYyfqioK.png" alt="04.png"></p>
-<p><img src="https://i.loli.net/2019/12/19/HMqxGP2BThrpVjg.png" alt="03.png"></p>
+<p><img alt="05.png" data-src="https://i.loli.net/2019/12/19/EeKoycGJtmnRXd7.png"></p>
+<p><img alt="04.png" data-src="https://i.loli.net/2019/12/19/WS9AEItTYyfqioK.png"></p>
+<p><img alt="03.png" data-src="https://i.loli.net/2019/12/19/HMqxGP2BThrpVjg.png"></p>
 
       
     </div>
@@ -612,7 +613,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -621,7 +622,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -754,7 +755,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1087,6 +1088,8 @@
 
 
 
+  
+
 
 
   
@@ -1094,6 +1097,7 @@
 
 
 
+  
 
 
 
@@ -1101,6 +1105,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1108,10 +1115,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

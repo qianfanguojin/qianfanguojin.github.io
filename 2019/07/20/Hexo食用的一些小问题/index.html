@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,12 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言Hexo 是一个方便快速的博客系统，但事无巨细，对于像我这样的小白来说，使用时还是会遇到许多小问题，这篇文章主要是记录Hexo的小问题解决方案。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/add-tag-ca.png">
 <meta property="og:updated_time" content="2019-08-02T09:58:39.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo食用的一些小问题">
 <meta name="twitter:description" content="前言Hexo 是一个方便快速的博客系统，但事无巨细，对于像我这样的小白来说，使用时还是会遇到许多小问题，这篇文章主要是记录Hexo的小问题解决方案。">
-<meta name="twitter:image" content="/img/add-tag-ca.png">
 
 
 
@@ -360,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -371,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -547,7 +553,7 @@
 <li>其他的一些文本编辑器类。</li>
 </ol>
 <h3 id="4-如何为文章添加标签（tags）以及分类（categories）"><a href="#4-如何为文章添加标签（tags）以及分类（categories）" class="headerlink" title="4. 如何为文章添加标签（tags）以及分类（categories）"></a>4. 如何为文章添加标签（tags）以及分类（categories）</h3><p>在我们编辑文章时，文章头部都会有这样的格式：</p>
-<p><img src="/img/add-tag-ca.png" alt></p>
+<p><img alt data-src="/img/add-tag-ca.png"></p>
 <p>Hexo 称其为Front-matter 用于指定个别文件的变量，Hexo设定了多种参数：</p>
 <table>
 <thead>
@@ -667,7 +673,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -676,7 +682,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -809,7 +815,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1142,6 +1148,8 @@
 
 
 
+  
+
 
 
   
@@ -1149,6 +1157,7 @@
 
 
 
+  
 
 
 
@@ -1156,6 +1165,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1163,10 +1175,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

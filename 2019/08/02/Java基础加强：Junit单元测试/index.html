@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,21 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言作为一个开发人员，为了编写出优秀的代码，我们要既要懂得在编写时注意各种规范和逻辑，也要懂得如何对代码进行测试。 本篇文章就带领大家体验使用JUnit测试框架来对代码进行测试。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/Junit/01.png">
-<meta property="og:image" content="/img/Junit/03.png">
-<meta property="og:image" content="/img/Junit/04.png">
-<meta property="og:image" content="/img/Junit/05.png">
-<meta property="og:image" content="/img/Junit/06.png">
-<meta property="og:image" content="/img/Junit/07.png">
-<meta property="og:image" content="/img/Junit/08.png">
-<meta property="og:image" content="/img/Junit/09.png">
-<meta property="og:image" content="/img/Junit/10.png">
-<meta property="og:image" content="/img/Junit/11.png">
 <meta property="og:updated_time" content="2019-08-08T07:29:12.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础加强：Junit单元测试">
 <meta name="twitter:description" content="前言作为一个开发人员，为了编写出优秀的代码，我们要既要懂得在编写时注意各种规范和逻辑，也要懂得如何对代码进行测试。 本篇文章就带领大家体验使用JUnit测试框架来对代码进行测试。">
-<meta name="twitter:image" content="/img/Junit/01.png">
 
 
 
@@ -369,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -380,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -558,7 +555,7 @@
 <p>然后在<code>src</code> 目录下新建一个junit包。鼠标右键单击<code>src</code> 目录，然后点击New&gt;Package，输入名字为junit，点击OK。</p>
 <p>最后在junit包下新建我们想要测试的Calculator类。鼠标右键单击<code>junit</code> 目录，然后点击New&gt;Java Class，输入名字为Calculator，点击OK。</p>
 <p>此时我们的项目结构如下：</p>
-<p><img src="/img/Junit/01.png" alt></p>
+<p><img alt data-src="/img/Junit/01.png"></p>
 <p>然后我们在<code>Calculator</code>类中定义两个方法用作被测试，代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> junit;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算器类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加法操作</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> a</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> b</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span> <span class="params">(<span class="keyword">int</span> a , <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 减法操作</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> a</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> b</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">substract</span> <span class="params">(<span class="keyword">int</span> a , <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a - b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -569,7 +566,7 @@
 <p>同时在该包下新建类名为CalculatorTest的类，在编写代码的过程中，将测试类的包名和被测试的包名保持一致是一个好习惯。</p>
 <p>通过测试类的名字我们又可以很清楚的了解到，这是用做Calculator类的测试类，所以对于测试类的命名，我们推荐使用<code>要测试的类名 + Test</code> 。</p>
 <p>此时项目结构如下：</p>
-<p><img src="/img/Junit/03.png" alt></p>
+<p><img alt data-src="/img/Junit/03.png"></p>
 <h3 id="3-在测试类中新建测试方法"><a href="#3-在测试类中新建测试方法" class="headerlink" title="3. 在测试类中新建测试方法"></a>3. 在测试类中新建测试方法</h3><p>我们打开CalculatorTest类，在里面输入以下内容：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> jnnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> junit.Calculator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试add方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1.创建计算器对象</span></span><br><span class="line">        Calculator ca = <span class="keyword">new</span> Calculator();</span><br><span class="line">        <span class="comment">//调用add方法</span></span><br><span class="line">        <span class="keyword">int</span> result = ca.add(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -580,12 +577,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> jnnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> junit.Calculator;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试add方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1.创建计算器对象</span></span><br><span class="line">        Calculator ca = <span class="keyword">new</span> Calculator();</span><br><span class="line">        <span class="comment">//调用add方法</span></span><br><span class="line">        <span class="keyword">int</span> result = ca.add(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>第一次使用的话，注解会报红，这是没有导入包的原因，我们点击<code>@Test</code>注解，按键盘的Alt+Enter 键：</p>
-<p><img src="/img/Junit/04.png" alt></p>
+<p><img alt data-src="/img/Junit/04.png"></p>
 <p>选择第一个，然后idea就会自动加载该包。</p>
 <p>加上注解后，我们可以看到在方法左边多了个绿色箭头，我们以前在使用<code>main</code>方法，左边也有同样的箭头，这代表该方法可以运行。</p>
-<p> <img src="/img/Junit/05.png" alt></p>
+<p> <img alt data-src="/img/Junit/05.png"></p>
 <p>我们点击该箭头运行，出现如下结果：</p>
-<p> <img src="/img/Junit/06.png" alt></p>
+<p> <img alt data-src="/img/Junit/06.png"></p>
 <p>可以看到，左边显示绿色提示，右边的控制台打印了我们输出的相加结果，测试成功。</p>
 <p>当测试出现异常时，左边的提示会变成红色。</p>
 <p>我们在测试时，都是通过是否出现提示红色来判断测试的程序段是否有问题，这就要求我们测试代码编写时要有一定的严谨性，下面我来介绍增加测试代码严谨性的方法。</p>
@@ -596,16 +593,16 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span> <span class="params">(<span class="keyword">int</span> a , <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> a - b;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <p>然后我们再次运行测试类的 testAdd 方法：</p>
-<p><img src="/img/Junit/07.png" alt></p>
+<p><img alt data-src="/img/Junit/07.png"></p>
 <p>左边提示为绿色，没有发现问题。</p>
 <p>我修改add方法的代码之后，其逻辑已经出现了问题，但是测试并没有出现问题，可以看出单纯通过打印输出结果无法判断程序是否正确。</p>
 <h4 id="3-开始使用断言"><a href="#3-开始使用断言" class="headerlink" title="3. 开始使用断言"></a>3. 开始使用断言</h4><p>Junit 提供了一个类 Assert ，它有许多静态重载方法来定义断言：</p>
-<p><img src="/img/Junit/08.png" alt></p>
+<p><img alt data-src="/img/Junit/08.png"></p>
 <p>使用断言，修改代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1.创建计算器对象</span></span><br><span class="line">        Calculator ca = <span class="keyword">new</span> Calculator();</span><br><span class="line">        <span class="comment">//2.调用add方法</span></span><br><span class="line">        <span class="keyword">int</span> result = ca.add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="comment">//        System.out.println(result);</span></span><br><span class="line">        <span class="comment">//3.使用断言</span></span><br><span class="line">        Assert.assertEquals(<span class="number">3</span>,result);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>assertEquals()</code>接收两个值，前者为我们期望的值也就是断言的值，后者时测试的真正结果值，此时我们再次运行测试方法：</p>
-<p><img src="/img/Junit/09.png" alt></p>
+<p><img alt data-src="/img/Junit/09.png"></p>
 <p>可以看到，左边并没有变为绿色，这里没显示红色是我主题的原因。但是我们可以通过右边看到，上面提示Test failed ，也就是测试失败。</p>
 <p>然后列出了原因 :</p>
 <p>Expected ：3           期望为3<br>Actual：-1                实际为-1</p>
@@ -613,7 +610,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span> <span class="params">(<span class="keyword">int</span> a , <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行测试方法，测试成功：</p>
-<p><img src="/img/Junit/10.png" alt></p>
+<p><img alt data-src="/img/Junit/10.png"></p>
 <h2 id="补充内容"><a href="#补充内容" class="headerlink" title="补充内容"></a>补充内容</h2><p>使用<code>@Test</code>注解能够将方法设定为独立运行，但是每次我们运行测试方法时，都要在测试方法中new对象。</p>
 <p>也就是说，类似于IO的操作，我们每一个测试方法都要先获得被测试类的对象才能调用它对应的方法，而这些操作基本在每个测试方法都要用到，为了减少程序代码的冗余，我们一般会将这些操作都放在一个函数里面，在类被使用时首先就执行加载数据，使用结束后释放数据。</p>
 <p>而Junit刚好提供了这样的功能，通过<code>@Before</code>注解，指定该方法在所有测试方法执行之前执行。</p>
@@ -622,7 +619,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> jnnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> junit.Calculator;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorTest</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 在所有测试方法之前执行</span></span><br><span class="line"><span class="comment">     * 一般用于数据和资源的初始化</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Before"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 在所有测试方法之后执行</span></span><br><span class="line"><span class="comment">     * 一般用于数据和资源的释放</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"After"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试add方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1.创建计算器对象</span></span><br><span class="line">        Calculator ca = <span class="keyword">new</span> Calculator();</span><br><span class="line">        <span class="comment">//2.调用add方法</span></span><br><span class="line">        <span class="keyword">int</span> result = ca.add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="comment">//        System.out.println(result);</span></span><br><span class="line">        <span class="comment">//3.使用断言</span></span><br><span class="line">        Assert.assertEquals(<span class="number">3</span>,result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>然后我们运行测试方法：</p>
-<p><img src="/img/Junit/11.png" alt></p>
+<p><img alt data-src="/img/Junit/11.png"></p>
 <p>可以看到打印的顺序和我们设想的一样。</p>
 <p>JUnit4利用JDK5的新特性Annotation，使用注解来定义测试规则。<br>以下为几个常用的注解：</p>
 <ul>
@@ -676,7 +673,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -685,7 +682,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -818,7 +815,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1151,6 +1148,8 @@
 
 
 
+  
+
 
 
   
@@ -1158,6 +1157,7 @@
 
 
 
+  
 
 
 
@@ -1165,6 +1165,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1172,10 +1175,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

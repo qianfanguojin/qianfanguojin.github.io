@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,16 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="Hexo + GItPage 的组合让我们每个人都很容易的拥有自己的博客站点，但由于github在国内经常抽风，给人的体验不是很好。 刚好自己前段时间白嫖了一个云服务器，于是查了查资料，成功将其部署到云服务器。 接下来我就介绍我自己部署的一些过程，希望能给看到的人一些帮助。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20200302234435.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200304142805.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200303161109.png">
-<meta property="og:image" content="AppData/Roaming/Typora/typora-user-images/image-20200303161553972.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200304142817.png">
 <meta property="og:updated_time" content="2020-03-04T06:32:55.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客进阶：将Hexo部署到云服务器">
 <meta name="twitter:description" content="Hexo + GItPage 的组合让我们每个人都很容易的拥有自己的博客站点，但由于github在国内经常抽风，给人的体验不是很好。 刚好自己前段时间白嫖了一个云服务器，于是查了查资料，成功将其部署到云服务器。 接下来我就介绍我自己部署的一些过程，希望能给看到的人一些帮助。">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20200302234435.png">
 
 
 
@@ -364,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -375,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -564,7 +566,7 @@
 <ol start="2">
 <li><p>生成密钥对（已有的请忽略）</p>
 <p>进入你本机的(windows) c:/Users/youname/.ssh 文件夹下，查看是否有名为 <code>id_rsa.pub</code> 和 <code>id_rsa</code> 的文件：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20200302234435.png" alt></p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20200302234435.png"></p>
 <p>如果有，请跳过这一步：</p>
 <p>生成密钥对：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
@@ -586,7 +588,7 @@
 <h2 id="限制git用户的权限"><a href="#限制git用户的权限" class="headerlink" title="限制git用户的权限"></a>限制git用户的权限</h2><p>为了安全起见，最好是将git用户的权限设置为只能git clone , git push 等：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/shells // 查看 git-shell 是否在登录方式里面</span><br><span class="line">which git-shell // 查看是否安装</span><br><span class="line">vim /etc/shells</span><br><span class="line">添加第2步显示出来的路径，通常为 /usr/bin/git-shell</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200304142805.png" alt="image-20200303141203059"></p>
+<p><img alt="image-20200303141203059" data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200304142805.png"></p>
 <p>同时修改/etc/passwd的权限：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">将原来的:</span><br><span class="line">git:x:1001:1001::/home/git:/bin/bash //原来的</span><br><span class="line">修改为:</span><br><span class="line">git:x:1001:1001::/home/git:/usr/bin/git-shell //修改之后</span><br></pre></td></tr></table></figure>
 
@@ -595,16 +597,16 @@
 <h3 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h3><p>根据上面的步骤，安装完成，在控制台输入</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -v</span><br></pre></td></tr></table></figure>
 
-<p>可看到版本信息，代表安装成功<img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200303161109.png" alt></p>
+<p>可看到版本信息，代表安装成功<img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200303161109.png"></p>
 <p>运行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure>
 
 <p>在浏览器输入 <code>&lt;server_ip&gt;</code> ，可看到：</p>
-<p><img src="../../../../../AppData/Roaming/Typora/typora-user-images/image-20200303161553972.png" alt="image-20200303161553972"></p>
+<p><img alt="image-20200303161553972" data-src="../../../../../AppData/Roaming/Typora/typora-user-images/image-20200303161553972.png"></p>
 <p>详细配置</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nginx -s stop //先停止nginx</span><br><span class="line">cd /usr/local/nginx-webServer/conf</span><br><span class="line">vim nginx.conf //打开配置文件</span><br><span class="line">将 user 修改为 root //避免权限不足无法访问博客目录</span><br><span class="line">将 root 解析路径修改为博客目录 /home/git/project/hexo-blog</span><br><span class="line">nginx -s reload //重启nginx</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200304142817.png" alt="image-20200303162637211"></p>
+<p><img alt="image-20200303162637211" data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200304142817.png"></p>
 <h2 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h2><p>配置站点配置文件<code>_config.yml</code> 的 <code>deploy</code>:</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> </span><br><span class="line"><span class="attr">        server:</span> <span class="string">git@server_ip:/home/git/repos/hexo-blog-repo.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
@@ -663,7 +665,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -672,7 +674,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -803,7 +805,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1136,6 +1138,8 @@
 
 
 
+  
+
 
 
   
@@ -1143,6 +1147,7 @@
 
 
 
+  
 
 
 
@@ -1150,6 +1155,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1157,10 +1165,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

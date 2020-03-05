@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,20 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言上一篇文章中，我们介绍了BOM的来源以及其组成部分，为了加深我们对BOM的理解，今天我们就将BOM中的对象都分析一遍。 下面，我们就开始吧。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/JavaScriptPro02/1.1-01.gif">
-<meta property="og:image" content="/img/JavaScriptPro02/1.2-01.gif">
-<meta property="og:image" content="/img/JavaScriptPro02/1.2-02.gif">
-<meta property="og:image" content="/img/JavaScriptPro02/1.2-03.gif">
-<meta property="og:image" content="/img/JavaScriptPro02/1.2-04.gif">
-<meta property="og:image" content="/img/JavaScriptPro02/2.2-01.gif">
-<meta property="og:image" content="/img/JavaScriptPro02/2.3-01.gif">
-<meta property="og:image" content="/img/JavaScriptPro02/3.2-01.gif">
-<meta property="og:image" content="/img/JavaScriptPro02/3.3-001.gif">
 <meta property="og:updated_time" content="2019-12-03T11:30:39.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript进阶（二）：BOM对象详解">
 <meta name="twitter:description" content="前言上一篇文章中，我们介绍了BOM的来源以及其组成部分，为了加深我们对BOM的理解，今天我们就将BOM中的对象都分析一遍。 下面，我们就开始吧。">
-<meta name="twitter:image" content="/img/JavaScriptPro02/1.1-01.gif">
 
 
 
@@ -368,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -379,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -550,7 +548,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"no window弹出"</span>);</span><br></pre></td></tr></table></figure>
 
 <p>动图事例：</p>
-<p><img src="/img/JavaScriptPro02/1.1-01.gif" alt></p>
+<p><img alt data-src="/img/JavaScriptPro02/1.1-01.gif"></p>
 <hr>
 <h3 id="2、Window方法"><a href="#2、Window方法" class="headerlink" title="2、Window方法"></a>2、Window方法</h3><h4 id="2-1-三个带弹出框的方法"><a href="#2-1-三个带弹出框的方法" class="headerlink" title="2.1 三个带弹出框的方法"></a>2.1 三个带弹出框的方法</h4><p>window对象中，大致有三个方法为带弹出框的，其方法名和大致用法为：</p>
 <table>
@@ -578,13 +576,13 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">confirm(<span class="string">"确定这样做吗"</span>);</span><br></pre></td></tr></table></figure>
 
 <p>演示：</p>
-<p><img src="/img/JavaScriptPro02/1.2-01.gif" alt></p>
+<p><img alt data-src="/img/JavaScriptPro02/1.2-01.gif"></p>
 <p>可以看到，<strong>confirm</strong> 的确实现了带确认取消的弹窗。</p>
 <p>但是也可以看到，无论我点击 <strong>confirm</strong> 中的<strong>确认</strong>还是<strong>取消</strong>，好像都没有什么不同。事实上， <strong>confirm</strong> 方法会返回一个布尔值，当用户点击确定时返回<strong>true</strong>，点击取消时返回<strong>false</strong>。下面我们用一个例子演示：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> flag = confirm(<span class="string">"确定这样做吗？"</span>);</span><br><span class="line"><span class="keyword">if</span>(flag)&#123;</span><br><span class="line">	alert(<span class="string">"是的"</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	alert(<span class="string">"不"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>演示：</p>
-<p><img src="/img/JavaScriptPro02/1.2-02.gif" alt></p>
+<p><img alt data-src="/img/JavaScriptPro02/1.2-02.gif"></p>
 <p>然后就是 <strong>prompt()</strong> 方法了，其负责显示一个具有输入框的弹出框，基本用法如下:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promt(<span class="string">"输入点东西吧"</span>);</span><br></pre></td></tr></table></figure>
 
@@ -596,7 +594,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = prompt(<span class="string">"输入点东西吧"</span>);</span><br><span class="line">alert(text);</span><br></pre></td></tr></table></figure>
 
 <p>演示效果：</p>
-<p><img src="/img/JavaScriptPro02/1.2-03.gif" alt></p>
+<p><img alt data-src="/img/JavaScriptPro02/1.2-03.gif"></p>
 <p>总的来说，这三个带弹出框的方法其实各有异同，他们三个使用的优先级为：</p>
 <p><strong>confirm &gt; alert &gt; prompt</strong></p>
 <p>更推荐大家使用 <strong>confirm</strong>，用户体验会更舒服。</p>
@@ -631,7 +629,7 @@
 
 <p>为了更清楚的显示出 close 方法的用法，在这结合了 open() 方法的使用，close方法负责关闭open()方法所打开的窗口。</p>
 <p>最终呈现效果：</p>
-<p><img src="/img/JavaScriptPro02/1.2-04.gif" alt></p>
+<p><img alt data-src="/img/JavaScriptPro02/1.2-04.gif"></p>
 <h4 id="2-3-与定时器有关的方法"><a href="#2-3-与定时器有关的方法" class="headerlink" title="2.3 与定时器有关的方法"></a>2.3 与定时器有关的方法</h4><blockquote>
 <p>定时器：类似闹钟，在一个规定的时间或者时间周期内执行</p>
 </blockquote>
@@ -770,7 +768,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;input type=<span class="string">"button"</span> value=<span class="string">"assign"</span> id=<span class="string">"assign"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"button"</span> value=<span class="string">"reload"</span> id=<span class="string">"reload"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"button"</span> value=<span class="string">"replace"</span> id=<span class="string">"replace"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * 加载新文档,参数为URL地址，会产生历史记录</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">   </span></span><br><span class="line"><span class="regexp">    document.getElementById("assign").onclick = function()&#123;</span></span><br><span class="line"><span class="regexp">        location.assign("http:/</span><span class="regexp">/www.baidu.com");</span></span><br><span class="line"><span class="regexp">    &#125; </span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * 重新加载文档，参数为一个布尔值，默认为<span class="literal">false</span></span><br><span class="line">     * <span class="number">1.</span>如该方法没有设定参数值或设定为<span class="literal">false</span>，那该方法会使用浏览器缓存来重新加载页面（浏览器默认刷新方式）</span><br><span class="line">     * <span class="number">2.</span>如该方法参数值为<span class="literal">true</span>，那么该方法会无条件向服务器重新下载该文档并重新加载</span><br><span class="line">     * </span><br><span class="line">     *<span class="regexp">/ </span></span><br><span class="line"><span class="regexp">    document.getElementById("reload").onclick = function()&#123;</span></span><br><span class="line"><span class="regexp">        location.reload(true);</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    </span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ /</span>**</span><br><span class="line">    <span class="comment">//  * 替换当前文档，和 assign 方法类似 </span></span><br><span class="line">    <span class="comment">//  * 但是不会产生历史记录，也就是无法通过后退键返回上一个页面</span></span><br><span class="line">    <span class="comment">//  */</span></span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"replace"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        location.replace(<span class="string">"http://www.baidu.com"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>效果演示：</p>
-<p><img src="/img/JavaScriptPro02/2.2-01.gif" alt></p>
+<p><img alt data-src="/img/JavaScriptPro02/2.2-01.gif"></p>
 <h3 id="3、Location属性"><a href="#3、Location属性" class="headerlink" title="3、Location属性"></a>3、Location属性</h3><p>location 的属性如下：</p>
 <table>
 <thead>
@@ -818,7 +816,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;input type=<span class="string">"button"</span> value=<span class="string">"href获取"</span> id=<span class="string">"href01"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"button"</span> value=<span class="string">"href设置"</span> id=<span class="string">"href02"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">	/</span>**</span><br><span class="line">     * href 属性</span><br><span class="line">     * 设置或返回完整URL</span><br><span class="line">     * 当其设置一个新href时，其效果和assign()一样，加载新URL，并产生历史记录</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    document.getElementById("href01").onclick = function()&#123;</span></span><br><span class="line"><span class="regexp">        alert(location.href);</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    document.getElementById("href02").onclick = function()&#123;</span></span><br><span class="line"><span class="regexp">        location.href = "http:/</span><span class="regexp">/www.baidu.com";</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
 
 <p>效果演示：</p>
-<p><img src="/img/JavaScriptPro02/2.3-01.gif" alt></p>
+<p><img alt data-src="/img/JavaScriptPro02/2.3-01.gif"></p>
 <h2 id="三、History对象"><a href="#三、History对象" class="headerlink" title="三、History对象"></a>三、History对象</h2><blockquote>
 <p>特别注意：这里的History对象记录的历史记录只和当前窗口有关，并不是浏览器的全部历史记录。</p>
 </blockquote>
@@ -856,7 +854,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;a href=<span class="string">"http://www.baidu.com"</span>&gt;打开一个页面&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input type="button" value="goForward前进" onclick="goForward()"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input type="button" value="goBack后退" onclick="goBack()"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input type="button" value="go去后一个页面" onclick="go()"&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * forward()方法</span></span><br><span class="line"><span class="comment">     * 加载当前窗口历史列表的前一个页面</span></span><br><span class="line"><span class="comment">     * 类似于浏览器中的前进按钮</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     */</span> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">goForward</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        history.forward();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * back()方法</span></span><br><span class="line"><span class="comment">     * 加载当前窗口历史列表的后一个页面</span></span><br><span class="line"><span class="comment">     * 类似于浏览器中的后退按钮</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">goBack</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        history.back();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * go()方法</span></span><br><span class="line"><span class="comment">     * 加载当前窗口历史列表的一个具体页面</span></span><br><span class="line"><span class="comment">     * 参数可以为一个URL或者一个数字，数字代表要访问的URL在历史记录的相对位置</span></span><br><span class="line"><span class="comment">     */</span> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">go</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//-1表示向后一个页面</span></span><br><span class="line">        history.go(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>效果演示：</p>
-<p><img src="/img/JavaScriptPro02/3.2-01.gif" alt></p>
+<p><img alt data-src="/img/JavaScriptPro02/3.2-01.gif"></p>
 <h3 id="3、History属性"><a href="#3、History属性" class="headerlink" title="3、History属性"></a>3、History属性</h3><p>history 对象只有一个属性：</p>
 <table>
 <thead>
@@ -877,7 +875,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">   &lt;input type=<span class="string">"button"</span> value=<span class="string">"获取历史记录数量"</span> onclick=<span class="string">"getLength()"</span>&gt;</span><br><span class="line">   &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">   &lt;script&gt;</span></span><br><span class="line"><span class="regexp">/</span>**</span><br><span class="line">    *length属性</span><br><span class="line">    * 显示当前窗口历史记录数量</span><br><span class="line">    *<span class="regexp">/ </span></span><br><span class="line"><span class="regexp">   function getLength() &#123;</span></span><br><span class="line"><span class="regexp">       alert(history.length);</span></span><br><span class="line"><span class="regexp">   &#125;</span></span><br><span class="line"><span class="regexp">   &lt;script&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>演示：</p>
-<p><img src="/img/JavaScriptPro02/3.3-001.gif" alt></p>
+<p><img alt data-src="/img/JavaScriptPro02/3.3-001.gif"></p>
 <hr>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
 <p>本节中所有使用的演示代码及资料都可以在我的github上找到，直达链接 ： <a href="https://github.com/qianfanguojin/Project-WebBasic/tree/master/09/JavaScriptProDemo/follow-BOM" target="_blank" rel="noopener">点我跳转</a></p>
@@ -926,7 +924,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -935,7 +933,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -1066,7 +1064,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1399,6 +1397,8 @@
 
 
 
+  
+
 
 
   
@@ -1406,6 +1406,7 @@
 
 
 
+  
 
 
 
@@ -1413,6 +1414,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1420,10 +1424,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

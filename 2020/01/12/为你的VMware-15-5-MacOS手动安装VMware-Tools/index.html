@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,17 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="在VMware虚拟机的MacOS中，如何手动安装VMware Tools呢？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="www.qianfanguojin.top/20190924181828.png">
-<meta property="og:image" content="www.qianfanguojin.top/20190924193144.png">
-<meta property="og:image" content="www.qianfanguojin.top/EZbixLzA1CPTWd8.png">
-<meta property="og:image" content="www.qianfanguojin.top/mTyYrfdSKMoCLVs.png">
-<meta property="og:image" content="https://i.loli.net/2020/01/12/SwCo1QULzMJRAfX.png">
-<meta property="og:image" content="https://i.loli.net/2020/01/12/F3bLgMwlNYvPWIC.png">
 <meta property="og:updated_time" content="2020-01-12T15:30:58.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为你的VMware 15.5 MacOS手动安装VMware Tools">
 <meta name="twitter:description" content="在VMware虚拟机的MacOS中，如何手动安装VMware Tools呢？">
-<meta name="twitter:image" content="www.qianfanguojin.top/20190924181828.png">
 
 
 
@@ -365,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -376,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -538,7 +539,7 @@
 <h2 id="2、获取Darwin文件"><a href="#2、获取Darwin文件" class="headerlink" title="2、获取Darwin文件"></a>2、获取Darwin文件</h2><p>在VMware 上安装的Mac OSX 安装 VMware Tools 需要用到一个叫<strong>darwin.iso</strong> 的文件。</p>
 <p>如果是使用了unlocker 破解VMware ，unlocker会帮你下载一个最新版的 <strong>darwin.iso</strong> ，并复制到 VMware Tools 的根目录，但是由于官方源的不稳定，可能会失效，有时候需要我们手动安装。</p>
 <p>我们可以先检查一下当前VM根目录是否有该文件：</p>
-<p><img src="../../../../20190924181828.png" alt></p>
+<p><img alt data-src="../../../../20190924181828.png"></p>
 <p>如果已经有了这个文件，那么请直接跳转到下一节开始安装。</p>
 <p>如果和我一样，安装根目录并没有这个文件，那么我们就需要下载这个文件，这个文件会随着</p>
 <p><strong>VMware Tools</strong> 的更新而一直更新，最新版本为 11.0，可以在这个网站上下载：</p>
@@ -546,17 +547,17 @@
 <p><a href="http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/" target="_blank" rel="noopener">http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/</a></p>
 </blockquote>
 <p>找到最新的版本号，下载packge目录下具有 darwin文件的压缩包：</p>
-<p><img src="../../../../20190924193144.png" alt></p>
+<p><img alt data-src="../../../../20190924193144.png"></p>
 <p>下载下来是一个压缩文件，逐级打开压缩文件，在payload目录中可以找到<strong>darwin.iso</strong>文件，将其解压并放到VMware的安装根目录，也就是上文图片中的位置。</p>
 <h2 id="3、开始安装"><a href="#3、开始安装" class="headerlink" title="3、开始安装"></a>3、开始安装</h2><p>将你虚拟机中的MacOS关机，在虚拟机设置中将CD/DVD指定为 <strong>darwin.iso</strong>：</p>
-<p><img src="../../../../EZbixLzA1CPTWd8.png" alt="TIM截图20200112212520.png"></p>
+<p><img alt="TIM截图20200112212520.png" data-src="../../../../EZbixLzA1CPTWd8.png"></p>
 <p>启动系统，在桌面右边可以看到VMware Tools，双击打开：</p>
-<p><img src="../../../../mTyYrfdSKMoCLVs.png" alt="TIM截图20200112212520.png"></p>
-<p>双击安装，按照步骤一步步来即可：<br><img src="https://i.loli.net/2020/01/12/SwCo1QULzMJRAfX.png" alt="TIM截图20200112212520.png"></p>
+<p><img alt="TIM截图20200112212520.png" data-src="../../../../mTyYrfdSKMoCLVs.png"></p>
+<p>双击安装，按照步骤一步步来即可：<br><img alt="TIM截图20200112212520.png" data-src="https://i.loli.net/2020/01/12/SwCo1QULzMJRAfX.png"></p>
 <blockquote>
 <p>注意，这里要选择信任（先点击左下角的图标解锁），允许 系统载入 VMware Tools。</p>
 </blockquote>
-<p><img src="https://i.loli.net/2020/01/12/F3bLgMwlNYvPWIC.png" alt="201910221520082317_c_w_600.png"></p>
+<p><img alt="201910221520082317_c_w_600.png" data-src="https://i.loli.net/2020/01/12/F3bLgMwlNYvPWIC.png"></p>
 <p>最后重新启动，你就可以看到熟悉的MacOS系统，赶紧全屏，体验一下VMware Tools带来的操作的顺畅感觉吧！</p>
 
       
@@ -600,7 +601,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -609,7 +610,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -742,7 +743,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1075,6 +1076,8 @@
 
 
 
+  
+
 
 
   
@@ -1082,6 +1085,7 @@
 
 
 
+  
 
 
 
@@ -1089,6 +1093,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1096,10 +1103,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

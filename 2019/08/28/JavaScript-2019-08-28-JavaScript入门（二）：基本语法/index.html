@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,17 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言在前面的文章中，我们介绍了JavaScript心酸的发展历程，从开始的大乱斗，到后来的标准化….。 目前我们所用的 JavaScript 是由三部分内容组成的：ECMAScript(标准) + DOM(文档对象) +BOM(浏览器对象)。  JavaScript 的基本语法和基本对象等都是来自于 ECMAScript 的 ,可以说 ECMAScript是JavaScript的核心部分。 在学习">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/JavaScript02/1-01.png">
-<meta property="og:image" content="/img/JavaScript02/1-02.png">
-<meta property="og:image" content="/img/JavaScript02/1-03.png">
-<meta property="og:image" content="/img/JavaScript02/3.1-01.png">
-<meta property="og:image" content="/img/JavaScript02/3.3-01.png">
-<meta property="og:image" content="/img/JavaScript02/3.3-02.png">
 <meta property="og:updated_time" content="2019-11-05T13:51:21.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript入门（二）：基本语法">
 <meta name="twitter:description" content="前言在前面的文章中，我们介绍了JavaScript心酸的发展历程，从开始的大乱斗，到后来的标准化….。 目前我们所用的 JavaScript 是由三部分内容组成的：ECMAScript(标准) + DOM(文档对象) +BOM(浏览器对象)。  JavaScript 的基本语法和基本对象等都是来自于 ECMAScript 的 ,可以说 ECMAScript是JavaScript的核心部分。 在学习">
-<meta name="twitter:image" content="/img/JavaScript02/1-01.png">
 
 
 
@@ -365,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -376,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -538,10 +539,10 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- alert() 方法用于显示带有一条指定消息和一个确定按钮的警告框。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    alert(<span class="string">"Hello"</span>);</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>运行结果：</p>
-<p><img src="/img/JavaScript02/1-01.png" alt></p>
+<p><img alt data-src="/img/JavaScript02/1-01.png"></p>
 <p>这是Chrome浏览器的显示效果，在不同的浏览器中显示样式不同，但是效果都是一个警告框。</p>
 <p>在MicroSoft的edge浏览器上，显示效果为：</p>
-<p> <img src="/img/JavaScript02/1-02.png" alt></p>
+<p> <img alt data-src="/img/JavaScript02/1-02.png"></p>
 </li>
 <li><p>外部JS，JavaScript 代码编写在独立的后缀为<code>.js</code>的文件中，通过<code>&lt;script&gt;&lt;/script&gt;</code>标签中的 <code>src</code> 属性进行引用。 </p>
 <p>示例：</p>
@@ -552,7 +553,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- alert() 方法用于显示带有一条指定消息和一个确定按钮的警告框。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./js/js_combine.js"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>运行结果：</p>
-<p><img src="/img/JavaScript02/1-03.png" alt></p>
+<p><img alt data-src="/img/JavaScript02/1-03.png"></p>
 </li>
 </ul>
 <p><span style="color:red"><strong>注意事项：</strong></span></p>
@@ -574,7 +575,7 @@
 </ul>
 <h3 id="3-JavaScript变量-amp-数据类型"><a href="#3-JavaScript变量-amp-数据类型" class="headerlink" title="3. JavaScript变量&amp;数据类型"></a>3. JavaScript变量&amp;数据类型</h3><h4 id="3-1强类型语言和弱类型语言"><a href="#3-1强类型语言和弱类型语言" class="headerlink" title="3.1强类型语言和弱类型语言"></a>3.1强类型语言和弱类型语言</h4><p>强类型语言，它不允许隐式变量类型转换，变量在在定义时确定数据类型，变量所处的内存空间就只能存储该数据类型的值。</p>
 <p>Java 就是一种强类型语言。如果在java代码中声明了一个变量为整型，那么其肯定不能赋值为字符串：</p>
-<p><img src="/img/JavaScript02/3.1-01.png" alt></p>
+<p><img alt data-src="/img/JavaScript02/3.1-01.png"></p>
 <p>与强类型语言相对的就是弱类型语言，弱类型语言的变量允许隐式变量类型转换，变量在定义时没有明确的数据类型，变量所处的内存空间可以存储多种数据类型的值。</p>
 <p>JavaScript就是一种弱类型语言。使用JavaScript将字符串转为数字类型非常简单：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = “<span class="number">123</span>”;</span><br><span class="line"><span class="comment">//直接进行赋值操作即可将str的数据类型转换为数字类型</span></span><br><span class="line">str = <span class="number">111</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
@@ -606,7 +607,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用document对象中的write方法将变量逐个输出网页上显示</span></span><br><span class="line">    <span class="built_in">document</span>.write(num1 + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(num2 + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(num3 + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(str1 + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(str2 + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(str3 + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(bol1 + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(bol2 + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(obj1 + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(ud1 + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(ud2 + <span class="string">"&lt;br/&gt;"</span>);</span><br></pre></td></tr></table></figure>
 
 <p>输出结果和上面对应：</p>
-<p><img src="/img/JavaScript02/3.3-01.png" alt></p>
+<p><img alt data-src="/img/JavaScript02/3.3-01.png"></p>
 <p><span style="color:red">注意：</span></p>
 <ol>
 <li><p>在JavaScript中，您可以同时声明两个相同的变量，而且不会报错，如：</p>
@@ -637,7 +638,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用document对象中的write方法逐个输出网页上显示，同时显示它们对应的数据类型</span></span><br><span class="line">    <span class="built_in">document</span>.write(num1 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(num1) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(num2 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(num2) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(num3 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(num3) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(str1 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(str1) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(str2 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(str2) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(str3 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(str3) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(bol1 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(bol1) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(bol2 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(bol2) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(obj1 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(obj1) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(ud1 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(ud1) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">    <span class="built_in">document</span>.write(ud2 + <span class="string">"--数据类型："</span> + <span class="keyword">typeof</span>(ud2) + <span class="string">"&lt;br/&gt;"</span>);</span><br></pre></td></tr></table></figure>
 
 <p>输出结果为：</p>
-<p><img src="/img/JavaScript02/3.3-02.png" alt></p>
+<p><img alt data-src="/img/JavaScript02/3.3-02.png"></p>
 <p>可以看到每个变量的数据类型都对应相应的名称，但是注意一个变量值null，其使用<strong>typeof</strong>得出的是object (对象) 数据类型。但是我们在前面提过 null 和 undefined 一样，是一种原始数据类型，null值对应的数据类型应该是 <code>nul</code>l。 </p>
 <p>要解释这个问题比较复杂，其实这是 JavaScript在设计之初的一个Bug，下面引用 W3C 对这个问题的解释：</p>
 <blockquote>
@@ -857,7 +858,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -866,7 +867,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -997,7 +998,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1330,6 +1331,8 @@
 
 
 
+  
+
 
 
   
@@ -1337,6 +1340,7 @@
 
 
 
+  
 
 
 
@@ -1344,6 +1348,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1351,10 +1358,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,17 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言Java 在互联网上的飞速发展和使用，离不开诸如 Spring 、SpringMVC、Mybatis等框架的推出，其极大简化了开发者的精力。 而对于框架，他们底层使用的也是Java代码，通过利用Java 提供的多种特性和技术，简化程序员所需要编写的代码，大大减少了开发时间。 而这篇，就是讲述 Java框架的核心技术之一，Java 反射。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/JavaReflect/01.png">
-<meta property="og:image" content="/img/JavaReflect/02.png">
-<meta property="og:image" content="/img/JavaReflect/03.png">
-<meta property="og:image" content="/img/JavaReflect/04.png">
-<meta property="og:image" content="/img/JavaReflect/05.png">
-<meta property="og:image" content="/img/JavaReflect/06.png">
 <meta property="og:updated_time" content="2019-08-02T10:07:07.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础加强：Java反射">
 <meta name="twitter:description" content="前言Java 在互联网上的飞速发展和使用，离不开诸如 Spring 、SpringMVC、Mybatis等框架的推出，其极大简化了开发者的精力。 而对于框架，他们底层使用的也是Java代码，通过利用Java 提供的多种特性和技术，简化程序员所需要编写的代码，大大减少了开发时间。 而这篇，就是讲述 Java框架的核心技术之一，Java 反射。">
-<meta name="twitter:image" content="/img/JavaReflect/01.png">
 
 
 
@@ -365,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -376,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -524,7 +525,7 @@
 <p>由于反射的这些优秀特性，现代的主流Web框架 Spring / MyBatis 等都使用了反射，可以说，反射是框架的灵魂。</p>
 <hr>
 <h3 id="1-1-Java代码经历的三个过程"><a href="#1-1-Java代码经历的三个过程" class="headerlink" title="1.1 Java代码经历的三个过程"></a>1.1 Java代码经历的三个过程</h3><p>这里可能听的还是很迷糊，反射是什么？作用在什么地方？要搞清楚这个问题，我们首先看一张图：</p>
-<p><img src="/img/JavaReflect/01.png" alt></p>
+<p><img alt data-src="/img/JavaReflect/01.png"></p>
 <p>这张图简略的描述了一个java 程序从编写完成到执行经历的过程。</p>
 <p>我们首先看<strong>第一阶段</strong>，我们新建了一个Person.java 文件 ，在里面有一个公有的Person类，类里面有成员变量，构造方法，成员方法。</p>
 <p>编写好代码之后，我们要运行的话，首先需要编译，我们使用java自带的<code>Javac</code>命令编译后，此时在我们的目录下会生成一个Java字节码文件 <code>Person.class</code>。</p>
@@ -532,9 +533,9 @@
 <p>Java代码编译完了之后，我们怎么使用呢。我们都知道，要使用一个类首先应该先创建一个对象，也就是使用<code>new</code> 关键字创建对象，而此时创建对象这个阶段我们称之为<code>RunTime</code> 运行时阶段，也就是上图的<strong>第三阶段</strong>。</p>
 <p>但是我们需要考虑一些问题，我们编译好的Java字节码文件开始是在硬盘中的，而程序都是在内存中运行的，在使用之前我们应将其加载的内存中去，如何将字节码加载到内存中呢？在Java中负责加载字节码到内存中的功能的工具Java官方称为 <strong>类加载器（ClassLoader）</strong> ，它负责将类对应的字节码文件加载到内存中，此时为上图的 <strong>第二阶段</strong>。</p>
 <p>加载到内存中时，我们肯定要想个方式来表示字节码文件吧，不然我们<code>new Person</code> 时如何找到我们的加载的类的信息呢，那么在内存中，Java如何描述字节码文件中的信息呢？在Java中，万物皆对象。在内存中，也有一个对象负责存储描述字节码文件中的信息，该对象为<code>Class</code> 类的对象，在Java的api中，我们也可以找到这个类：</p>
-<p><img src="/img/JavaReflect/02.png" alt></p>
+<p><img alt data-src="/img/JavaReflect/02.png"></p>
 <p>在被加载类的 Class 对象中，包含了这个类所有共同的类型信息。什么是共同的类型信息呢？就比如每个类的成员变量，构造方法，成员方法，类名….等等。<br>这里我们也要注意一个点，一个class字节码文件对应一个Class对象，也就是说，无论你创建了多少个实例对象，在JVM或者说内存中只会存在一个Class对象，其负责描述类的共同类型信息。具体对应关系看下图：</p>
-<p><img src="/img/JavaReflect/03.png" alt></p>
+<p><img alt data-src="/img/JavaReflect/03.png"></p>
 <p>根据前面的分析，我们已经知道了Java使用<code>Class</code> 对象来描述类的相关信息，而我们都知道，无论是什么什么类，里面基本上都有三类信息：成员变量，构造方法，成员方法，他们都有自己独特的属性和功能，比如成员变量我们可以获取它的值或是设置它的值， 一个类中也不一定只有一个成员变量。</p>
 <p>于是在<code>Class</code>对象中，每一个成员变量都被封装成一个<code>Field</code>对象，而多个成员变量就形成了<code>Field []</code>对象数组。构造方法，成员方法也是如此，在Class类中，他们分别为：</p>
 <ul>
@@ -570,7 +571,7 @@
 </ol>
 <p>文字描述可能不够透彻，我们使用代码来验证以下我们的结果。</p>
 <p>我们打开idea ，新建一个java项目，名字为ReflectDemo，然后新建一个实体类Person，一个ReflectDemo1，此时项目结构如下：</p>
-<p><img src="/img/JavaReflect/04.png" alt></p>
+<p><img alt data-src="/img/JavaReflect/04.png"></p>
 <p>然后我们在Person类中添加如下代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(<span class="keyword">int</span> age, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</span><br><span class="line">                <span class="string">"age="</span> + age +</span><br><span class="line">                <span class="string">", name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -578,7 +579,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectDemo1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 三种不同的获取Class对象的方式：</span></span><br><span class="line"><span class="comment">     * 1、Class.forName("全类名") ：将字节码文件加载进内存，返回Class对象。</span></span><br><span class="line"><span class="comment">     * 2、类名.class：通过类名的属性class获取</span></span><br><span class="line"><span class="comment">     * 3、对象名.getClass()：利用Object类中定义的getClass()方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">//1.Class.forName("类名")</span></span><br><span class="line">        <span class="comment">//注意这里的字符串是全类名，也就是包名+类名，我这直接写类名的原因是我没有定义包。</span></span><br><span class="line">        Class cla1 = Class.forName(<span class="string">"Person"</span>);</span><br><span class="line">        System.out.println(cla1);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.类名.class</span></span><br><span class="line">        Class cla2 = Person.class;</span><br><span class="line">        System.out.println(cla2);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.对象名.getClass()</span></span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        Class cla3 = p.getClass();</span><br><span class="line">        System.out.println(cla3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行结果：</p>
-<p><img src="/img/JavaReflect/05.png" alt></p>
+<p><img alt data-src="/img/JavaReflect/05.png"></p>
 <p>可以看到，输出的结果是一样的，那么是不是他们都是同一个Class对象吗？</p>
 <p>我也不确定，单纯靠输出不能完全判定，我们还需要通过一些验证代码来确定。</p>
 <p>根据我们以前学过的知识，判断两个对象是否相等，也就是引用指向的内存空间是否相同，我们可以使用 <code>==</code>运算符。</p>
@@ -586,7 +587,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断三个对象是否相等</span></span><br><span class="line">      System.out.println(cla1 == cla2);</span><br><span class="line">      System.out.println(cla1 == cla3);</span><br><span class="line">      System.out.println(cla2 == cla3);</span><br></pre></td></tr></table></figure>
 
 <p>然后运行：</p>
-<p><img src="/img/JavaReflect/06.png" alt></p>
+<p><img alt data-src="/img/JavaReflect/06.png"></p>
 <p>结果都为true，他们的对象都是一样的。这说明了什么？</p>
 <p>我们整理一下思路</p>
 <ol>
@@ -800,7 +801,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -809,7 +810,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -942,7 +943,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1275,6 +1276,8 @@
 
 
 
+  
+
 
 
   
@@ -1282,6 +1285,7 @@
 
 
 
+  
 
 
 
@@ -1289,6 +1293,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1296,10 +1303,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

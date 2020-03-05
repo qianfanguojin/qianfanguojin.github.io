@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,16 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="Docker 提供轻量的虚拟化，你能够从Docker获得一个额外抽象层，你能够在单台机器上运行多个Docker微容器。 而每个微容器里都有一个微服务或独立应用，例如你可以将Tomcat运行在一个Docker，而MySQL运行在另外一个Docker。 快速启动，易于弹性伸缩和拓展等特性使得docker发展飞速，本节我们将介绍Centos上安装docker">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2020/02/18/IYvnbH6TDu14mOB.png">
-<meta property="og:image" content="https://i.loli.net/2020/02/18/KfMQcP3yidS9pF4.png">
-<meta property="og:image" content="https://i.loli.net/2020/02/18/wLGdRCgI4hMc6iT.png">
-<meta property="og:image" content="https://i.loli.net/2020/02/18/CJ7xLS9MXKHEuFR.png">
-<meta property="og:image" content="https://i.loli.net/2020/02/18/5A3cGawNfC96M2u.png">
 <meta property="og:updated_time" content="2020-02-18T04:12:18.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux之路：Centos安装docker">
 <meta name="twitter:description" content="Docker 提供轻量的虚拟化，你能够从Docker获得一个额外抽象层，你能够在单台机器上运行多个Docker微容器。 而每个微容器里都有一个微服务或独立应用，例如你可以将Tomcat运行在一个Docker，而MySQL运行在另外一个Docker。 快速启动，易于弹性伸缩和拓展等特性使得docker发展飞速，本节我们将介绍Centos上安装docker">
-<meta name="twitter:image" content="https://i.loli.net/2020/02/18/IYvnbH6TDu14mOB.png">
 
 
 
@@ -364,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -375,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -527,7 +529,7 @@
 <p>首先，要在<strong>centos</strong>上运行docker，您必须确定您的系统版本为 7.x，通过以下命令可以查看当前系统版本：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://i.loli.net/2020/02/18/IYvnbH6TDu14mOB.png" alt="Snipaste_2020-02-18_10-43-58.png"></p>
+<p><img alt="Snipaste_2020-02-18_10-43-58.png" data-src="https://i.loli.net/2020/02/18/IYvnbH6TDu14mOB.png"></p>
 <p>如果系统为6.x，建议先升级到7.x。</p>
 <blockquote>
 <p>PS：如果您以前安装过docker，建议您先把旧版移除：</p>
@@ -553,7 +555,7 @@
 <li><p>配置docker软件源仓库，这里建议使用阿里云的：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://i.loli.net/2020/02/18/KfMQcP3yidS9pF4.png" alt="Snipaste_2020-02-18_10-43-58.png"></p>
+<p><img alt="Snipaste_2020-02-18_10-43-58.png" data-src="https://i.loli.net/2020/02/18/KfMQcP3yidS9pF4.png"></p>
 </li>
 <li><p>安装最新版<code>docker-ce</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce</span><br></pre></td></tr></table></figure>
@@ -565,7 +567,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status docker</span><br></pre></td></tr></table></figure>
 
 <p>如果能看到如下结果 <code>绿色单词</code>  则代表安装并启动成功：</p>
-<p><img src="https://i.loli.net/2020/02/18/wLGdRCgI4hMc6iT.png" alt="TIM截图20200218110326.png"></p>
+<p><img alt="TIM截图20200218110326.png" data-src="https://i.loli.net/2020/02/18/wLGdRCgI4hMc6iT.png"></p>
 </li>
 </ol>
 <h3 id="3-配置国内镜像源"><a href="#3-配置国内镜像源" class="headerlink" title="3. 配置国内镜像源"></a>3. 配置国内镜像源</h3><p>如果是接触过 linux 的比较清楚，大多数系统的默认软件源都在国外，下载很慢。</p>
@@ -586,7 +588,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
 
 <p>然后使用 <code>docke info</code> 查看docker信息，在最下面可以看到你配置的docker的镜像地址</p>
-<p><img src="https://i.loli.net/2020/02/18/CJ7xLS9MXKHEuFR.png" alt="TIM截图20200218120247.png"></p>
+<p><img alt="TIM截图20200218120247.png" data-src="https://i.loli.net/2020/02/18/CJ7xLS9MXKHEuFR.png"></p>
 <p>4、测试</p>
 <p>配置好之后我们测试拉取一个镜像，比如<code>mysql</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql</span><br></pre></td></tr></table></figure>
@@ -604,7 +606,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
 
 <p>运行成功：</p>
-<p><img src="https://i.loli.net/2020/02/18/5A3cGawNfC96M2u.png" alt="TIM截图20200218120603.png"></p>
+<p><img alt="TIM截图20200218120603.png" data-src="https://i.loli.net/2020/02/18/5A3cGawNfC96M2u.png"></p>
 
       
     </div>
@@ -647,7 +649,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -656,7 +658,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -791,7 +793,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1124,6 +1126,8 @@
 
 
 
+  
+
 
 
   
@@ -1131,6 +1135,7 @@
 
 
 
+  
 
 
 
@@ -1138,6 +1143,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1145,10 +1153,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

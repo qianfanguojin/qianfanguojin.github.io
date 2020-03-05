@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,20 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言刚安装好 Ubuntu 之后，为了让我们更好的从 Windows 转换到 Linux 的日常使用，安装我们在 Windows 使用得各种必要软件是首要的。 首先我们来配置使用中文输入法，这里以我们最常用的 搜狗输入法 为例。 注意：此篇文章的内容都基于最新版 ubuntu18.04 LTS 系统实现，如您的系统版本为其他版本，请自行甄别步骤中可能会出现的错误。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/Ubuntu-sougou/2-02.png">
-<meta property="og:image" content="/img/Ubuntu-sougou/2-03.png">
-<meta property="og:image" content="/img/Ubuntu-sougou/2-04.png">
-<meta property="og:image" content="/img/Ubuntu-sougou/3-01.png">
-<meta property="og:image" content="/img/Ubuntu-sougou/3-02.png">
-<meta property="og:image" content="/img/Ubuntu-sougou/3-03.png">
-<meta property="og:image" content="/img/Ubuntu-sougou/3-04.png">
-<meta property="og:image" content="/img/Ubuntu-sougou/3-06.png">
-<meta property="og:image" content="/img/Ubuntu-sougou/3-07.png">
 <meta property="og:updated_time" content="2019-09-04T07:36:21.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu折腾记录：在Ubuntu中安装使用搜狗输入法">
 <meta name="twitter:description" content="前言刚安装好 Ubuntu 之后，为了让我们更好的从 Windows 转换到 Linux 的日常使用，安装我们在 Windows 使用得各种必要软件是首要的。 首先我们来配置使用中文输入法，这里以我们最常用的 搜狗输入法 为例。 注意：此篇文章的内容都基于最新版 ubuntu18.04 LTS 系统实现，如您的系统版本为其他版本，请自行甄别步骤中可能会出现的错误。">
-<meta name="twitter:image" content="/img/Ubuntu-sougou/2-02.png">
 
 
 
@@ -368,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -379,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -546,36 +544,36 @@
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p><img src="/img/Ubuntu-sougou/2-02.png" alt></p>
+<p><img alt data-src="/img/Ubuntu-sougou/2-02.png"></p>
 <p>这里由于我已经更新过，所以没有可下载的了。</p>
 <p>然后通过 apt-get 命令安装<code>Fcitx</code>的软件包，在 <code>Terminal</code> 命令行工具中输入：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install fcitx</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-配置Fcitx"><a href="#2-配置Fcitx" class="headerlink" title="2. 配置Fcitx"></a>2. 配置Fcitx</h4><p>通过上面的步骤，我们的<code>Fcitx</code>输入法框架已经安装好了，但是<code>ubuntu</code>的默认输入法系统为自带的<code>IBUS</code>，其对中文的支持不太好，我们将其切换到 <code>Fcitx</code>。</p>
 <p>打开应用列表，找到 <strong>语言支持(Language Support)</strong>，</p>
-<p><img src="/img/Ubuntu-sougou/2-03.png" alt></p>
+<p><img alt data-src="/img/Ubuntu-sougou/2-03.png"></p>
 <p>将输入系统改为<code>fcitx</code> ：</p>
-<p><img src="/img/Ubuntu-sougou/2-04.png" alt></p>
+<p><img alt data-src="/img/Ubuntu-sougou/2-04.png"></p>
 <p>最后重启系统，如果不重启的话大概率不生效。</p>
 <h3 id="三、安装并配置搜狗输入法"><a href="#三、安装并配置搜狗输入法" class="headerlink" title="三、安装并配置搜狗输入法"></a>三、安装并配置搜狗输入法</h3><h4 id="1-安装搜狗输入法"><a href="#1-安装搜狗输入法" class="headerlink" title="1. 安装搜狗输入法"></a>1. 安装搜狗输入法</h4><p>配置<code>Fcitx</code>之后，接下来就是安装搜狗输入法的软件包了。</p>
 <p>使用默认的火狐浏览器打开搜狗拼音<code>Linux</code>版的下载页：<a href="https://pinyin.sogou.com/linux/?r=pinyin" target="_blank" rel="noopener">https://pinyin.sogou.com/linux/?r=pinyin</a></p>
 <p>选择需要下载的位数，系统为32位下载32位版，系统64位下载64位版。</p>
-<p><img src="/img/Ubuntu-sougou/3-01.png" alt></p>
+<p><img alt data-src="/img/Ubuntu-sougou/3-01.png"></p>
 <p>出现这个页面：</p>
-<p><img src="/img/Ubuntu-sougou/3-02.png" alt>)</p>
+<p><img alt data-src="/img/Ubuntu-sougou/3-02.png">)</p>
 <p>点击ok直接打开自带软件包管理程序安装，或者保存文件然后双击文件安装。</p>
 <p>避免麻烦，我们点击 <code>ok</code> ,在弹出的页面中点击<code>install</code>。</p>
-<p><img src="/img/Ubuntu-sougou/3-03.png" alt></p>
+<p><img alt data-src="/img/Ubuntu-sougou/3-03.png"></p>
 <p>静等安装完成。</p>
 <h4 id="2-配置搜狗输入法"><a href="#2-配置搜狗输入法" class="headerlink" title="2. 配置搜狗输入法"></a>2. 配置搜狗输入法</h4><p>打开应用列表，找到 <code>Fcitx Configuration</code>：</p>
-<p><img src="/img/Ubuntu-sougou/3-04.png" alt></p>
+<p><img alt data-src="/img/Ubuntu-sougou/3-04.png"></p>
 <p>点击左下角<code>+</code> 添加输入法，搜索搜狗输入法(因为是英文所以搜索Sogou)，选择然后点击 ok</p>
-<p><img src="/img/Ubuntu-sougou/3-06.png" alt></p>
+<p><img alt data-src="/img/Ubuntu-sougou/3-06.png"></p>
 <blockquote>
 <p> 刚安装好搜狗输入法可能这里搜索不出来，如果无法搜索到，重启一次系统或者过段时间再搜索即可。</p>
 </blockquote>
 <p>最后测试一下是否成功配置，默认为英文输入，使用 <strong>Ctrl + Space(空格)</strong> 切换输入法。</p>
-<p><img src="/img/Ubuntu-sougou/3-07.png" alt></p>
+<p><img alt data-src="/img/Ubuntu-sougou/3-07.png"></p>
 <h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><ol>
 <li>操作过程中如果遇到错误或者奇怪的问题，请不要随意修改配置，可以先重启电脑再试试，可能是一些内存中的配置混乱。</li>
 <li>Linux 的操作就是需要一个不断折腾的心，但是也能享受到折腾的乐趣。</li>
@@ -622,7 +620,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -631,7 +629,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -764,7 +762,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1097,6 +1095,8 @@
 
 
 
+  
+
 
 
   
@@ -1104,6 +1104,7 @@
 
 
 
+  
 
 
 
@@ -1111,6 +1112,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1118,10 +1122,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

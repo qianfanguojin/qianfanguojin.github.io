@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,14 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言在JavaScript中，提供了许多的内置对象来方便我们更高效的编写代码，今天我们就来介绍一下它们的使用方法。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/JavaScript03/4.2.1-01.png">
-<meta property="og:image" content="/img/JavaScript03/4.2.1-02.png">
-<meta property="og:image" content="/img/JavaScript03/4.2.1-03.png">
 <meta property="og:updated_time" content="2019-11-05T13:51:21.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript入门（三）：基本对象">
 <meta name="twitter:description" content="前言在JavaScript中，提供了许多的内置对象来方便我们更高效的编写代码，今天我们就来介绍一下它们的使用方法。">
-<meta name="twitter:image" content="/img/JavaScript03/4.2.1-01.png">
 
 
 
@@ -362,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -373,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -746,15 +750,15 @@
 <h3 id="4-RegExp正则表达式对象"><a href="#4-RegExp正则表达式对象" class="headerlink" title="4.RegExp正则表达式对象"></a>4.RegExp正则表达式对象</h3><h4 id="4-1-什么是正则表达式"><a href="#4-1-什么是正则表达式" class="headerlink" title="4.1 什么是正则表达式"></a>4.1 什么是正则表达式</h4><p>正则表达式是一种定义字符串组成规则的一种表达式，通过正则表达式，我们可以约束字符串的组成规则，也可以从字符串中按照特定的规则取出数据。</p>
 <h4 id="4-2-正则表达式字符"><a href="#4-2-正则表达式字符" class="headerlink" title="4.2 正则表达式字符"></a>4.2 正则表达式字符</h4><h5 id="4-2-1-开始结束符号"><a href="#4-2-1-开始结束符号" class="headerlink" title="4.2.1 开始结束符号"></a>4.2.1 开始结束符号</h5><p><strong>^：</strong>负责规定匹配的字符串必须以该字符后的字符串内容为开始。</p>
 <p>如图：</p>
-<p><img src="/img/JavaScript03/4.2.1-01.png" alt="4.2.1-01"></p>
+<p><img alt="4.2.1-01" data-src="/img/JavaScript03/4.2.1-01.png"></p>
 <p>可以看到，即使是字符串中间仅有一个空格，也不匹配。</p>
 <p><strong>$：</strong> $ 字符负责规定匹配的字符串必须以该字符前的字符串内容为结束。</p>
 <p>如图：</p>
-<p><img src="/img/JavaScript03/4.2.1-02.png" alt="4.2.1-01"></p>
+<p><img alt="4.2.1-01" data-src="/img/JavaScript03/4.2.1-02.png"></p>
 <p>可以看到，我在字符串末尾多加一个字符A，该字符串就不能匹配，当然空格也一样不行，因为空格也是一个字符。</p>
 <p><strong>当^ ,$ 结合时：</strong>规定匹配的字符串必须是 ^ 和 $ 之间的内容。</p>
 <p>如图：</p>
-<p><img src="/img/JavaScript03/4.2.1-03.png" alt="4.2.1-01"></p>
+<p><img alt="4.2.1-01" data-src="/img/JavaScript03/4.2.1-03.png"></p>
 <hr>
 <h5 id="4-2-2-单个字符"><a href="#4-2-2-单个字符" class="headerlink" title="4.2.2 单个字符"></a>4.2.2 单个字符</h5><p>使用<code>[]</code>代表匹配单个字符，可以在其中使用 <code>-</code> 匹配范围，如：</p>
 <ul>
@@ -1009,7 +1013,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -1018,7 +1022,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -1149,7 +1153,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1482,6 +1486,8 @@
 
 
 
+  
+
 
 
   
@@ -1489,6 +1495,7 @@
 
 
 
+  
 
 
 
@@ -1496,6 +1503,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1503,10 +1513,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

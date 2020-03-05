@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,19 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言Git有两种远程仓库与本地仓库之间push/clone/pull 等操作的验证模式，一种是HTTPS，另一种是SSH模式，这次我主要记录比较两种的区别。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/proof.png">
-<meta property="og:image" content="/img/git-push.png">
-<meta property="og:image" content="/img/git-del-proof.png">
-<meta property="og:image" content="/img/git-proof-verify.png">
-<meta property="og:image" content="/img/ssh-key.png">
-<meta property="og:image" content="/img/SSH-Set.png">
-<meta property="og:image" content="/img/SSH-Add.png">
-<meta property="og:image" content="/img/SSH-Pas.png">
 <meta property="og:updated_time" content="2019-08-28T14:50:41.252Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git学习探索：HTTS和SSH方式区别和使用">
 <meta name="twitter:description" content="前言Git有两种远程仓库与本地仓库之间push/clone/pull 等操作的验证模式，一种是HTTPS，另一种是SSH模式，这次我主要记录比较两种的区别。">
-<meta name="twitter:image" content="/img/proof.png">
 
 
 
@@ -367,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -378,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -533,14 +532,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/qianfanguojin/compare.git</span><br></pre></td></tr></table></figure>
 
 <p>但是，方便的同时也会产生一些麻烦，当我们在进行<code>push/pul</code>l操作时,每次都要输入账号密码，当然，很多时候我们好像就是只输入了一次，后面也不需要输入了，但其实只是Windows操作系统帮我们记录在了Windows凭据中，每次我们执行操作的时候，Windows都自动帮你填写好账号密码：</p>
-<p><img src="/img/proof.png" alt></p>
+<p><img alt data-src="/img/proof.png"></p>
 <p>此时我们执行 <code>push</code> 操作，可以看到：</p>
-<p><img src="/img/git-push.png" alt></p>
+<p><img alt data-src="/img/git-push.png"></p>
 <p>没有提示输入账号密码，直接推送成功。</p>
 <p>但当我删除Windows凭据中的内容：</p>
-<p><img src="/img/git-del-proof.png" alt></p>
+<p><img alt data-src="/img/git-del-proof.png"></p>
 <p>我再次执行推送，发现弹出输入账号密码的输入窗口：</p>
-<p><img src="/img/git-proof-verify.png" alt></p>
+<p><img alt data-src="/img/git-proof-verify.png"></p>
 <p>想要了解更多关于Git 凭据的信息可以参考官方文档 <a href="https://git-scm.com/book/zh/v2/Git-工具-凭证存储" target="_blank" rel="noopener">Git 工具 - 凭证存储</a></p>
 <p>综上，我们可知，HTTPS方式在Git执行操作时每次都要账号密码验证，但是得益于凭据管理模式，使用起来也方便许多，但当我们在多台电脑上运行操作我们的项目时，每次都要输入账号密码，就会非常的麻烦。</p>
 <hr>
@@ -552,7 +551,7 @@
 <h4 id="2-生成SSH密钥"><a href="#2-生成SSH密钥" class="headerlink" title="2.生成SSH密钥"></a>2.生成SSH密钥</h4><p>在命令行下（cmd 或是 Git bash）我们可以通过 <code>ssh-keygen</code>命令创建:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
 
-<p><img src="/img/ssh-key.png" alt></p>
+<p><img alt data-src="/img/ssh-key.png"></p>
 <p>当然，为了使生成的SSH密钥更清楚明了，还可以添加一些附加控制命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的email地址&quot;</span><br></pre></td></tr></table></figure>
 
@@ -560,11 +559,11 @@
 <p>可以看到，我们使用不带任何参数方法创建时，首先 <code>ssh-keygen</code> 会确认密钥的存储位置，如你没有指定，则它使用默认的目录（默认是 <code>.ssh/id_rsa</code>），然后它会要求你输入两次密钥口令，口令的作用即是一个密码，即当你push文件使用密钥时需要输入密码，如果你不想在使用密钥时输入口令，将其留空即可。</p>
 <h4 id="3-将SSH密钥添加到服务器"><a href="#3-将SSH密钥添加到服务器" class="headerlink" title="3.将SSH密钥添加到服务器"></a>3.将SSH密钥添加到服务器</h4><p>不同的Git服务器添加操作区域不一样，这里我以Github为例。</p>
 <p>点击右上角个人头像，从下拉框中进入Setting：</p>
-<p><img src="/img/SSH-Set.png" alt></p>
+<p><img alt data-src="/img/SSH-Set.png"></p>
 <p>然后进入SSH and GPG Keys设置：</p>
-<p><img src="/img/SSH-Add.png" alt></p>
+<p><img alt data-src="/img/SSH-Add.png"></p>
 <p>然后按照下图操作：</p>
-<p><img src="/img/SSH-Pas.png" alt></p>
+<p><img alt data-src="/img/SSH-Pas.png"></p>
 <h4 id="4-利用SSH密钥推送"><a href="#4-利用SSH密钥推送" class="headerlink" title="4.利用SSH密钥推送"></a>4.利用SSH密钥推送</h4><p>由于我们先前使用的远程关联方式的是HTTPS链接，所以我们先将远程关联信息删除。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote remove origin</span><br></pre></td></tr></table></figure>
 
@@ -617,7 +616,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -626,7 +625,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -759,7 +758,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1092,6 +1091,8 @@
 
 
 
+  
+
 
 
   
@@ -1099,6 +1100,7 @@
 
 
 
+  
 
 
 
@@ -1106,6 +1108,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1113,10 +1118,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

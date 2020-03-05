@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,18 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言上篇我们讲述了框架中核心技术 Java 反射 的使用，介绍了它功能的强大之处。 本篇我们讲述另一个框架使用的重要技术，Java 注解">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/JavaAnnotation/01.png">
-<meta property="og:image" content="/img/JavaAnnotation/02.png">
-<meta property="og:image" content="/img/JavaAnnotation/03.png">
-<meta property="og:image" content="/img/JavaAnnotation/04.png">
-<meta property="og:image" content="/img/JavaAnnotation/05.png">
-<meta property="og:image" content="/img/JavaAnnotation/06.png">
-<meta property="og:image" content="/img/JavaAnnotation/07.png">
 <meta property="og:updated_time" content="2019-08-03T10:29:48.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础加强：Java注解">
 <meta name="twitter:description" content="前言上篇我们讲述了框架中核心技术 Java 反射 的使用，介绍了它功能的强大之处。 本篇我们讲述另一个框架使用的重要技术，Java 注解">
-<meta name="twitter:image" content="/img/JavaAnnotation/01.png">
 
 
 
@@ -366,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -377,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -658,7 +658,7 @@
 </ul>
 <p>在现代的主流框架中，如Spring ，大量使用了注解来简化代码，那么现在我们就来分析注解具体的一些我们应该学习的地方。</p>
 <h3 id="2-1-使用注解编写文档"><a href="#2-1-使用注解编写文档" class="headerlink" title="2.1 使用注解编写文档"></a>2.1 使用注解编写文档</h3><p>使用 Java 时，我们经常会遇到自己不认识的类或者是某个方法我们不知道具体是做什么用的，此时我们都知道可以翻阅 java 的 api 文档查看，如 java8 的文档：</p>
-<p><img src="/img/JavaAnnotation/01.png" alt></p>
+<p><img alt data-src="/img/JavaAnnotation/01.png"></p>
 <p>那么这些文档怎么生成的呢？</p>
 <p>其实这些都是使用 javadoc 命令通过解析代码中的文档注释以及相关注解自动生成的网页。</p>
 <p>现在我们用一个简单的例子测试以下：</p>
@@ -668,9 +668,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javadoc AnnoDocDemo.java</span><br></pre></td></tr></table></figure>
 
 <p>此时在目录下会生成许多网页相关的文件：</p>
-<p><img src="/img/JavaAnnotation/02.png" alt></p>
+<p><img alt data-src="/img/JavaAnnotation/02.png"></p>
 <p>然后我们打开 index.html 可以看到：</p>
-<p><img src="/img/JavaAnnotation/03.png" alt></p>
+<p><img alt data-src="/img/JavaAnnotation/03.png"></p>
 <p>生成了跟我们的 api 文档一样的样子，而且刚才我们定义的注解都被解析成文档的格式</p>
 <p>如<code>@since</code> 表示从何版本开始，方法中的<code>@return</code> 表示对返回值的解释。</p>
 <p>当然在文档注释中可以使用的注解不止这些，通过使用这些注解可以帮助 javadoc命令 在生成文档的时候根据注解内容来生成不同的文档内容。也就是说，注解能让 java 程序通过注解得到程序想要的信息。</p>
@@ -709,18 +709,18 @@
 <h4 id="2-2-1-Override"><a href="#2-2-1-Override" class="headerlink" title="2.2.1 @Override"></a>2.2.1 @Override</h4><p>首先是<code>@Override</code>注解，添加如下代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1. `<span class="doctag">@Override</span>` ：检测该被注解标注的方法是否是继承自父类（接口）的。</span></span><br><span class="line"><span class="comment"> * 2. `<span class="doctag">@Deprecated</span>`：被该注解标注的内容，表示已经过时。</span></span><br><span class="line"><span class="comment"> * 3. `<span class="doctag">@SuppressWarning</span>`：压制（忽略）警告。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnoJdk</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * /<span class="doctag">@Override</span>注解是对代码的一种严谨性检查</span></span><br><span class="line"><span class="comment">     * 在方法上声明该注解能够确保方法是重写自父类的</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//声明了Override注解后，该方法必须在父类中存在</span></span><br><span class="line">    <span class="comment">//所有的类都继承了Object类，toString方法在Object类中，这里不报错</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里会报错</span></span><br><span class="line">    <span class="comment">//声明了@Oerride注解后，该方法必须在父类能够找到，toString1方法在父类中不存在</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString1</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/img/JavaAnnotation/04.png" alt></p>
+<p><img alt data-src="/img/JavaAnnotation/04.png"></p>
 <p>可以看到，编辑器报错，并提示 <code>Method dose not override method from its superclass</code> 也就是该方法不是重写父类的，声明<code>@Override注解</code>会报错。</p>
 <h4 id="2-2-2-Deprecated"><a href="#2-2-2-Deprecated" class="headerlink" title="2.2.2 @Deprecated"></a>2.2.2 @Deprecated</h4><p>其次是<code>@Deprecated</code>注解，在刚才的文件中添加代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * /<span class="doctag">@Deprecated</span>注解对方法进行过时标记</span></span><br><span class="line"><span class="comment">     * 被该注解标识的方法在使用时会提示过时，在ide中该方法被画了一条线</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//旧的方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addnew</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//新的方法</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>这时我们如果调用 <code>add（）</code> 方法时，会出现：</p>
-<p><img src="/img/JavaAnnotation/05.png" alt></p>
+<p><img alt data-src="/img/JavaAnnotation/05.png"></p>
 <p>提示我们方法过时，在 Java 的发展中，强大的类库为我们提供了许多的方便，不过有些方法或类久了之后在程序中使用已经不再推荐，如 Java 中的 Data 类z中的许多方法：</p>
-<p><img src="/img/JavaAnnotation/06.png" alt></p>
+<p><img alt data-src="/img/JavaAnnotation/06.png"></p>
 <p>A <a href="#this-is-a-title">link</a> to jump towards target header</p>
 <h4 id="2-2-3-SuppressWarning"><a href="#2-2-3-SuppressWarning" class="headerlink" title="2.2.3 @SuppressWarning"></a>2.2.3 @SuppressWarning</h4><p>最后是<code>@SuppressWarning</code>注解，我们在编辑器编写代码时候，如：</p>
-<p><img src="/img/JavaAnnotation/07.png" alt></p>
+<p><img alt data-src="/img/JavaAnnotation/07.png"></p>
 <p>这里每一小点点都是编译器帮我们检查出来的一些可能的问题，编辑器会以一些方式来提醒用户，但是有得时候警告可能很多，而且我们自己其实知道代码并没有什么问题，我们可以使用<code>@SuppressWarning</code>注解来压制警告。</p>
 <p><code>@SuppressWarning</code>压制警告的范围和类型由自己决定，比如我想压制整个类的所有警告类型，我在类名上声明注解为:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"all"</span>)</span><br></pre></td></tr></table></figure>
@@ -910,7 +910,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -919,7 +919,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -1052,7 +1052,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1385,6 +1385,8 @@
 
 
 
+  
+
 
 
   
@@ -1392,6 +1394,7 @@
 
 
 
+  
 
 
 
@@ -1399,6 +1402,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1406,10 +1412,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 

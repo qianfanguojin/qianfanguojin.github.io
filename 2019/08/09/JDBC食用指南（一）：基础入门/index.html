@@ -39,6 +39,12 @@
 
 
 
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
 
 
 
@@ -55,10 +61,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh//qianfanguojin/CDN/image/favicon16.ico?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico?v=7.2.0">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
@@ -78,9 +84,9 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"mac"},
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
-    lazyload: false,
+    lazyload: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -106,14 +112,10 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言在使用 Java 连接数据库进行操作时，我们不可避免的要接触到JDBC 这个名字 这次，我们就从头到尾一点点讲述基本的 JDBC 如何使用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/JDBCSimple/01.png">
-<meta property="og:image" content="/img/JDBCSimple/02.png">
-<meta property="og:image" content="/img/JDBCSimple/03.png">
 <meta property="og:updated_time" content="2019-08-28T14:43:02.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDBC食用指南（一）：基础入门">
 <meta name="twitter:description" content="前言在使用 Java 连接数据库进行操作时，我们不可避免的要接触到JDBC 这个名字 这次，我们就从头到尾一点点讲述基本的 JDBC 如何使用。">
-<meta name="twitter:image" content="/img/JDBCSimple/01.png">
 
 
 
@@ -362,6 +364,8 @@
   
 
   
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -373,7 +377,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -537,7 +541,7 @@
 <p>而 JDBC 也是做一个中间人的作用。我们希望，我们写同样的数据库操作，能在不同的数据库中都能使用。</p>
 <p>但是不同的数据库厂商又有自己的规范，Sun 公司也发现了这个问题，于是其定义了一套 Java 中关于数据库操作的规范（接口）API，每个数据库厂商再根据这套规范编写相应的驱动（jar 包），我们使用这套接口进行代码的编写，真正执行的则是相应数据库提供的jar包中的实现类。</p>
 <p>具体看下图：</p>
-<p><img src="/img/JDBCSimple/01.png" alt></p>
+<p><img alt data-src="/img/JDBCSimple/01.png"></p>
 <h2 id="2-JDBC-入门使用"><a href="#2-JDBC-入门使用" class="headerlink" title="2. JDBC 入门使用"></a>2. JDBC 入门使用</h2><p>JDBC 操作数据库的步骤大致可以分为五步：</p>
 <ol>
 <li><p>注册驱动，告诉程序要连接哪个数据库。</p>
@@ -558,7 +562,7 @@
 <p>接下来我们从零开始体验一次</p>
 <h3 id="2-1-建立测试所用的数据库和表"><a href="#2-1-建立测试所用的数据库和表" class="headerlink" title="2.1 建立测试所用的数据库和表"></a>2.1 建立测试所用的数据库和表</h3><p>为了给下面的示例测试所用，我们先建立一个数据库和一张表。</p>
 <p>首先进入 mysql 的控制台，进入成功的结果应该是这样：</p>
-<p><img src="/img/JDBCSimple/02.png" alt></p>
+<p><img alt data-src="/img/JDBCSimple/02.png"></p>
 <p>然后新建一个数据库 hk</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database hk;</span><br></pre></td></tr></table></figure>
 
@@ -653,7 +657,7 @@
 <hr>
 <h3 id="3-5-ResultSet-功能解析"><a href="#3-5-ResultSet-功能解析" class="headerlink" title="3.5 ResultSet 功能解析"></a>3.5 ResultSet 功能解析</h3><p>结果集(ResultSet)是从数据库中执行查询（select）得到结果后返回的一种对象，可以说结果集是一个存储查询结果的对象，但是结果集并不仅仅具有存储的功能，他同时还具有操纵数据的功能，可以完成对其拥有的数据的获取、更新等等。</p>
 <h4 id="f1-游标cursors"><a href="#f1-游标cursors" class="headerlink" title="f1. 游标cursors"></a>f1. 游标cursors</h4><p>在ResultSet结果集中 ，对数据的操作都是以游标（cursors）来操控的，游标类似指针，指向ResultSet 的某一行。</p>
-<p><img src="/img/JDBCSimple/03.png" alt></p>
+<p><img alt data-src="/img/JDBCSimple/03.png"></p>
 <p>当我们通过执行SQL语句获得了 ResultSet 对象，此时游标位置默认如上图一样，指向查询结果中第一条记录的上一个位置，通过使用ResultSet类中控制游标的方法，可以将其位置自由移动，如 <code>next()</code>游标向下移动一行就指向了查询出的第一行数据。</p>
 <h4 id="f2-使用getXXX-parameter…-方法获取数据"><a href="#f2-使用getXXX-parameter…-方法获取数据" class="headerlink" title="f2. 使用getXXX(parameter…..)方法获取数据"></a>f2. 使用getXXX(parameter…..)方法获取数据</h4><ul>
 <li><p>XXX代表获取的数据类型，如Int则方法名为<code>getInt</code>、String 则为<code>getString</code></p>
@@ -953,7 +957,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/wechatpay.png" alt="千帆过烬 微信支付">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -962,7 +966,7 @@
         
       
       <div style="display: inline-block">
-        <img src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/alipay.png" alt="千帆过烬 支付宝">
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -1097,7 +1101,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-    <img class="site-author-image" itemprop="image" src="https://cdn.jsdelivr.net/gh/qianfanguojin/CDN/image/avatar.jpg" alt="千帆过烬">
+    <img class="site-author-image" itemprop="image" src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg" alt="千帆过烬">
   
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description motion-element" itemprop="description">愿面朝大海，春暖花开</div>
@@ -1430,6 +1434,8 @@
 
 
 
+  
+
 
 
   
@@ -1437,6 +1443,7 @@
 
 
 
+  
 
 
 
@@ -1444,6 +1451,9 @@
 
 
 
+
+
+  
 
 
 
@@ -1451,10 +1461,19 @@
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+  
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
 
   
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+  
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
 
 
 
