@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言程序猿作为技术人员，都应该拥有一个自己的技术博客，在他人推荐下，我个人搭建了Hexo+Github的博客系统，这里将其过程记录下来，希望能帮助到你们。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-03T11:30:39.814Z">
+<meta property="og:updated_time" content="2020-03-12T04:04:47.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客搭建记录（一）：本地搭建以及部署到Github">
 <meta name="twitter:description" content="前言程序猿作为技术人员，都应该拥有一个自己的技术博客，在他人推荐下，我个人搭建了Hexo+Github的博客系统，这里将其过程记录下来，希望能帮助到你们。">
@@ -441,7 +441,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-12-03 19:30:39" itemprop="dateModified" datetime="2019-12-03T19:30:39+08:00">2019-12-03</time>
+                <time title="修改时间：2020-03-12 12:04:47" itemprop="dateModified" datetime="2020-03-12T12:04:47+08:00">2020-03-12</time>
               </span>
             
           
@@ -552,14 +552,14 @@
 <h3 id="一、安装配置Node-js"><a href="#一、安装配置Node-js" class="headerlink" title="一、安装配置Node.js"></a>一、安装配置Node.js</h3><p>Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。<br>Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效                   </p>
 <p>hexo 是基于Node.js来构建博客的，得益于Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。</p>
 <p>首先我们去官网 <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 下载安装包</p>
-<p>网站会自动识别你的操作系统，这里我们选择<strong>LTS</strong> 也就是长期支持版。<img alt data-src="/img/node.png"></p>
+<p>网站会自动识别你的操作系统，这里我们选择<strong>LTS</strong> 也就是长期支持版。<img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120230.png"></p>
 <p>安装步骤没有什么要求，点下一步就是了，如不出意外，你的开始菜单里面应该有这两个文件。</p>
-<p><img alt data-src="/img/node1.png"></p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120237.png"></p>
 <p>确保安装成功，您可以打开cmd或其他命令行工具输入：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm -v</span><br><span class="line">node -v</span><br></pre></td></tr></table></figure>
 
 <p>如有</p>
-<p><img alt data-src="/img/node2.png"></p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120242.png"></p>
 <p>版本数字不一定和我一样，有的话说明安装成功</p>
 <hr>
 <h3 id="二、安装Git"><a href="#二、安装Git" class="headerlink" title="二、安装Git"></a>二、安装Git</h3><p>Git是什么，Git是一种版本控制系统，区别于svn，是目前最先进的一种版本控制系统，这里我不详细介绍，大家有想深入了解的话可以去这里  <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener"> 廖雪峰的 Git 教程</a><br>我们这里安装Git的目的，一是为了下载从Github下载 <code>hexo</code> 的一些工具资源，二是其提供了<code>Git Bash</code> shell 工具，我们的Hexo配置操作都需要用到。</p>
@@ -584,25 +584,25 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 
 <p>按下回车Enter，<code>Git bash</code> 会自动下载相关文件，如下图</p>
-<p><img alt data-src="/img/hexo-init.png"></p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120248.png"></p>
 <blockquote>
 <p>速度可能会很慢，请耐心等待，若是在这步出现以下错误 :<br><code>error: RPC failed; curl 56 OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 10054</code><br><code>fatal: the remote end hung up unexpectedly</code><br><code>fatal: protocol error: bad pack header</code><br><code>WARN  git clone failed. Copying data instead</code><br><code>WARN  Failed to install dependencies. Please run &#39;npm install&#39; manually!</code></p>
 <p>或是一直卡百分比，我们在 <code>Git Bash</code> 中按 <code>Ctrl+C</code> 取消下载，然后删除文件夹中所有文件，重新执行上面的  <code>hexo init</code> 命令</p>
 </blockquote>
-<p>若出现：<br><img alt data-src="/img/hexo-init1.png"></p>
+<p>若出现：<br><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120255.png"></p>
 <p>则表示文件下载成功。</p>
 <h5 id="2-2-本地生成运行"><a href="#2-2-本地生成运行" class="headerlink" title="2.2 本地生成运行"></a>2.2 本地生成运行</h5><p>在<code>Git Bash</code>窗口下，依次执行：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 
 <p>这样，Hexo会默认运行在你本机的4000端口上，然后我们在浏览器中输入<code>http://localhost:4000</code> 即可显示如下页面：</p>
-<p><img alt data-src="/img/hexo-s.png"></p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120301.png"></p>
 <p>这个页面是hexo默认初始化的一个页面，主题为landscape。</p>
 <hr>
 <h3 id="三、部署到GitPage"><a href="#三、部署到GitPage" class="headerlink" title="三、部署到GitPage"></a>三、部署到GitPage</h3><blockquote>
 <p>这个步骤开始前，请确保你已经注册了Github账号，且已经配置好了相关信息，配置方法请向上翻阅  <strong>二、安装Git</strong>  环节下。</p>
 </blockquote>
 <h4 id="1-在Github创建仓库。"><a href="#1-在Github创建仓库。" class="headerlink" title="1.在Github创建仓库。"></a>1.在Github创建仓库。</h4><p>打开  <a href="https://github.com/" target="_blank" rel="noopener">Github官网</a>  登陆你的Github账号，点击页面右上角的 <code>+</code> 、<code>New repository</code>新建一个<code>repository</code>仓库</p>
-<p><img alt data-src="/img/Github-repo.png"></p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120320.png"></p>
 <p>为避免麻烦，这里仓库名必须按照<code>yourusername.github.io</code>规范填写，填写完仓库名后，我们点击<code>Create repository</code>按钮，然后等待其创建完成。复制该项目的HTTP链接<code>https://github.com/yourusername/yourusername.github.io.git</code></p>
 <blockquote>
 <p><code>yourusername</code>指的就是你的github用户名，本文中出现的该字段都表示这个意思。  </p>
@@ -611,25 +611,25 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-depolyer-git --save</span><br></pre></td></tr></table></figure>
 
 <p>出现</p>
-<p><img alt data-src="/img/deployer.png"></p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120416.png"></p>
 <p>表示安装成功。</p>
 <p>然后输入：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim _config.yml</span><br></pre></td></tr></table></figure>
 
 <p>进入站点配置文件编辑模式，我们向下翻到底部，可以看到 <code>depoly</code> 字段</p>
-<p><img alt data-src="/img/config.png"></p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120420.png"></p>
 <p>在英文输入模式下，按键盘上的 <code>i</code>键进入编辑模式，将<code>depoly</code>字段编辑如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: </span><br><span class="line">  		github: https:<span class="comment">//github.com/yourusername/yourusername.github.io.git</span></span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
 <p>注意这里<code>:</code>后面一定要加空格，不然会出错。</p>
 <p>然后我们按<code>Esc</code> 键，输入<code>:wq</code> 保存退出</p>
-<p><img alt data-src="/img/vim-wq.png"></p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120428.png"></p>
 <h4 id="3-完成部署"><a href="#3-完成部署" class="headerlink" title="3.完成部署"></a>3.完成部署</h4><p>在命令行输入并执行：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
 <p>其中，<code>hexo d</code> 则是将本地文件推送到远程。</p>
 <p>在第一次推送时，会出现：</p>
-<p><img alt data-src="/img/github-login.png"></p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200312120437.png"></p>
 <p>这是提示要输入你的Github账号密码，因为是第一次推送，Windows要验证账号密码才能确认推送部署到你的Github上,输入账号密码,账号为你注册的邮箱。</p>
 <p>推送完成后，我们在浏览器打开   <code>yourusername.github.io</code> 即可看到我们部署好的博客，例如我的博客地址：<a href="https://qianfanguojin.github.io/" target="_blank" rel="noopener">小谢同学</a></p>
 <blockquote>
@@ -1082,7 +1082,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">187k</span>
+    <span title="站点总字数">188k</span>
   
 
   
@@ -1093,7 +1093,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">5:40</span>
+    <span title="站点阅读时长">5:42</span>
   
 </div>
 
