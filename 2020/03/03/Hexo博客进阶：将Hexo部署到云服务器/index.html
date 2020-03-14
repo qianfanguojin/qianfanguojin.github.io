@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="Hexo + GItPage 的组合让我们每个人都很容易的拥有自己的博客站点，但由于github在国内经常抽风，给人的体验不是很好。 刚好自己前段时间白嫖了一个云服务器，于是查了查资料，成功将其部署到云服务器。 接下来我就介绍我自己部署的一些过程，希望能给看到的人一些帮助。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-04T06:32:55.002Z">
+<meta property="og:updated_time" content="2020-03-14T10:51:17.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客进阶：将Hexo部署到云服务器">
 <meta name="twitter:description" content="Hexo + GItPage 的组合让我们每个人都很容易的拥有自己的博客站点，但由于github在国内经常抽风，给人的体验不是很好。 刚好自己前段时间白嫖了一个云服务器，于是查了查资料，成功将其部署到云服务器。 接下来我就介绍我自己部署的一些过程，希望能给看到的人一些帮助。">
@@ -441,7 +441,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-04 14:32:55" itemprop="dateModified" datetime="2020-03-04T14:32:55+08:00">2020-03-04</time>
+                <time title="修改时间：2020-03-14 18:51:17" itemprop="dateModified" datetime="2020-03-14T18:51:17+08:00">2020-03-14</time>
               </span>
             
           
@@ -613,7 +613,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure>
 
 <p>在浏览器输入 <code>&lt;server_ip&gt;</code> ，可看到：</p>
-<p><img alt="image-20200303161553972" data-src="../../../../../AppData/Roaming/Typora/typora-user-images/image-20200303161553972.png"></p>
+<p><img alt="image-20200303161553972" data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200314162743.png"></p>
 <p>详细配置</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nginx -s stop //先停止nginx</span><br><span class="line">cd /usr/local/nginx-webServer/conf</span><br><span class="line">vim nginx.conf //打开配置文件</span><br><span class="line">将 user 修改为 root //避免权限不足无法访问博客目录</span><br><span class="line">将 root 解析路径修改为博客目录 /home/git/project/hexo-blog</span><br><span class="line">nginx -s reload //重启nginx</span><br></pre></td></tr></table></figure>
 
