@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="在VMware虚拟机的MacOS中，如何手动安装VMware Tools呢？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-18T04:58:57.964Z">
+<meta property="og:updated_time" content="2020-04-18T05:13:48.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为你的VMware 15.5 MacOS手动安装VMware Tools">
 <meta name="twitter:description" content="在VMware虚拟机的MacOS中，如何手动安装VMware Tools呢？">
@@ -441,7 +441,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-04-18 12:58:57" itemprop="dateModified" datetime="2020-04-18T12:58:57+08:00">2020-04-18</time>
+                <time title="修改时间：2020-04-18 13:13:48" itemprop="dateModified" datetime="2020-04-18T13:13:48+08:00">2020-04-18</time>
               </span>
             
           
@@ -560,7 +560,7 @@
 <h2 id="2、获取Darwin文件"><a href="#2、获取Darwin文件" class="headerlink" title="2、获取Darwin文件"></a>2、获取Darwin文件</h2><p>在VMware 上安装的Mac OSX 安装 VMware Tools 需要用到一个叫<strong>darwin.iso</strong> 的文件。</p>
 <p>如果是使用了unlocker 破解VMware ，unlocker会帮你下载一个最新版的 <strong>darwin.iso</strong> ，并复制到 VMware Tools 的根目录，但是由于官方源的不稳定，可能会失效，有时候需要我们手动安装。</p>
 <p>我们可以先检查一下当前VM根目录是否有该文件：</p>
-<p><img alt data-src="../../../../20190924181828.png"></p>
+<p><img alt data-src="https://img-blog.csdnimg.cn/20200112231604679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70"></p>
 <p>如果已经有了这个文件，那么请直接跳转到下一节开始安装。</p>
 <p>如果和我一样，安装根目录并没有这个文件，那么我们就需要下载这个文件，这个文件会随着</p>
 <p><strong>VMware Tools</strong> 的更新而一直更新，最新版本为 11.0，可以在这个网站上下载：</p>
@@ -568,13 +568,13 @@
 <p><a href="http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/" target="_blank" rel="noopener">http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/</a></p>
 </blockquote>
 <p>找到最新的版本号，下载packge目录下具有 darwin文件的压缩包：</p>
-<p><img alt data-src="../../../../20190924193144.png"></p>
+<p><img alt data-src="https://img-blog.csdnimg.cn/2020011223162034.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70"></p>
 <p>下载下来是一个压缩文件，逐级打开压缩文件，在payload目录中可以找到<strong>darwin.iso</strong>文件，将其解压并放到VMware的安装根目录，也就是上文图片中的位置。</p>
 <p><strong>由于是外国网站，如果遇到下载出错等问题的的话，可以从这里下载 <a href="http://download.csdn.net/download/jiunian_2761/12099357" target="_blank" rel="noopener">darwin11</a> 支持一下卑微的作者。</strong></p>
 <h2 id="3、开始安装"><a href="#3、开始安装" class="headerlink" title="3、开始安装"></a>3、开始安装</h2><p>将你虚拟机中的MacOS关机，在虚拟机设置中将CD/DVD指定为 <strong>darwin.iso</strong>：</p>
-<p><img alt="TIM截图20200112212520.png" data-src="../../../../EZbixLzA1CPTWd8.png"></p>
+<p><img alt="TIM截图20200112212520.png" data-src="https://img-blog.csdnimg.cn/20200112231641406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70"></p>
 <p>启动系统，在桌面右边可以看到VMware Tools，双击打开：</p>
-<p><img alt="TIM截图20200112212520.png" data-src="../../../../mTyYrfdSKMoCLVs.png"></p>
+<p><img alt="TIM截图20200112212520.png" data-src="https://img-blog.csdnimg.cn/20200112231700443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_700"></p>
 <p>双击安装，按照步骤一步步来即可：<br><img alt="TIM截图20200112212520.png" data-src="https://i.loli.net/2020/01/12/SwCo1QULzMJRAfX.png"></p>
 <blockquote>
 <p>注意，这里要选择信任（先点击左下角的图标解锁），允许 系统载入 VMware Tools。</p>
