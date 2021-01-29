@@ -289,7 +289,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">36</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">39</span></a>
 
   </li>
         
@@ -307,7 +307,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">16</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">17</span></a>
 
   </li>
         
@@ -325,7 +325,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">30</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">31</span></a>
 
   </li>
 
@@ -364,6 +364,230 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.qianfanguojin.top/2021/01/29/DNS解析巨慢的另一种可能，Vmware网卡驱动问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="千帆过烬">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢同学的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/29/DNS解析巨慢的另一种可能，Vmware网卡驱动问题/" class="post-title-link" itemprop="url">DNS解析巨慢的另一种可能，Vmware网卡驱动问题</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-01-29 21:29:35 / 修改时间：22:14:13" itemprop="dateCreated datePublished" datetime="2021-01-29T21:29:35+08:00">2021-01-29</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂七杂八/" itemprop="url" rel="index"><span itemprop="name">杂七杂八</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/01/29/DNS解析巨慢的另一种可能，Vmware网卡驱动问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/01/29/DNS解析巨慢的另一种可能，Vmware网卡驱动问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">1.1k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">2 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>对于 <code>DNS</code> 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 <strong>本机网卡的DNS地址</strong> ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。</p>
+<h2 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h2><p>其实，笔者的电脑的 DNS 解析慢已经有过一段时间了，经常出现的情况就是打开网页解析主机的时间异常的长。而经过测试，如 <code>QQ、微信</code> 等软件直连的都没有问题，在之前，笔者一直以为是路由器或者其他网络设备的问题，又因为它勉强还能承受过去，笔者就没有过多在意。</p>
+<p>但某天晚上，当笔者打开 <code>Spring Boot</code> 官网查看文档，里面的许多链接都跳往不同的网站，在多次点击不同链接，看着浏览器上不断转动的小圈圈，笔者陷入了沉思。</p>
+<p>于是痛定思痛，发誓一定解决这个问题。</p>
+<h2 id="尝试解决方案"><a href="#尝试解决方案" class="headerlink" title="尝试解决方案"></a>尝试解决方案</h2><p>但事情哪里有那么简单，由于之前的错误判断，笔者首先怀疑到的就是路由器或网络设备。</p>
+<h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><p>于是，笔者进入路由器后台，将路由器的 DNS 设为自定义的公共DNS，然而，故障如常，为了确定非路由器问题，笔者还用不同的电脑在同一路由器下测试，发现独独笔者的电脑是个特例…….。</p>
+<p>一法不行，再来一法。确定网络设备问题排除在外，笔者开始寻找在本机电脑上的解决方案。</p>
+<p>首先，笔者在像大多数情况一样，在网络设置中自定义DNS为通用的 114.114.114.114。</p>
+<p><img alt="image-20210129215045973" data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129215053.png"></p>
+<p>很不幸，问题并没有解决。可能会有人问，肯定是你的DNS地址不行。事实是，笔者几乎试了所有能排的上号的DNS地址，故障如常。</p>
+<p>此时，笔者已经开始想起是不是要重装电脑系统了，但想到重装系统后复杂的软件安装和配置，笔者决定还是继续多研究几次。</p>
+<h3 id="觉醒"><a href="#觉醒" class="headerlink" title="觉醒"></a>觉醒</h3><p>至此，笔者重新理清思路，猜测是否是 DNS 地址是否没有设置上，在控制台输入 <code>ipconfig /all</code>，发现DNS是设置成功的。</p>
+<p><img alt="image-20210129215923777" data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129215923.png"></p>
+<p>那难道真的是系统问题？既然来到了控制台，就测测 DNS 解析吧：</p>
+<p><img alt="image-20210129220309973" data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220310.png"></p>
+<p>嗯？服务器不应该是 114.114.114.114 吗？难道真的是没有生效？系统BUG？，抱着怀疑的想法，笔者打开网络适配器确认DNS地址：</p>
+<p><img alt="image-20210129220504244" data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220504.png"></p>
+<p>很明显，并没有问题，正当笔者考虑重装系统时，笔者看到适配器中的两个 <code>Vmware虚拟机网络适配器</code> ：</p>
+<p><img alt="image-20210129220648805" data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220648.png"></p>
+<p>由于这两个适配器是很早时候装 Vmware 虚拟机时附带的，笔者都忘了有什么用了，于是顺便点进去看了看网络信息：</p>
+<p><img alt="image-20210129220912054" data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220912.png"></p>
+<p>嗯？怎么这么眼熟？回去翻看控制台，发现这不就是控制台的相同 DNS吗？难道就是你这个逼崽子？于是笔者试着将两个适配器禁用，再次在控制台测试：</p>
+<p><img alt="image-20210129221050397" data-src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129221050.png"></p>
+<p>好家伙，我直接好家伙，原来是多个网卡冲突的问题，笔者还是第一次遇见，只能怪自己学艺不精了。</p>
+<p>重新打开浏览器，啊~，这清爽的感觉（意会）</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    
+	
+	<!--文章结束标语-->
+	
+
+	
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -2325,228 +2549,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="www.qianfanguojin.top/2019/10/17/JavaScript-2019-10-17-JavaScript入门（四）：简单的DOM和事件案例/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="千帆过烬">
-      <meta itemprop="description" content="愿面朝大海，春暖花开">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="谢同学的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/17/JavaScript-2019-10-17-JavaScript入门（四）：简单的DOM和事件案例/" class="post-title-link" itemprop="url">JavaScript入门（四）：简单的DOM和事件案例</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-17 16:33:18" itemprop="dateCreated datePublished" datetime="2019-10-17T16:33:18+08:00">2019-10-17</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-11-05 21:51:21" itemprop="dateModified" datetime="2019-11-05T21:51:21+08:00">2019-11-05</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/10/17/JavaScript-2019-10-17-JavaScript入门（四）：简单的DOM和事件案例/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/17/JavaScript-2019-10-17-JavaScript入门（四）：简单的DOM和事件案例/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">1.9k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">3 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>经过了前面的学习，我们对<code>JavaScript</code>算是有了一个初步的了解。但是在真正的开发中，仅仅了解基础是不能帮助我们解决实际问题的。</p>
-<p>今天我们就通过一个<strong>点击按钮切换图片</strong>的案例来引入 <code>JavaScript</code> 这门语言在实际应用中的用法。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/10/17/JavaScript-2019-10-17-JavaScript入门（四）：简单的DOM和事件案例/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    
-	
-	<!--文章结束标语-->
-	
-
-	
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2591,7 +2598,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2640,7 +2647,9 @@
         
           
         
-        <span class="site-state-item-count">12</span>
+          
+        
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -2729,7 +2738,13 @@
         
           
         
-        <span class="site-state-item-count">28</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -2887,7 +2902,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">188k</span>
+    <span title="站点总字数">189k</span>
   
 
   
@@ -2898,7 +2913,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">5:42</span>
+    <span title="站点阅读时长">5:44</span>
   
 </div>
 

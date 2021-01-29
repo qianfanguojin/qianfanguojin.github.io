@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言上篇我们讲述了框架中核心技术 Java 反射 的使用，介绍了它功能的强大之处。 本篇我们讲述另一个框架使用的重要技术，Java 注解">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-09T10:13:14.458Z">
+<meta property="og:updated_time" content="2021-01-09T10:32:45.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础加强：Java注解">
 <meta name="twitter:description" content="前言上篇我们讲述了框架中核心技术 Java 反射 的使用，介绍了它功能的强大之处。 本篇我们讲述另一个框架使用的重要技术，Java 注解">
@@ -290,7 +290,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">36</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">39</span></a>
 
   </li>
         
@@ -308,7 +308,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">16</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">17</span></a>
 
   </li>
         
@@ -326,7 +326,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">30</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">31</span></a>
 
   </li>
 
@@ -441,7 +441,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2021-01-09 18:13:14" itemprop="dateModified" datetime="2021-01-09T18:13:14+08:00">2021-01-09</time>
+                <time title="修改时间：2021-01-09 18:32:45" itemprop="dateModified" datetime="2021-01-09T18:32:45+08:00">2021-01-09</time>
               </span>
             
           
@@ -601,7 +601,7 @@
 <p>第二，在目前的主流框架中，将注解定义为 RUNTIME 运行时时用的比较多的，如SpringMvc中的@Controller、@Autowired、@RequestMapping等。定义在运行时，我们可以通过反射获取注解的内容，可以简化代码。</p>
 </li>
 <li><p><strong>@Inherited注解</strong></p>
-<p>@Inherited 负责指定注解可以被继承，但不是真正意义上的继承，<strong>注解本质上是不可以继承的</strong>，我们无法使用<code>extends</code>标识符继承自 @interface 。这里的继承指得是可以让子类通过反射使用Class对象中的getAnnotations() 获取父类被@Inherited修饰的注解，具体请看以下示例：</p>
+<p>@Inherited 负责指定注解可以被继承，但不是真正意义上的继承，<strong>注解本质上是不可以继承的</strong>，我们无法使用<code>extends</code>标识符继承自 @interface 。这里的继承指得是<strong>可以让子类通过反射使用Class对象中的getAnnotations() 获取父类被@Inherited修饰的注解</strong>，具体请看以下示例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> qianfanguojin</span></span><br><span class="line"><span class="comment"> *  /<span class="doctag">@Inherited</span>表明注解可继承的示例</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> Anno1&#123;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> "Anno1被使用"</span>;</span><br><span class="line">    <span class="comment">//定义@Inherited的注解</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@interface</span> Anno2&#123;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> "Anno2被使用"</span>;</span><br><span class="line">    <span class="comment">//没有定义@Inherited的注解</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Anno</span>1</span><br><span class="line"><span class="meta">@Anno</span>2</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">//获得子类B的Class对象</span></span><br><span class="line">        Class cls = Class.forName(<span class="string">"cn.annotation.B"</span>);</span><br><span class="line">		<span class="comment">//获得子类B上面定义的所有注解（注意该注解是要定义在类的声明上面的）</span></span><br><span class="line">        Annotation[] ano = cls.getAnnotations();</span><br><span class="line">        <span class="keyword">for</span>(Annotation a : ano) &#123;</span><br><span class="line">            <span class="comment">//获得的注解类型如果来自Anno1注解，输出该注解中value的值</span></span><br><span class="line">            <span class="keyword">if</span>(a <span class="keyword">instanceof</span> Anno1) &#123;</span><br><span class="line">                System.out.println(((Anno1)a).value());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//获得的注解类型如果来自Anno2注解，输出该注解中value的值</span></span><br><span class="line">            <span class="keyword">if</span> (a <span class="keyword">instanceof</span> Anno2) &#123;</span><br><span class="line">                System.out.println(((Anno2)a).value());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出结果：</p>
@@ -1071,7 +1071,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1120,7 +1120,9 @@
         
           
         
-        <span class="site-state-item-count">12</span>
+          
+        
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1209,7 +1211,13 @@
         
           
         
-        <span class="site-state-item-count">28</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1384,7 +1392,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">188k</span>
+    <span title="站点总字数">189k</span>
   
 
   
@@ -1395,7 +1403,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">5:42</span>
+    <span title="站点阅读时长">5:44</span>
   
 </div>
 
