@@ -104,18 +104,18 @@
   };
 </script>
 
-  <meta name="description" content="前言对于 DNS 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 本机网卡的DNS地址 ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。 问题来源其实，笔者的电脑的 DNS 解析慢已经有过一段时间了，经常出现的情况就是打开网页解析主机的时间异常的长。而经过测试，如 QQ、微信 等软件直连的">
+  <meta name="description" content="前言对于 DNS 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 本机网卡的DNS地址 ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。">
 <meta name="keywords" content="DNS,杂七杂八,Vmware">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DNS解析巨慢的另一种可能，Vmware网卡驱动问题">
 <meta property="og:url" content="www.qianfanguojin.top/2021/01/29/DNS解析巨慢的另一种可能，Vmware网卡驱动问题/index.html">
 <meta property="og:site_name" content="谢同学的博客">
-<meta property="og:description" content="前言对于 DNS 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 本机网卡的DNS地址 ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。 问题来源其实，笔者的电脑的 DNS 解析慢已经有过一段时间了，经常出现的情况就是打开网页解析主机的时间异常的长。而经过测试，如 QQ、微信 等软件直连的">
+<meta property="og:description" content="前言对于 DNS 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 本机网卡的DNS地址 ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-29T14:14:13.799Z">
+<meta property="og:updated_time" content="2021-03-08T02:05:35.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS解析巨慢的另一种可能，Vmware网卡驱动问题">
-<meta name="twitter:description" content="前言对于 DNS 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 本机网卡的DNS地址 ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。 问题来源其实，笔者的电脑的 DNS 解析慢已经有过一段时间了，经常出现的情况就是打开网页解析主机的时间异常的长。而经过测试，如 QQ、微信 等软件直连的">
+<meta name="twitter:description" content="前言对于 DNS 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 本机网卡的DNS地址 ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。">
 
 
 
@@ -290,7 +290,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">39</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">41</span></a>
 
   </li>
         
@@ -308,7 +308,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">17</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
 
   </li>
         
@@ -426,13 +426,23 @@
                 
               
 
-              <time title="创建时间：2021-01-29 21:29:35 / 修改时间：22:14:13" itemprop="dateCreated datePublished" datetime="2021-01-29T21:29:35+08:00">2021-01-29</time>
+              <time title="创建时间：2021-01-29 21:29:35" itemprop="dateCreated datePublished" datetime="2021-01-29T21:29:35+08:00">2021-01-29</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-03-08 10:05:35" itemprop="dateModified" datetime="2021-03-08T10:05:35+08:00">2021-03-08</time>
+              </span>
             
           
 
@@ -526,6 +536,8 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>对于 <code>DNS</code> 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 <strong>本机网卡的DNS地址</strong> ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。</p>
+<a id="more"></a>
+
 <h2 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h2><p>其实，笔者的电脑的 DNS 解析慢已经有过一段时间了，经常出现的情况就是打开网页解析主机的时间异常的长。而经过测试，如 <code>QQ、微信</code> 等软件直连的都没有问题，在之前，笔者一直以为是路由器或者其他网络设备的问题，又因为它勉强还能承受过去，笔者就没有过多在意。</p>
 <p>但某天晚上，当笔者打开 <code>Spring Boot</code> 官网查看文档，里面的许多链接都跳往不同的网站，在多次点击不同链接，看着浏览器上不断转动的小圈圈，笔者陷入了沉思。</p>
 <p>于是痛定思痛，发誓一定解决这个问题。</p>
@@ -796,7 +808,9 @@
         
           
         
-        <span class="site-state-item-count">13</span>
+          
+        
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -891,7 +905,11 @@
         
           
         
-        <span class="site-state-item-count">31</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1066,7 +1084,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">189k</span>
+    <span title="站点总字数">190k</span>
   
 
   
@@ -1077,7 +1095,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">5:44</span>
+    <span title="站点阅读时长">5:45</span>
   
 </div>
 
