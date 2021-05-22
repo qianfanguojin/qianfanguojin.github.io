@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;www.qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="在VMware虚拟机的MacOS中，如何手动安装VMware Tools呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为你的VMware 15.5 MacOS手动安装VMware Tools">
+<meta property="og:url" content="https://www.qianfanguojin.top/2020/01/12/%E4%B8%BA%E4%BD%A0%E7%9A%84VMware-15-5-MacOS%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85VMware-Tools/index.html">
+<meta property="og:site_name" content="谢同学的博客">
+<meta property="og:description" content="在VMware虚拟机的MacOS中，如何手动安装VMware Tools呢？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200112231604679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020011223162034.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200112231641406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107143717.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107143813.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107143841.png">
+<meta property="article:published_time" content="2020-01-12T15:06:18.000Z">
+<meta property="article:modified_time" content="2021-03-08T02:19:48.483Z">
+<meta property="article:author" content="千帆过烬">
+<meta property="article:tag" content="VMware Tools">
+<meta property="article:tag" content="VMware">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200112231604679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="https://www.qianfanguojin.top/2020/01/12/%E4%B8%BA%E4%BD%A0%E7%9A%84VMware-15-5-MacOS%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85VMware-Tools/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;www.qianfanguojin.top&#x2F;2020&#x2F;01&#x2F;12&#x2F;%E4%B8%BA%E4%BD%A0%E7%9A%84VMware-15-5-MacOS%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85VMware-Tools&#x2F;&quot;,&quot;path&quot;:&quot;2020&#x2F;01&#x2F;12&#x2F;为你的VMware-15-5-MacOS手动安装VMware-Tools&#x2F;&quot;,&quot;title&quot;:&quot;为你的VMware 15.5 MacOS手动安装VMware Tools&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>为你的VMware 15.5 MacOS手动安装VMware Tools | 谢同学的博客</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">谢同学的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85VMware-Tools"><span class="nav-number">2.</span> <span class="nav-text">1、为什么需要安装VMware Tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E8%8E%B7%E5%8F%96Darwin%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">2、获取Darwin文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">3、开始安装</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">千帆过烬</p>
+  <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.qianfanguojin.top/2020/01/12/%E4%B8%BA%E4%BD%A0%E7%9A%84VMware-15-5-MacOS%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85VMware-Tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="千帆过烬">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢同学的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          为你的VMware 15.5 MacOS手动安装VMware Tools
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-12 23:06:18" itemprop="dateCreated datePublished" datetime="2020-01-12T23:06:18+08:00">2020-01-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-08 10:19:48" itemprop="dateModified" datetime="2021-03-08T10:19:48+08:00">2021-03-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VMware/" itemprop="url" rel="index"><span itemprop="name">VMware</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VMware/Mac-OS/" itemprop="url" rel="index"><span itemprop="name">Mac OS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">在VMware虚拟机的MacOS中，如何手动安装VMware Tools呢？</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前两天，偶然在网上看到一个VMware 虚拟机安装MAC OS X 的教程：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.usbmi.com/3910.html">http://www.usbmi.com/3910.html</a></p>
+</blockquote>
+<p>安装的过程是非常顺利的，但是当我满心欢喜的打开系统时，发现在虚拟机下，拖动鼠标具有明显的掉帧现象，不能实现全屏也就是调节分辨率，也不支持传输文件。 </p>
+<p>于是我咨询了万能的百度，发现是需要安装 VMware Tools ，于是我在VMware 软件中点击安装VMware Tools 的选项，然而却弹出：</p>
+<blockquote>
+<p>无法在更新服务器上找到组件。请联系VMware技术支持或您的系统管理员。</p>
+</blockquote>
+<p>查询了一下资料，发现在VMware 上安装的Mac OSX 安装 VMware Tools 需要用到一个<strong>darwin.iso</strong> 的文件，这款软件包括了虚拟机、硬件、驱动等和主机间进行沟通，并且进行支持！安装原版虚拟机不带此镜像文件的，必须自行下载！</p>
+<p>许多文章都只是介绍了如何在虚拟机下安装MACOS，并没有告诉我们<strong>darwin.iso</strong>在哪里下载，MacOS 中的 VMware Tools 如何安装？这也就是我写这篇文章的目的。</p>
+<h2 id="1、为什么需要安装VMware-Tools"><a href="#1、为什么需要安装VMware-Tools" class="headerlink" title="1、为什么需要安装VMware Tools"></a>1、为什么需要安装VMware Tools</h2><p><strong>VMware Tools</strong>是VMware软件提供的一个辅助工具，支持多种操作系统，其中的实用程序可以提高虚拟机中客户机操作系统的性能和改善虚拟机管理。</p>
+<p>在虚拟机中的MAC OS X 中，<strong>VMware Tools</strong>  可以提高鼠标操作的流畅度，实现全屏显示，文件共享…..等等多种优化，为了更优雅的食用MAC OSX，安装VMware Tools还是很有必要的。</p>
+<h2 id="2、获取Darwin文件"><a href="#2、获取Darwin文件" class="headerlink" title="2、获取Darwin文件"></a>2、获取Darwin文件</h2><p>在VMware 上安装的Mac OSX 安装 VMware Tools 需要用到一个叫<strong>darwin.iso</strong> 的文件。</p>
+<p>如果是使用了unlocker 破解VMware ，unlocker会帮你下载一个最新版的 <strong>darwin.iso</strong> ，并复制到 VMware Tools 的根目录，但是由于官方源的不稳定，可能会失效，有时候需要我们手动安装。</p>
+<p>我们可以先检查一下当前VM根目录是否有该文件：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200112231604679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70"></p>
+<p>如果已经有了这个文件，那么请直接跳转到下一节开始安装。</p>
+<p>如果和我一样，安装根目录并没有这个文件，那么我们就需要下载这个文件，这个文件会随着</p>
+<p><strong>VMware Tools</strong> 的更新而一直更新，最新版本为 11.0，可以在这个网站上下载：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/">http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/</a></p>
+</blockquote>
+<p>找到最新的版本号，下载packge目录下具有 darwin文件的压缩包：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020011223162034.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70"></p>
+<p>下载下来是一个压缩文件，逐级打开压缩文件，在payload目录中可以找到<strong>darwin.iso</strong>文件，将其解压并放到VMware的安装根目录，也就是上文图片中的位置。</p>
+<p><strong>由于是外国网站，如果遇到下载出错等问题的的话，可以从这里下载 <a target="_blank" rel="noopener" href="http://download.csdn.net/download/jiunian_2761/12099357">darwin11</a> 支持一下卑微的作者。</strong></p>
+<h2 id="3、开始安装"><a href="#3、开始安装" class="headerlink" title="3、开始安装"></a>3、开始安装</h2><p>将你虚拟机中的MacOS关机，在虚拟机设置中将CD/DVD指定为 <strong>darwin.iso</strong>：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200112231641406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70" alt="TIM截图20200112212520.png"></p>
+<p>启动系统，在桌面右边可以看到VMware Tools，双击打开：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107143717.png"></p>
+<p>双击安装，按照步骤一步步来即可：<br><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107143813.png"></p>
+<blockquote>
+<p>注意，这里要选择信任（先点击左下角的图标解锁），允许 系统载入 VMware Tools。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107143841.png"></p>
+<p>最后重新启动，你就可以看到熟悉的MacOS系统，赶紧全屏，体验一下VMware Tools带来的操作的顺畅感觉吧！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VMware-Tools/" rel="tag"># VMware Tools</a>
+              <a href="/tags/VMware/" rel="tag"># VMware</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/12/19/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85jdk1.8/" rel="prev" title="Linux之路：Centos安装jdk1.8">
+                  <i class="fa fa-chevron-left"></i> Linux之路：Centos安装jdk1.8
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/18/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85docker/" rel="next" title="Linux之路：Centos安装docker">
+                  Linux之路：Centos安装docker <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千帆过烬</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

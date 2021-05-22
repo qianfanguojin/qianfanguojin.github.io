@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;www.qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="Centos如何安装mysql？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux之路：Centos安装mysql">
+<meta property="og:url" content="https://www.qianfanguojin.top/2020/02/25/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85mysql/index.html">
+<meta property="og:site_name" content="谢同学的博客">
+<meta property="og:description" content="Centos如何安装mysql？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152427.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152440.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152533.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152544.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152555.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152609.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152629.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152643.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152705.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152714.png">
+<meta property="article:published_time" content="2020-02-25T09:47:20.000Z">
+<meta property="article:modified_time" content="2021-03-08T02:20:22.100Z">
+<meta property="article:author" content="千帆过烬">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Centos">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152427.png">
+
+
+<link rel="canonical" href="https://www.qianfanguojin.top/2020/02/25/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85mysql/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;www.qianfanguojin.top&#x2F;2020&#x2F;02&#x2F;25&#x2F;Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85mysql&#x2F;&quot;,&quot;path&quot;:&quot;2020&#x2F;02&#x2F;25&#x2F;Linux之路：Centos安装mysql&#x2F;&quot;,&quot;title&quot;:&quot;Linux之路：Centos安装mysql&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Linux之路：Centos安装mysql | 谢同学的博客</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">谢同学的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BB%E6%89%BEyum%E6%BA%90%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">寻找yum源文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD%E5%8F%AF%E8%83%BD%E5%86%B2%E7%AA%81%E7%9A%84mariadb"><span class="nav-number">1.2.</span> <span class="nav-text">卸载可能冲突的mariadb</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">开始安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E6%BA%90%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">1、下载安装源文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%89%A7%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="nav-number">2.2.</span> <span class="nav-text">2、执行安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E8%BF%9B%E5%85%A5mysql"><span class="nav-number">2.3.</span> <span class="nav-text">3、进入mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%8A%9F%E5%91%8A%E6%88%90%EF%BC%81"><span class="nav-number">2.4.</span> <span class="nav-text">大功告成！</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">千帆过烬</p>
+  <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.qianfanguojin.top/2020/02/25/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="千帆过烬">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢同学的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux之路：Centos安装mysql
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-25 17:47:20" itemprop="dateCreated datePublished" datetime="2020-02-25T17:47:20+08:00">2020-02-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-08 10:20:22" itemprop="dateModified" datetime="2021-03-08T10:20:22+08:00">2021-03-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Centos如何安装mysql？</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><code>MySQL</code> 是最流行的关系型数据库管理系统，在 WEB 应用方面 <code>MySQL</code> 是最好的 <code>RDBMS(Relational Database Management System</code>：关系数据库管理系统)应用软件之一。</p>
+<p>本节，我们介绍<code>Centos</code>中安装 <code>MySQL</code>  。</p>
+<span id="more"></span>
+
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="寻找yum源文件"><a href="#寻找yum源文件" class="headerlink" title="寻找yum源文件"></a>寻找yum源文件</h3><p>首先建议去官方获取 yum 源 <a target="_blank" rel="noopener" href="http://repo.mysql.com/">http://repo.mysql.com/</a></p>
+<p>可以看到在这有很多源文件，他们分别作用于不同系统不同版本，需要注意的是我们的系统是<code>Centos</code>，对应的代号是<strong>el</strong> <code>(Red Hat E nterprise L inux(EL))</code> </p>
+<p>如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152427.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152440.png"></p>
+<p>其中前面的mysql57、mysql80分别代表mysql5.7版本和8.0版本，后面的el5、el6、el7….. 分别代表<code>Centos</code>的系统版本，安装之前，请按自己的系统版本选择对应的 rpm 源文件。</p>
+<blockquote>
+<p>Centos中查看系统版本的命令为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /etc/redhat-release</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>选定好对应的系统版本和mysql版本后，鼠标右击指定的文件，选择复制链接地址。</p>
+<h3 id="卸载可能冲突的mariadb"><a href="#卸载可能冲突的mariadb" class="headerlink" title="卸载可能冲突的mariadb"></a>卸载可能冲突的mariadb</h3><p>MariaDB是MySQL源代码的一个分支，有些系统可能安装过此程序，为了避免冲突，必须先卸载。</p>
+<p>1.查询安装了是否mariadb,获取mariadb的包名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -qa | grep mariadb</span><br></pre></td></tr></table></figure>
+
+<p>2.卸载mariadb</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rpm -e mariadb-libs-5.5.64-1.el7_5.x86_64 </span><br></pre></td></tr></table></figure>
+
+<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><p>接下来我以Centos7 (el7) , mysql 5.7 (mysql57) 为例，完成mysql的安装.</p>
+<h3 id="1、下载安装源文件"><a href="#1、下载安装源文件" class="headerlink" title="1、下载安装源文件"></a>1、下载安装源文件</h3><p>在命令行中下载mysql5.7 Centos7 的yum源文件:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget http://repo.mysql.com/mysql57-community-release-el7.rpm</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152533.png"></p>
+<p>使用rpm安装此源文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rpm -ivh mysql57-community-release-el7.rpm</span><br></pre></td></tr></table></figure>
+
+<p>安装完成之后，会在 <code>/etc/yum.repos.d/</code> 目录下新增 <code>mysql-community.repo 、mysql-community-source.repo</code> 两个 yum 源文件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152544.png"></p>
+<p>此时我们可以查看mysql 的yum安装包，各种版本的都在其中:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum repolist all | grep mysql</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152555.png"></p>
+<p><strong>如果您想要修改默认安装的yum安装包(mysql版本)，请按如下步骤操作，如果不想，请跳过</strong>：</p>
+<blockquote>
+<p>在上图中，我们可以看到列出的安装包中，<code>mysql57-community</code> 为 enabled（启用） ，这代表默认安装则为mysql5.7 版本，而有时候我们可能需要更新或者说需要安装更高版本的mysql，此时我们就需要更改默认的安装包。</p>
+<p>修改成mysql8.0：</p>
+<ol>
+<li>使用<code>yum-config-manager --disable mysql57-community</code>来取消 mysql57-community的默认安装</li>
+<li>然后使用<code>yum-config-manager --enable mysql80-community</code>来使能 mysql80-community成为yum默认安装版本。</li>
+</ol>
+</blockquote>
+<h3 id="2、执行安装"><a href="#2、执行安装" class="headerlink" title="2、执行安装"></a>2、执行安装</h3><p>安装 mysql-community-server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum -y install mysql-community-server</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152609.png"></p>
+<p>安装 mysql-devel</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum -y install mysql-devel</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152629.png"></p>
+<p>查看服务状态</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl status mysqld</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152643.png"></p>
+<p>如能显示出服务信息，代表已经安装成功。</p>
+<h3 id="3、进入mysql"><a href="#3、进入mysql" class="headerlink" title="3、进入mysql"></a>3、进入mysql</h3><p>启动服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start mysqld</span><br><span class="line"></span><br><span class="line"><span class="comment">#PS:设置为自启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> mysqld</span><br></pre></td></tr></table></figure>
+
+<p>获取临时密码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/mysqld.log | grep password</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152705.png"></p>
+<p>登录进入mysql（密码为获取到的临时密码）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<p>登录成功效果</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107152714.png"></p>
+<h3 id="大功告成！"><a href="#大功告成！" class="headerlink" title="大功告成！"></a>大功告成！</h3><p>建议进入之后，建议立刻修改mysql的密码，具体如何操作，请使用666法则。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Centos/" rel="tag"># Centos</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/02/18/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85docker/" rel="prev" title="Linux之路：Centos安装docker">
+                  <i class="fa fa-chevron-left"></i> Linux之路：Centos安装docker
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/03/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%9B%E9%98%B6%EF%BC%9A%E5%B0%86Hexo%E9%83%A8%E7%BD%B2%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="next" title="Hexo博客进阶：将Hexo部署到云服务器">
+                  Hexo博客进阶：将Hexo部署到云服务器 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千帆过烬</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

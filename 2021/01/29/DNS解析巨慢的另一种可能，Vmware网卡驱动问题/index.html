@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;www.qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="前言对于 DNS 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 本机网卡的DNS地址 ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DNS解析巨慢的另一种可能，Vmware网卡驱动问题">
+<meta property="og:url" content="https://www.qianfanguojin.top/2021/01/29/DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="谢同学的博客">
+<meta property="og:description" content="前言对于 DNS 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 本机网卡的DNS地址 ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129215053.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129215923.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220310.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220504.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220648.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220912.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129221050.png">
+<meta property="article:published_time" content="2021-01-29T13:29:35.000Z">
+<meta property="article:modified_time" content="2021-03-08T02:05:35.991Z">
+<meta property="article:author" content="千帆过烬">
+<meta property="article:tag" content="DNS">
+<meta property="article:tag" content="杂七杂八">
+<meta property="article:tag" content="Vmware">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129215053.png">
+
+
+<link rel="canonical" href="https://www.qianfanguojin.top/2021/01/29/DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;www.qianfanguojin.top&#x2F;2021&#x2F;01&#x2F;29&#x2F;DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;01&#x2F;29&#x2F;DNS解析巨慢的另一种可能，Vmware网卡驱动问题&#x2F;&quot;,&quot;title&quot;:&quot;DNS解析巨慢的另一种可能，Vmware网卡驱动问题&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>DNS解析巨慢的另一种可能，Vmware网卡驱动问题 | 谢同学的博客</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">谢同学的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%9D%A5%E6%BA%90"><span class="nav-number">2.</span> <span class="nav-text">问题来源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">尝试解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF"><span class="nav-number">3.1.</span> <span class="nav-text">错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%89%E9%86%92"><span class="nav-number">3.2.</span> <span class="nav-text">觉醒</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">千帆过烬</p>
+  <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.qianfanguojin.top/2021/01/29/DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="千帆过烬">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢同学的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DNS解析巨慢的另一种可能，Vmware网卡驱动问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-29 21:29:35" itemprop="dateCreated datePublished" datetime="2021-01-29T21:29:35+08:00">2021-01-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-08 10:05:35" itemprop="dateModified" datetime="2021-03-08T10:05:35+08:00">2021-03-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/" itemprop="url" rel="index"><span itemprop="name">杂七杂八</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>对于 <code>DNS</code> 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 <strong>本机网卡的DNS地址</strong> ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。</p>
+<span id="more"></span>
+
+<h2 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h2><p>其实，笔者的电脑的 DNS 解析慢已经有过一段时间了，经常出现的情况就是打开网页解析主机的时间异常的长。而经过测试，如 <code>QQ、微信</code> 等软件直连的都没有问题，在之前，笔者一直以为是路由器或者其他网络设备的问题，又因为它勉强还能承受过去，笔者就没有过多在意。</p>
+<p>但某天晚上，当笔者打开 <code>Spring Boot</code> 官网查看文档，里面的许多链接都跳往不同的网站，在多次点击不同链接，看着浏览器上不断转动的小圈圈，笔者陷入了沉思。</p>
+<p>于是痛定思痛，发誓一定解决这个问题。</p>
+<h2 id="尝试解决方案"><a href="#尝试解决方案" class="headerlink" title="尝试解决方案"></a>尝试解决方案</h2><p>但事情哪里有那么简单，由于之前的错误判断，笔者首先怀疑到的就是路由器或网络设备。</p>
+<h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><p>于是，笔者进入路由器后台，将路由器的 DNS 设为自定义的公共DNS，然而，故障如常，为了确定非路由器问题，笔者还用不同的电脑在同一路由器下测试，发现独独笔者的电脑是个特例…….。</p>
+<p>一法不行，再来一法。确定网络设备问题排除在外，笔者开始寻找在本机电脑上的解决方案。</p>
+<p>首先，笔者在像大多数情况一样，在网络设置中自定义DNS为通用的 114.114.114.114。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129215053.png" alt="image-20210129215045973"></p>
+<p>很不幸，问题并没有解决。可能会有人问，肯定是你的DNS地址不行。事实是，笔者几乎试了所有能排的上号的DNS地址，故障如常。</p>
+<p>此时，笔者已经开始想起是不是要重装电脑系统了，但想到重装系统后复杂的软件安装和配置，笔者决定还是继续多研究几次。</p>
+<h3 id="觉醒"><a href="#觉醒" class="headerlink" title="觉醒"></a>觉醒</h3><p>至此，笔者重新理清思路，猜测是否是 DNS 地址是否没有设置上，在控制台输入 <code>ipconfig /all</code>，发现DNS是设置成功的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129215923.png" alt="image-20210129215923777"></p>
+<p>那难道真的是系统问题？既然来到了控制台，就测测 DNS 解析吧：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220310.png" alt="image-20210129220309973"></p>
+<p>嗯？服务器不应该是 114.114.114.114 吗？难道真的是没有生效？系统BUG？，抱着怀疑的想法，笔者打开网络适配器确认DNS地址：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220504.png" alt="image-20210129220504244"></p>
+<p>很明显，并没有问题，正当笔者考虑重装系统时，笔者看到适配器中的两个 <code>Vmware虚拟机网络适配器</code> ：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220648.png" alt="image-20210129220648805"></p>
+<p>由于这两个适配器是很早时候装 Vmware 虚拟机时附带的，笔者都忘了有什么用了，于是顺便点进去看了看网络信息：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220912.png" alt="image-20210129220912054"></p>
+<p>嗯？怎么这么眼熟？回去翻看控制台，发现这不就是控制台的相同 DNS吗？难道就是你这个逼崽子？于是笔者试着将两个适配器禁用，再次在控制台测试：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129221050.png" alt="image-20210129221050397"></p>
+<p>好家伙，我直接好家伙，原来是多个网卡冲突的问题，笔者还是第一次遇见，只能怪自己学艺不精了。</p>
+<p>重新打开浏览器，啊~，这清爽的感觉（意会）</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DNS/" rel="tag"># DNS</a>
+              <a href="/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/" rel="tag"># 杂七杂八</a>
+              <a href="/tags/Vmware/" rel="tag"># Vmware</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/11/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8BReact%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%90%AD%E5%BB%BAReact%E7%8E%AF%E5%A2%83/" rel="prev" title="从零开始React（二）：搭建React环境">
+                  <i class="fa fa-chevron-left"></i> 从零开始React（二）：搭建React环境
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千帆过烬</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

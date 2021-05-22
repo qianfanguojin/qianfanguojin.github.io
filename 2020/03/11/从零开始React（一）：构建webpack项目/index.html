@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;www.qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="webpack 是一个现代 JavaScript 应用程序的静态模块打包器。 为了我们后面使用 React  的便利，我们先熟悉如何构建一个简单的 webpack  项目。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始React（一）：构建webpack项目">
+<meta property="og:url" content="https://www.qianfanguojin.top/2020/03/11/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8BReact%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%9E%84%E5%BB%BAwebpack%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="谢同学的博客">
+<meta property="og:description" content="webpack 是一个现代 JavaScript 应用程序的静态模块打包器。 为了我们后面使用 React  的便利，我们先熟悉如何构建一个简单的 webpack  项目。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311202537.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311202953.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195622.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195712.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195757.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195811.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195842.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195853.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311200732.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311200807.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311200836.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311200940.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311201013.png">
+<meta property="article:published_time" content="2020-03-11T11:29:41.000Z">
+<meta property="article:modified_time" content="2021-01-07T07:33:38.335Z">
+<meta property="article:author" content="千帆过烬">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311202537.png">
+
+
+<link rel="canonical" href="https://www.qianfanguojin.top/2020/03/11/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8BReact%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%9E%84%E5%BB%BAwebpack%E9%A1%B9%E7%9B%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;www.qianfanguojin.top&#x2F;2020&#x2F;03&#x2F;11&#x2F;%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8BReact%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%9E%84%E5%BB%BAwebpack%E9%A1%B9%E7%9B%AE&#x2F;&quot;,&quot;path&quot;:&quot;2020&#x2F;03&#x2F;11&#x2F;从零开始React（一）：构建webpack项目&#x2F;&quot;,&quot;title&quot;:&quot;从零开始React（一）：构建webpack项目&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>从零开始React（一）：构建webpack项目 | 谢同学的博客</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">谢同学的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BB%BA%E7%AB%8B%E5%BF%85%E8%A6%81%E6%96%87%E4%BB%B6-%E5%A4%B9"><span class="nav-number">2.</span> <span class="nav-text">1. 建立必要文件(夹)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96npm%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">2. 初始化npm项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-webpack"><span class="nav-number">4.</span> <span class="nav-text">3. 安装配置 webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">4.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">4.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-webpack-dev-server"><span class="nav-number">5.</span> <span class="nav-text">4. 安装配置 webpack-dev-server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-1"><span class="nav-number">5.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="nav-number">5.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%AE%89%E8%A3%85%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7"><span class="nav-number">6.</span> <span class="nav-text">5. 安装辅助工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-2"><span class="nav-number">6.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-2"><span class="nav-number">6.2.</span> <span class="nav-text">配置</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">千帆过烬</p>
+  <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.qianfanguojin.top/2020/03/11/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8BReact%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%9E%84%E5%BB%BAwebpack%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="千帆过烬">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢同学的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从零开始React（一）：构建webpack项目
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-03-11 19:29:41" itemprop="dateCreated datePublished" datetime="2020-03-11T19:29:41+08:00">2020-03-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-01-07 15:33:38" itemprop="dateModified" datetime="2021-01-07T15:33:38+08:00">2021-01-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><em>webpack</em> 是一个现代 JavaScript 应用程序的<strong>静态模块打包器</strong>。</p>
+<p>为了我们后面使用 <em>React</em>  的便利，我们先熟悉如何构建一个简单的 <em>webpack</em>  项目。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>  本博客的内容会实时在Github上同步更新，博客内涉及的代码也会在GitHub上上传：</p>
+<p>  <a target="_blank" rel="noopener" href="https://github.com/qianfanguojin/react-practise">https://github.com/qianfanguojin/react-practise</a></p>
+</blockquote>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>工具：</p>
+<ul>
+<li>  <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VSCode </a>（安装一些必要的<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000006697219">插件</a>）</li>
+<li>  <a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a>  </li>
+<li>  一台电脑</li>
+</ul>
+<p>确保满足以上条件后，我们开始下面的步骤。</p>
+<h3 id="1-建立必要文件-夹"><a href="#1-建立必要文件-夹" class="headerlink" title="1. 建立必要文件(夹)"></a>1. 建立必要文件(夹)</h3><p>打开<code>VSCode</code>，建立一个空文件夹 <code>react_basic</code>，在<code>react_basic</code> 根目录下建立新文件夹 <code>src</code> 、<code>dist</code>，在<code>src</code>目录新建 <code>index.html</code> ,<code>index.js</code>。</p>
+<p>编辑<code>index.html</code> :</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 此时处于内存中的index.html会自动引用根目录下的main.js,不需要手动导入 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;script src=&quot;../main.js&quot;&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    Hello React</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此时项目结构：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311202537.png"></p>
+<h3 id="2-初始化npm项目"><a href="#2-初始化npm项目" class="headerlink" title="2. 初始化npm项目"></a>2. 初始化npm项目</h3><p>在终端中进入 <code>react_basic</code> 目录，接下来所有的命令都在这个目录下执行。</p>
+<p>执行初始化：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+
+<p>根目录会生成 <code>package.json</code> 文件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311202953.png"></p>
+<h3 id="3-安装配置-webpack"><a href="#3-安装配置-webpack" class="headerlink" title="3. 安装配置 webpack"></a>3. 安装配置 webpack</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>安装<code>webpack</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm i webpack -D</span><br></pre></td></tr></table></figure>
+
+<p>安装<code>webpack-cli</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm i webpack-cli -D</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>package.json</code> 可以看到：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195622.png" alt="img-01"></p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>在项目根目录新建 <code>webpack.config.js</code>，并填入：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">module.exports =&#123;</span><br><span class="line">	mode:&#x27;development&#x27; <span class="comment">//生成不压缩的代码，production：会压缩代码</span></span><br><span class="line">    <span class="comment">// webpack4.x中约定默认打包入口为src-&gt;index.js</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>最终的项目结构如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195712.png" alt="img-02"></p>
+<p>终端输入 <code>webpack</code> ，会在dist目录生成<code>main.js</code>文件：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195757.png" alt="img-03"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195811.png" alt="image-20200311142401824"></p>
+<h3 id="4-安装配置-webpack-dev-server"><a href="#4-安装配置-webpack-dev-server" class="headerlink" title="4. 安装配置 webpack-dev-server"></a>4. 安装配置 webpack-dev-server</h3><h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><p>安装<code>webpack-dev-server</code> ,<code>webpack-dev-server</code>工具可以实时监听代码文件的更改来执行内存打包，速度非常快。</p>
+<p>这样我们就可以实时在网页中看到代码修改的效果，而不用每次使用<code>webpack</code>手动打包了：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195842.png" alt="image-20200311142658000"></p>
+<h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><p>为了方便调用<code>webpack-dev-server</code>工具，我们编辑<code>package.json</code>文件中的<code>scripts</code>部分，修改如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"> scripts:&#123;</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;dev&quot;</span>:<span class="string">&quot;webpack-dev-server --open&quot;</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311195853.png" alt="image-20200311142826506"></p>
+<p>之后使用<code>npm run dev</code>命令调用 <code>dev</code> 对应的命令，就会自动启动<code>webpack-dev-server</code>，此时当前项目将被托管于本地的web服务器，默认托管于8080端口。</p>
+<p>同时会在项目根目录下生成<code>main.js</code>(内存中，磁盘中不会存在此文件)，可以直接通过<code>localhost:8080/main.js</code>访问。</p>
+<p>同时在<code>index.html</code> 的<code>head</code>标签下引人：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;../main.js&quot;</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311200732.png" alt="image-20200311155407161"></p>
+<p>这样，<code>index.js</code> (生成<code>main.js</code>)的内容更改就会实时更新配置到<code>index.html</code>中。</p>
+<p>运行测试：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311200807.png" alt="image-20200311155514231"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311200836.png" alt="image-20200311154937096"></p>
+<h3 id="5-安装辅助工具"><a href="#5-安装辅助工具" class="headerlink" title="5. 安装辅助工具"></a>5. 安装辅助工具</h3><p>虽然 <code>index.js</code> 通过<code>webpack-dev-server</code> 自动打包<code>main.js</code>更新<code>index.html</code>，但是由于<code>index.html</code>文件存放于<code>src</code>目录，目前访问<code>index.htm</code>l还需要切换至<code>src</code>目录，而且<code>index.html</code>也无法实时更改、自动更新。</p>
+<p>因此我们需要将<code>index.html</code>也加载到内存中，实现自动加载更新。</p>
+<p>借助新的工具 <code>html-webpack-plugin</code> ，其可以提供将<code>index.html</code>自动加载到项目根目录中（内存中），通过<code>localhost:8080</code>可以直接访问<code>index.html</code>,并且可以将<code>main.js</code>自动导入到<code>index.html</code>。</p>
+<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm i html-webpack-plugin -D</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311200940.png" alt="image-20200311143213485"></p>
+<h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><p>编辑<code>webpack-config.js</code>文件，使用require导入<code>html-webpack-plugin</code>，同时导入node的系统内置模块path。</p>
+<p><strong>这段语句放在 <code>module.exports</code>  前</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin =  <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>)</span><br><span class="line"><span class="comment">//创建插件对象，使用path拼接当前项目的路径，如果直接写/,是相对于系统磁盘的，此时/不代表项目的根目录，因此需要使用path模块进行拼接</span></span><br><span class="line"> <span class="keyword">const</span> htmlPlugin = <span class="keyword">new</span> HtmlWebpackPlugin(</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">template</span>:path.join((__dirname),<span class="string">&quot;/src/index.html&quot;</span>),</span><br><span class="line">        <span class="attr">filename</span>:<span class="string">&quot;index.html&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"> )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>配置<code>plugins</code>选项来启用插件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line"></span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;development&quot;</span>, <span class="comment">//production：会压缩代码</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// webpack4.x中约定默认打包入口为src-&gt;index.js</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">plugins</span>:[htmlPlugin]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时再运行，<code>main.js</code>会被自动引入，而且<code>index.html</code>的更新也会被实时反映到浏览器中:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/20200311201013.png" alt="image-20200311162642328"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React/" rel="tag"># React</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/03/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%9B%E9%98%B6%EF%BC%9A%E5%B0%86Hexo%E9%83%A8%E7%BD%B2%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="prev" title="Hexo博客进阶：将Hexo部署到云服务器">
+                  <i class="fa fa-chevron-left"></i> Hexo博客进阶：将Hexo部署到云服务器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/11/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8BReact%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%90%AD%E5%BB%BAReact%E7%8E%AF%E5%A2%83/" rel="next" title="从零开始React（二）：搭建React环境">
+                  从零开始React（二）：搭建React环境 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千帆过烬</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
