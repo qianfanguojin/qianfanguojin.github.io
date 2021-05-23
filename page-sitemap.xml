@@ -2,7 +2,7 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://www.qianfanguojin.top/</loc>
+        <loc>https://qianfanguojin.top/</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
@@ -10,7 +10,7 @@
     
     
     <url>
-        <loc>https://www.qianfanguojin.top/tags/</loc>
+        <loc>https://qianfanguojin.top/tags/</loc>
         <lastmod>2019-08-31T10:09:33.512Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -19,7 +19,7 @@
     
     
     <url>
-        <loc>https://www.qianfanguojin.top/categories/</loc>
+        <loc>https://qianfanguojin.top/categories/</loc>
         <lastmod>2019-07-31T10:36:33.773Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
