@@ -18,8 +18,10 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
-<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
 <meta name="description" content="愿面朝大海，春暖花开">
 <meta property="og:type" content="website">
 <meta property="og:title" content="谢同学的博客">
@@ -57,6 +59,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -77,6 +82,15 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
 
 
 
@@ -110,34 +124,60 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千帆过烬"
+      src="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+          <a href="/archives/">
+        
           <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
+          
         <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
+          
         <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qianfanguojin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianfanguojin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/jiunian_2761" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiunian_2761" rel="noopener" target="_blank"><i class="fab fa-codiepie fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yifan.xie@foxmail.com" title="E-Mail → mailto:yifan.xie@foxmail.com" rel="noopener" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=1657098617&Site=&Menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1657098617&amp;Site&#x3D;&amp;Menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
   </aside>
   <div class="sidebar-dimmer"></div>
@@ -146,10 +186,6 @@
     </header>
 
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -169,7 +205,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2021/01/29/DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -210,6 +246,22 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -256,7 +308,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2020/03/11/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8BReact%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%90%AD%E5%BB%BAReact%E7%8E%AF%E5%A2%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -297,6 +349,22 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -343,7 +411,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2020/03/11/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8BReact%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%9E%84%E5%BB%BAwebpack%E9%A1%B9%E7%9B%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -384,6 +452,22 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -431,7 +515,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2020/03/03/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%9B%E9%98%B6%EF%BC%9A%E5%B0%86Hexo%E9%83%A8%E7%BD%B2%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -472,6 +556,22 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -520,7 +620,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2020/02/25/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -561,8 +661,25 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
+            <div class="post-description">Centos如何安装mysql？</div>
         </div>
       </header>
 
@@ -570,10 +687,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Centos如何安装mysql？</p>
+          <p><code>MySQL</code> 是最流行的关系型数据库管理系统，在 WEB 应用方面 <code>MySQL</code> 是最好的 <code>RDBMS(Relational Database Management System</code>：关系数据库管理系统)应用软件之一。</p>
+<p>本节，我们介绍<code>Centos</code>中安装 <code>MySQL</code>  。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/25/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85mysql/">
+              <a class="btn" href="/2020/02/25/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85mysql/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -607,7 +725,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2020/02/18/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -648,8 +766,25 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
 </div>
 
+            <div class="post-description">Centos如何安装docker？</div>
         </div>
       </header>
 
@@ -657,10 +792,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Centos如何安装docker？</p>
+          <p>Docker 提供轻量的虚拟化，你能够从Docker获得一个额外抽象层，你能够在单台机器上运行多个Docker微容器。</p>
+<p>而每个微容器里都有一个微服务或独立应用，例如你可以将Tomcat运行在一个Docker，而MySQL运行在另外一个Docker。</p>
+<p>快速启动，易于弹性伸缩和拓展等特性使得docker发展飞速，本节我们将介绍Centos上安装docker</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/18/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85docker/">
+              <a class="btn" href="/2020/02/18/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85docker/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -694,7 +831,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2020/01/12/%E4%B8%BA%E4%BD%A0%E7%9A%84VMware-15-5-MacOS%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85VMware-Tools/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -739,8 +876,25 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
+            <div class="post-description">在VMware虚拟机的MacOS中，如何手动安装VMware Tools呢？</div>
         </div>
       </header>
 
@@ -748,15 +902,44 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在VMware虚拟机的MacOS中，如何手动安装VMware Tools呢？</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/12/%E4%B8%BA%E4%BD%A0%E7%9A%84VMware-15-5-MacOS%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85VMware-Tools/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前两天，偶然在网上看到一个VMware 虚拟机安装MAC OS X 的教程：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.usbmi.com/3910.html">http://www.usbmi.com/3910.html</a></p>
+</blockquote>
+<p>安装的过程是非常顺利的，但是当我满心欢喜的打开系统时，发现在虚拟机下，拖动鼠标具有明显的掉帧现象，不能实现全屏也就是调节分辨率，也不支持传输文件。 </p>
+<p>于是我咨询了万能的百度，发现是需要安装 VMware Tools ，于是我在VMware 软件中点击安装VMware Tools 的选项，然而却弹出：</p>
+<blockquote>
+<p>无法在更新服务器上找到组件。请联系VMware技术支持或您的系统管理员。</p>
+</blockquote>
+<p>查询了一下资料，发现在VMware 上安装的Mac OSX 安装 VMware Tools 需要用到一个<strong>darwin.iso</strong> 的文件，这款软件包括了虚拟机、硬件、驱动等和主机间进行沟通，并且进行支持！安装原版虚拟机不带此镜像文件的，必须自行下载！</p>
+<p>许多文章都只是介绍了如何在虚拟机下安装MACOS，并没有告诉我们<strong>darwin.iso</strong>在哪里下载，MacOS 中的 VMware Tools 如何安装？这也就是我写这篇文章的目的。</p>
+<h2 id="1、为什么需要安装VMware-Tools"><a href="#1、为什么需要安装VMware-Tools" class="headerlink" title="1、为什么需要安装VMware Tools"></a>1、为什么需要安装VMware Tools</h2><p><strong>VMware Tools</strong>是VMware软件提供的一个辅助工具，支持多种操作系统，其中的实用程序可以提高虚拟机中客户机操作系统的性能和改善虚拟机管理。</p>
+<p>在虚拟机中的MAC OS X 中，<strong>VMware Tools</strong>  可以提高鼠标操作的流畅度，实现全屏显示，文件共享…..等等多种优化，为了更优雅的食用MAC OSX，安装VMware Tools还是很有必要的。</p>
+<h2 id="2、获取Darwin文件"><a href="#2、获取Darwin文件" class="headerlink" title="2、获取Darwin文件"></a>2、获取Darwin文件</h2><p>在VMware 上安装的Mac OSX 安装 VMware Tools 需要用到一个叫<strong>darwin.iso</strong> 的文件。</p>
+<p>如果是使用了unlocker 破解VMware ，unlocker会帮你下载一个最新版的 <strong>darwin.iso</strong> ，并复制到 VMware Tools 的根目录，但是由于官方源的不稳定，可能会失效，有时候需要我们手动安装。</p>
+<p>我们可以先检查一下当前VM根目录是否有该文件：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200112231604679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70"></p>
+<p>如果已经有了这个文件，那么请直接跳转到下一节开始安装。</p>
+<p>如果和我一样，安装根目录并没有这个文件，那么我们就需要下载这个文件，这个文件会随着</p>
+<p><strong>VMware Tools</strong> 的更新而一直更新，最新版本为 11.0，可以在这个网站上下载：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/">http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/</a></p>
+</blockquote>
+<p>找到最新的版本号，下载packge目录下具有 darwin文件的压缩包：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020011223162034.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70"></p>
+<p>下载下来是一个压缩文件，逐级打开压缩文件，在payload目录中可以找到<strong>darwin.iso</strong>文件，将其解压并放到VMware的安装根目录，也就是上文图片中的位置。</p>
+<p><strong>由于是外国网站，如果遇到下载出错等问题的的话，可以从这里下载 <a target="_blank" rel="noopener" href="http://download.csdn.net/download/jiunian_2761/12099357">darwin11</a> 支持一下卑微的作者。</strong></p>
+<h2 id="3、开始安装"><a href="#3、开始安装" class="headerlink" title="3、开始安装"></a>3、开始安装</h2><p>将你虚拟机中的MacOS关机，在虚拟机设置中将CD/DVD指定为 <strong>darwin.iso</strong>：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200112231641406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==,size_16,color_FFFFFF,t_70" alt="TIM截图20200112212520.png"></p>
+<p>启动系统，在桌面右边可以看到VMware Tools，双击打开：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107143717.png"></p>
+<p>双击安装，按照步骤一步步来即可：<br><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107143813.png"></p>
+<blockquote>
+<p>注意，这里要选择信任（先点击左下角的图标解锁），允许 系统载入 VMware Tools。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210107143841.png"></p>
+<p>最后重新启动，你就可以看到熟悉的MacOS系统，赶紧全屏，体验一下VMware Tools带来的操作的顺畅感觉吧！</p>
+
       
     </div>
 
@@ -785,7 +968,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2019/12/19/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85jdk1.8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -830,6 +1013,22 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -876,7 +1075,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2019/11/10/JavaScript-2019-11-10-JavaScript%E8%BF%9B%E9%98%B6%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9ABOM%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -917,6 +1116,22 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -964,7 +1179,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2019/10/31/JavaScript-2019-10-31-JavaScript%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ABOM%E5%AF%B9%E8%B1%A1%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -1005,6 +1220,22 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>683</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -1052,24 +1283,58 @@
   <footer class="footer">
     <div class="footer-inner">
 
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">赣ICP备20003353号-1 </a>
+  </div>
 
 <div class="copyright">
-  &copy; 
+  &copy; 2019.07 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">千帆过烬</span>
+  <span class="author" itemprop="copyrightHolder">谢同学</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">168k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:33</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
     </div>
   </footer>
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -1077,8 +1342,11 @@
 
 
 
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 

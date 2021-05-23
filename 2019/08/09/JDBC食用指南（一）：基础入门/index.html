@@ -18,8 +18,10 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
-<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
 <meta name="description" content="前言在使用 Java 连接数据库进行操作时，我们不可避免的要接触到JDBC 这个名字 这次，我们就从头到尾一点点讲述基本的 JDBC 如何使用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JDBC食用指南（一）：基础入门">
@@ -66,6 +68,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -86,6 +91,15 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
 
 
 
@@ -114,40 +128,66 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JDBC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">1. JDBC概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-JDBC-%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">2. JDBC 入门使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%BB%BA%E7%AB%8B%E6%B5%8B%E8%AF%95%E6%89%80%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E8%A1%A8"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 建立测试所用的数据库和表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E7%BC%96%E5%86%99%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A3%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">2.1 编写连接数据库代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JDBC-%E4%BD%BF%E7%94%A8%E7%9A%84%E5%90%84%E4%B8%AA%E7%B1%BB%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">3. JDBC 使用的各个类功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-DriverManager-%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 DriverManager 功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#f1-%E6%B3%A8%E5%86%8C%E9%A9%B1%E5%8A%A8"><span class="nav-number">4.1.1.</span> <span class="nav-text">f1. 注册驱动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f2-%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.1.2.</span> <span class="nav-text">f2. 获取连接数据库的对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Connection-%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-number">4.2.</span> <span class="nav-text">3.3 Connection 功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#f1-%E8%8E%B7%E5%8F%96%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.2.1.</span> <span class="nav-text">f1. 获取执行SQL语句的对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f2-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">4.2.2.</span> <span class="nav-text">f2. 事务管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-Statement-%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-number">4.3.</span> <span class="nav-text">3.4 Statement 功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#f1-%E6%89%A7%E8%A1%8CDML%E3%80%81DDL%E8%AF%AD%E5%8F%A5"><span class="nav-number">4.3.1.</span> <span class="nav-text">f1. 执行DML、DDL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f2-%E6%89%A7%E8%A1%8CDQL%E8%AF%AD%E5%8F%A5"><span class="nav-number">4.3.2.</span> <span class="nav-text">f2. 执行DQL语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-ResultSet-%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-number">4.4.</span> <span class="nav-text">3.5 ResultSet 功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#f1-%E6%B8%B8%E6%A0%87cursors"><span class="nav-number">4.4.1.</span> <span class="nav-text">f1. 游标cursors</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f2-%E4%BD%BF%E7%94%A8getXXX-parameter%E2%80%A6-%E6%96%B9%E6%B3%95%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-number">4.4.2.</span> <span class="nav-text">f2. 使用getXXX(parameter…..)方法获取数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f3-%E7%BB%93%E5%90%88%E6%B8%B8%E6%A0%87%E5%92%8CgetXXX-%E9%81%8D%E5%8E%86%E7%BB%93%E6%9E%9C%E9%9B%86"><span class="nav-number">4.4.3.</span> <span class="nav-text">f3. 结合游标和getXXX()遍历结果集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-PrepareStament-%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-number">4.5.</span> <span class="nav-text">3.6 PrepareStament 功能解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-JDBC-%E4%BD%BF%E7%94%A8%E8%BF%9B%E9%98%B6"><span class="nav-number">5.</span> <span class="nav-text">4. JDBC 使用进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%9B%B4%E4%B8%A5%E8%B0%A8%E7%9A%84%E4%BD%BF%E7%94%A8JDBC%EF%BC%8C%E4%BD%BF%E7%94%A8try-catch%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 更严谨的使用JDBC，使用try catch捕获异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E4%BC%98%E5%8C%96JDBC%E4%BB%A3%E7%A0%81%E5%86%97%E4%BD%99%EF%BC%8C%E8%AE%BE%E8%AE%A1%E7%AE%80%E5%8D%95%E7%9A%84-JDBC-%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">5.2.</span> <span class="nav-text">4.2. 优化JDBC代码冗余，设计简单的 JDBC 工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#f1-%E6%B3%A8%E5%86%8C%E9%A9%B1%E5%8A%A8%E5%8A%9F%E8%83%BD"><span class="nav-number">5.2.1.</span> <span class="nav-text">f1. 注册驱动功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f2-%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5%E5%AF%B9%E8%B1%A1%E5%8A%9F%E8%83%BD"><span class="nav-number">5.2.2.</span> <span class="nav-text">f2. 获取连接对象功能</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E9%BB%98%E8%AE%A4%E5%80%BC%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">1. 使用成员变量默认值配置参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6Properties%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">2. 使用配置文件Properties配置参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f3-%E5%85%B3%E9%97%AD%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86%E5%8A%9F%E8%83%BD"><span class="nav-number">5.2.3.</span> <span class="nav-text">f3. 关闭资源处理功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%8A%9F%E8%83%BD%E5%90%88%E5%B9%B6%E5%8F%8A%E6%B5%8B%E8%AF%95"><span class="nav-number">5.2.4.</span> <span class="nav-text">工具类功能合并及测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E4%BD%BF%E7%94%A8JDBC%E6%8E%A7%E5%88%B6%E4%BA%8B%E5%8A%A1"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 使用JDBC控制事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-%E4%BA%8B%E5%8A%A1%E6%A6%82%E8%BF%B0"><span class="nav-number">5.3.1.</span> <span class="nav-text">4.3.1 事务概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%93%8D%E4%BD%9C"><span class="nav-number">5.3.2.</span> <span class="nav-text">4.3.2 简单的事务操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3-%E4%BA%8B%E5%8A%A1%E6%93%8D%E4%BD%9C%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">5.3.3.</span> <span class="nav-text">4.3.3 事务操作的注意点</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JDBC%E6%A6%82%E5%BF%B5"><span class="nav-text">1. JDBC概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-JDBC-%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8"><span class="nav-text">2. JDBC 入门使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%BB%BA%E7%AB%8B%E6%B5%8B%E8%AF%95%E6%89%80%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E8%A1%A8"><span class="nav-text">2.1 建立测试所用的数据库和表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E7%BC%96%E5%86%99%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A3%E7%A0%81"><span class="nav-text">2.1 编写连接数据库代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JDBC-%E4%BD%BF%E7%94%A8%E7%9A%84%E5%90%84%E4%B8%AA%E7%B1%BB%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-text">3. JDBC 使用的各个类功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-DriverManager-%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-text">3.1 DriverManager 功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#f1-%E6%B3%A8%E5%86%8C%E9%A9%B1%E5%8A%A8"><span class="nav-text">f1. 注册驱动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f2-%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-text">f2. 获取连接数据库的对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Connection-%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-text">3.3 Connection 功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#f1-%E8%8E%B7%E5%8F%96%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-text">f1. 获取执行SQL语句的对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f2-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-text">f2. 事务管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-Statement-%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-text">3.4 Statement 功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#f1-%E6%89%A7%E8%A1%8CDML%E3%80%81DDL%E8%AF%AD%E5%8F%A5"><span class="nav-text">f1. 执行DML、DDL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f2-%E6%89%A7%E8%A1%8CDQL%E8%AF%AD%E5%8F%A5"><span class="nav-text">f2. 执行DQL语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-ResultSet-%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-text">3.5 ResultSet 功能解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#f1-%E6%B8%B8%E6%A0%87cursors"><span class="nav-text">f1. 游标cursors</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f2-%E4%BD%BF%E7%94%A8getXXX-parameter%E2%80%A6-%E6%96%B9%E6%B3%95%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-text">f2. 使用getXXX(parameter…..)方法获取数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f3-%E7%BB%93%E5%90%88%E6%B8%B8%E6%A0%87%E5%92%8CgetXXX-%E9%81%8D%E5%8E%86%E7%BB%93%E6%9E%9C%E9%9B%86"><span class="nav-text">f3. 结合游标和getXXX()遍历结果集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-PrepareStament-%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="nav-text">3.6 PrepareStament 功能解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-JDBC-%E4%BD%BF%E7%94%A8%E8%BF%9B%E9%98%B6"><span class="nav-text">4. JDBC 使用进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%9B%B4%E4%B8%A5%E8%B0%A8%E7%9A%84%E4%BD%BF%E7%94%A8JDBC%EF%BC%8C%E4%BD%BF%E7%94%A8try-catch%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8"><span class="nav-text">4.1 更严谨的使用JDBC，使用try catch捕获异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E4%BC%98%E5%8C%96JDBC%E4%BB%A3%E7%A0%81%E5%86%97%E4%BD%99%EF%BC%8C%E8%AE%BE%E8%AE%A1%E7%AE%80%E5%8D%95%E7%9A%84-JDBC-%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-text">4.2. 优化JDBC代码冗余，设计简单的 JDBC 工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#f1-%E6%B3%A8%E5%86%8C%E9%A9%B1%E5%8A%A8%E5%8A%9F%E8%83%BD"><span class="nav-text">f1. 注册驱动功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f2-%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5%E5%AF%B9%E8%B1%A1%E5%8A%9F%E8%83%BD"><span class="nav-text">f2. 获取连接对象功能</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E9%BB%98%E8%AE%A4%E5%80%BC%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-text">1. 使用成员变量默认值配置参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6Properties%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-text">2. 使用配置文件Properties配置参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f3-%E5%85%B3%E9%97%AD%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86%E5%8A%9F%E8%83%BD"><span class="nav-text">f3. 关闭资源处理功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%8A%9F%E8%83%BD%E5%90%88%E5%B9%B6%E5%8F%8A%E6%B5%8B%E8%AF%95"><span class="nav-text">工具类功能合并及测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E4%BD%BF%E7%94%A8JDBC%E6%8E%A7%E5%88%B6%E4%BA%8B%E5%8A%A1"><span class="nav-text">4.3 使用JDBC控制事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-%E4%BA%8B%E5%8A%A1%E6%A6%82%E8%BF%B0"><span class="nav-text">4.3.1 事务概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%93%8D%E4%BD%9C"><span class="nav-text">4.3.2 简单的事务操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3-%E4%BA%8B%E5%8A%A1%E6%93%8D%E4%BD%9C%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">4.3.3 事务操作的注意点</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千帆过烬"
+      src="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+          <a href="/archives/">
+        
           <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
+          
         <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
+          
         <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qianfanguojin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianfanguojin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/jiunian_2761" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiunian_2761" rel="noopener" target="_blank"><i class="fab fa-codiepie fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yifan.xie@foxmail.com" title="E-Mail → mailto:yifan.xie@foxmail.com" rel="noopener" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=1657098617&Site=&Menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1657098617&amp;Site&#x3D;&amp;Menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
   </aside>
   <div class="sidebar-dimmer"></div>
@@ -156,10 +196,6 @@
     </header>
 
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -180,7 +216,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2019/08/09/JDBC%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -225,6 +261,29 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>21k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>19 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -593,6 +652,41 @@
     
 
     <footer class="post-footer">
+          <div class="reward-container">
+  <div>您的支持是我前进的动力！</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>千帆过烬
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://qianfanguojin.top/2019/08/09/JDBC%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="JDBC食用指南（一）：基础入门">https://qianfanguojin.top/2019/08/09/JDBC食用指南（一）：基础入门/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
           <div class="post-tags">
               <a href="/tags/JDBC/" rel="tag"># JDBC</a>
               <a href="/tags/JDBC%E4%BA%8B%E5%8A%A1/" rel="tag"># JDBC事务</a>
@@ -628,24 +722,58 @@
   <footer class="footer">
     <div class="footer-inner">
 
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">赣ICP备20003353号-1 </a>
+  </div>
 
 <div class="copyright">
-  &copy; 
+  &copy; 2019.07 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">千帆过烬</span>
+  <span class="author" itemprop="copyrightHolder">谢同学</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">168k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:33</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
     </div>
   </footer>
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -653,8 +781,11 @@
 
 
 
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 

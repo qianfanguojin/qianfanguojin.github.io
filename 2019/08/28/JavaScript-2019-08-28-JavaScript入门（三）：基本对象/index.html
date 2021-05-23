@@ -18,8 +18,10 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
-<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
 <meta name="description" content="前言在JavaScript中，提供了许多的内置对象来方便我们更高效的编写代码，今天我们就来介绍一下它们的使用方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript入门（三）：基本对象">
@@ -64,6 +66,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -84,6 +89,15 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+  </ul>
+</nav>
 
 
 
@@ -112,40 +126,66 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">基本对象介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Array%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.1.</span> <span class="nav-text">1. Array数组对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F-amp-%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1 创建方式&amp;访问元素方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%95%B0%E7%BB%84%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2  数组的特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E6%95%B0%E7%BB%84%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">2.1.3.</span> <span class="nav-text">1.3 数组的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E6%95%B0%E7%BB%84%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.4.</span> <span class="nav-text">1.4 数组的常用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-Array-%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E6%80%BB%E7%BB%93"><span class="nav-number">2.1.5.</span> <span class="nav-text">1.5 Array 数组对象总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Data%E6%97%A5%E6%9C%9F%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.2.</span> <span class="nav-text">2. Data日期对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 创建方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 相关方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Math%E6%95%B0%E5%AD%A6%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.3.</span> <span class="nav-text">3. Math数学对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1 创建方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.3.</span> <span class="nav-text">3.3 常用工具方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-Math%E5%AF%B9%E8%B1%A1%E5%B0%8F%E7%BB%83%E4%B9%A0"><span class="nav-number">2.3.4.</span> <span class="nav-text">3.4 Math对象小练习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-RegExp%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.4.</span> <span class="nav-text">4.RegExp正则表达式对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.4.1.</span> <span class="nav-text">4.1 什么是正则表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%97%E7%AC%A6"><span class="nav-number">2.4.2.</span> <span class="nav-text">4.2 正则表达式字符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-1-%E5%BC%80%E5%A7%8B%E7%BB%93%E6%9D%9F%E7%AC%A6%E5%8F%B7"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">4.2.1 开始结束符号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-2-%E5%8D%95%E4%B8%AA%E5%AD%97%E7%AC%A6"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">4.2.2 单个字符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-3-%E9%87%8F%E8%AF%8D%E7%AC%A6%E5%8F%B7"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">4.2.3 量词符号</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-JavaScript%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.4.3.</span> <span class="nav-text">4.3 JavaScript中的正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-1-%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.3.1.</span> <span class="nav-text">4.3.1 创建方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-2-%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.4.3.2.</span> <span class="nav-text">4.3.2 相关方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Global-%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.5.</span> <span class="nav-text">5. Global 全局对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95"><span class="nav-number">2.5.1.</span> <span class="nav-text">5.1 全局对象中的一些方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-1-%E7%BC%96%E8%A7%A3%E7%A0%81"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">5.1.1 编解码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-2-%E7%BC%96%E8%A7%A3%E7%A0%81%E6%9B%B4%E5%A4%9A%E5%AD%97%E7%AC%A6"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">5.1.2 编解码更多字符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-3-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B0%E5%AD%97"><span class="nav-number">2.5.1.3.</span> <span class="nav-text">5.1.3 字符串转数字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-4-%E5%88%A4%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%80%BC%E6%98%AF%E5%90%A6%E4%B8%BANaN"><span class="nav-number">2.5.1.4.</span> <span class="nav-text">5.1.4 判定一个值是否为NaN</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-5-%E8%AE%A1%E7%AE%97%E6%9F%90%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%B9%B6%E6%89%A7%E8%A1%8C%E5%85%B6%E4%B8%AD%E7%9A%84%E7%9A%84-JavaScript-%E4%BB%A3%E7%A0%81%E3%80%82"><span class="nav-number">2.5.1.5.</span> <span class="nav-text">5.1.5  计算某个字符串，并执行其中的的 JavaScript 代码。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Function%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.6.</span> <span class="nav-text">6. Function函数对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F-amp-%E8%B0%83%E7%94%A8"><span class="nav-number">2.6.1.</span> <span class="nav-text">6.1 函数的创建方式&amp;调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.6.2.</span> <span class="nav-text">6.2 函数的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-%E5%87%BD%E6%95%B0%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">2.6.3.</span> <span class="nav-text">6.3 函数的属性</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1%E4%BB%8B%E7%BB%8D"><span class="nav-text">基本对象介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Array%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1"><span class="nav-text">1. Array数组对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F-amp-%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0%E6%96%B9%E5%BC%8F"><span class="nav-text">1.1 创建方式&amp;访问元素方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%95%B0%E7%BB%84%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-text">1.2  数组的特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E6%95%B0%E7%BB%84%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">1.3 数组的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E6%95%B0%E7%BB%84%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">1.4 数组的常用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-Array-%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E6%80%BB%E7%BB%93"><span class="nav-text">1.5 Array 数组对象总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Data%E6%97%A5%E6%9C%9F%E5%AF%B9%E8%B1%A1"><span class="nav-text">2. Data日期对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-text">2.1 创建方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="nav-text">2.2 相关方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Math%E6%95%B0%E5%AD%A6%E5%AF%B9%E8%B1%A1"><span class="nav-text">3. Math数学对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-text">3.1 创建方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%B1%9E%E6%80%A7"><span class="nav-text">3.2 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E6%96%B9%E6%B3%95"><span class="nav-text">3.3 常用工具方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-Math%E5%AF%B9%E8%B1%A1%E5%B0%8F%E7%BB%83%E4%B9%A0"><span class="nav-text">3.4 Math对象小练习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-RegExp%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AF%B9%E8%B1%A1"><span class="nav-text">4.RegExp正则表达式对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">4.1 什么是正则表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%97%E7%AC%A6"><span class="nav-text">4.2 正则表达式字符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-1-%E5%BC%80%E5%A7%8B%E7%BB%93%E6%9D%9F%E7%AC%A6%E5%8F%B7"><span class="nav-text">4.2.1 开始结束符号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-2-%E5%8D%95%E4%B8%AA%E5%AD%97%E7%AC%A6"><span class="nav-text">4.2.2 单个字符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-3-%E9%87%8F%E8%AF%8D%E7%AC%A6%E5%8F%B7"><span class="nav-text">4.2.3 量词符号</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-JavaScript%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">4.3 JavaScript中的正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-1-%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-text">4.3.1 创建方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-2-%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="nav-text">4.3.2 相关方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Global-%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1"><span class="nav-text">5. Global 全局对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95"><span class="nav-text">5.1 全局对象中的一些方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-1-%E7%BC%96%E8%A7%A3%E7%A0%81"><span class="nav-text">5.1.1 编解码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-2-%E7%BC%96%E8%A7%A3%E7%A0%81%E6%9B%B4%E5%A4%9A%E5%AD%97%E7%AC%A6"><span class="nav-text">5.1.2 编解码更多字符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-3-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B0%E5%AD%97"><span class="nav-text">5.1.3 字符串转数字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-4-%E5%88%A4%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%80%BC%E6%98%AF%E5%90%A6%E4%B8%BANaN"><span class="nav-text">5.1.4 判定一个值是否为NaN</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-5-%E8%AE%A1%E7%AE%97%E6%9F%90%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%B9%B6%E6%89%A7%E8%A1%8C%E5%85%B6%E4%B8%AD%E7%9A%84%E7%9A%84-JavaScript-%E4%BB%A3%E7%A0%81%E3%80%82"><span class="nav-text">5.1.5  计算某个字符串，并执行其中的的 JavaScript 代码。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Function%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1"><span class="nav-text">6. Function函数对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F-amp-%E8%B0%83%E7%94%A8"><span class="nav-text">6.1 函数的创建方式&amp;调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">6.2 函数的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-%E5%87%BD%E6%95%B0%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">6.3 函数的属性</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千帆过烬"
+      src="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">千帆过烬</p>
   <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+          <a href="/archives/">
+        
           <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
+          
         <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
+          
         <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qianfanguojin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianfanguojin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/jiunian_2761" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiunian_2761" rel="noopener" target="_blank"><i class="fab fa-codiepie fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yifan.xie@foxmail.com" title="E-Mail → mailto:yifan.xie@foxmail.com" rel="noopener" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=1657098617&Site=&Menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1657098617&amp;Site&#x3D;&amp;Menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
   </aside>
   <div class="sidebar-dimmer"></div>
@@ -154,10 +194,6 @@
     </header>
 
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -178,7 +214,7 @@
     <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2019/08/28/JavaScript-2019-08-28-JavaScript%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
       <meta itemprop="name" content="千帆过烬">
       <meta itemprop="description" content="愿面朝大海，春暖花开">
     </span>
@@ -219,6 +255,29 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>12k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -659,6 +718,41 @@
     
 
     <footer class="post-footer">
+          <div class="reward-container">
+  <div>您的支持是我前进的动力！</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>千帆过烬
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://qianfanguojin.top/2019/08/28/JavaScript-2019-08-28-JavaScript%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1/" title="JavaScript入门（三）：基本对象">https://qianfanguojin.top/2019/08/28/JavaScript-2019-08-28-JavaScript入门（三）：基本对象/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
           <div class="post-tags">
               <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           </div>
@@ -692,24 +786,58 @@
   <footer class="footer">
     <div class="footer-inner">
 
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">赣ICP备20003353号-1 </a>
+  </div>
 
 <div class="copyright">
-  &copy; 
+  &copy; 2019.07 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">千帆过烬</span>
+  <span class="author" itemprop="copyrightHolder">谢同学</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">168k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:33</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
     </div>
   </footer>
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -717,8 +845,11 @@
 
 
 
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
