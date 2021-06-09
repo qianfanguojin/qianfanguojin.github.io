@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/favicon16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="Centos如何安装Tomcat？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux之路：Centos安装Tomcat">
+<meta property="og:url" content="https://qianfanguojin.top/2021/06/07/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85Tomcat/index.html">
+<meta property="og:site_name" content="谢同学的博客">
+<meta property="og:description" content="Centos如何安装Tomcat？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520181051273.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520181441451.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520183319577.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520202828489.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520202903030.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520205440902.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520205928056.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520212719576.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520175044385.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520175422955.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/ii.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520213752976.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520214033544.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520220848411.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520221139448.png">
+<meta property="article:published_time" content="2021-06-07T10:50:03.000Z">
+<meta property="article:modified_time" content="2021-06-09T11:24:57.176Z">
+<meta property="article:author" content="千帆过烬">
+<meta property="article:tag" content="Tomcat">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Centos">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520181051273.png">
+
+
+<link rel="canonical" href="https://qianfanguojin.top/2021/06/07/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85Tomcat/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;qianfanguojin.top&#x2F;2021&#x2F;06&#x2F;07&#x2F;Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85Tomcat&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;07&#x2F;Linux之路：Centos安装Tomcat&#x2F;&quot;,&quot;title&quot;:&quot;Linux之路：Centos安装Tomcat&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Linux之路：Centos安装Tomcat | 谢同学的博客</title><script src="/js/config.js"></script><link rel="dns-prefetch" href="https://hexo-waline-three.vercel.app">
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">谢同学的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-text">下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BD%9C%E8%80%85%E6%8F%90%E4%BE%9B"><span class="nav-text">1. 作者提供</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BB%8E%E9%95%9C%E5%83%8F%E7%BD%91%E7%AB%99"><span class="nav-text">2. 从镜像网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%8E%E5%AE%98%E7%BD%91"><span class="nav-text">3. 从官网</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B"><span class="nav-text">解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-text">启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%9C%8D%E5%8A%A1"><span class="nav-text">设置服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="nav-text">自启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"><span class="nav-text">访问测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%86%85%E8%AE%BF%E9%97%AE"><span class="nav-text">系统内访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E4%B8%BB%E6%9C%BA%E8%AE%BF%E9%97%AE"><span class="nav-text">外部主机访问</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千帆过烬"
+      src="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">千帆过烬</p>
+  <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qianfanguojin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianfanguojin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/jiunian_2761" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiunian_2761" rel="noopener" target="_blank"><i class="fab fa-codiepie fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yifan.xie@foxmail.com" title="E-Mail → mailto:yifan.xie@foxmail.com" rel="noopener" target="_blank"><i class="far fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://message/?uin=1657098617&Site=&Menu=yes" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1657098617&amp;Site&#x3D;&amp;Menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://draw.qianfanguojin.top/" title="http:&#x2F;&#x2F;draw.qianfanguojin.top" rel="noopener" target="_blank">在线画图</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/2021/06/07/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85Tomcat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/avatar.jpg">
+      <meta itemprop="name" content="千帆过烬">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谢同学的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux之路：Centos安装Tomcat
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-07 18:50:03" itemprop="dateCreated datePublished" datetime="2021-06-07T18:50:03+08:00">2021-06-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-06-09 19:24:57" itemprop="dateModified" datetime="2021-06-09T19:24:57+08:00">2021-06-09</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2021/06/07/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85Tomcat/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2021/06/07/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85Tomcat/" data-xid="/2021/06/07/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85Tomcat/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">Centos如何安装Tomcat？</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Java Web 开发有三件秘宝：<code>JDK</code>、<code>MySQL</code>、<code>Tomcat</code>。一般来说，开发时我们会将这些组件都安装到我们的本机电脑中，这使得我们开发更为便捷。然而实际情况中，<code>Tomcat</code>，<code>MySQL</code> 等往往都是安装在服务器中，而服务器大多采用 <code>Linux</code> 系统，其中以<code>CentOS</code>居多。于是，学习在 <code>CentOS</code> 系统中安装三件套势在必行。</p>
+<p>在之前，笔者已经给出<code>JDK</code>，<code>MySQL</code> 在<code>CentOS</code>的安装方式：</p>
+<p>今天我们学习在<code>CentOS</code>中安装 <code>Tomcat</code>、并发布 <code>Web</code> 项目到其中，同时适用于其他<code>Linux</code>系统的操作。 </p>
+<span id="more"></span>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>若要优雅的阅读并使用本文中的内容，请确定您已经知晓：</p>
+<ul>
+<li>使用SSH连接到Linux服务器</li>
+<li>Linux中已经 <a target="_blank" rel="noopener" href="https://www.qianfanguojin.top/2019/12/19/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85jdk1.8/#more">安装并配置好JDK环境变量</a></li>
+<li>会使用 wget 命令下载文件</li>
+<li>基本的Linux命令，以及操作</li>
+</ul>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><h3 id="1-作者提供"><a href="#1-作者提供" class="headerlink" title="1. 作者提供"></a>1. 作者提供</h3><p>😁若是怕麻烦，可以从作者君这里的 <a target="_blank" rel="noopener" href="https://download.csdn.net/download/jiunian_2761/18912147">Tomcat9 下载</a> 直接下载 ，支持卑微的作者。</p>
+<p>下载完到本地 <code>Windows</code> 中，找到下载好的文件，它应该是一个压缩包，名称如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520181051273.png" alt="image-20210520181051273"></p>
+<p>记住这个压缩包的所在的文件夹，打开 <code>XShell</code> 或任意一款 <code>SSH</code> 工具，连接到 <code>CentOS</code> 中：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520181441451.png" alt="image-20210520181441451"></p>
+<p>输入上传文件的命令 <code>rz -be</code>，点按 <code>Enter</code> ，会弹出选择文件的选择框：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520183319577.png" alt="image-20210520183319577"></p>
+<blockquote>
+<p>有些CentOS/Linux系统可能会出现 <strong>command not found</strong>，提示命 <strong>rz</strong>令未找到，这是由于系统中没有安装此命令的原因，此时我们只需要执行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install lrzsz</span><br></pre></td></tr></table></figure>
+
+<p>安装一下就好了</p>
+</blockquote>
+<p>找到刚刚下载的 <code>Tomcat9</code> 的压缩文件，选择此文件，文件会自动上传到当前所处文件夹:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520202828489.png" alt="image-20210520202828489"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520202903030.png" alt="image-20210520202903030"></p>
+<h3 id="2-从镜像网站"><a href="#2-从镜像网站" class="headerlink" title="2. 从镜像网站"></a>2. 从镜像网站</h3><p>若上述方式不满意，我建议选择镜像网站 <code>wget</code> 直接下载到 <code>Linux</code> 中。</p>
+<p>先进入任意一个镜像网站，这里我选择清华大学的 <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/">TUNA镜像站</a>，逐级寻找目录，找到 <code>apache-tomcat-9.0.xx.tar.gz</code> 文件：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520205440902.png" alt="image-20210520205440902"></p>
+<p>右键点击该项，选择复制链接：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520205928056.png" alt="image-20210520205928056"></p>
+<p><span id="jump1">接着</span>回到命令行，首先获取 <code>root</code> 权限，再使用 <code>wget</code> + <code>复制的链接</code> 下载该文件：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520212719576.png" alt="image-20210520212719576"></p>
+<h3 id="3-从官网"><a href="#3-从官网" class="headerlink" title="3. 从官网"></a>3. 从官网</h3><p>一般来说，特别是对于软件开发来说，软件最好是从官方渠道下载，这样可以避免软件的篡改等等。</p>
+<p>对于<code>Tomcat</code>，由于其是 <code>Apache</code> 国外开源基金会的产品，服务器在国外，没有科学操作之前，下载可能较慢，但我们还是需要这个过程。</p>
+<p>首先打开 <a target="_blank" rel="noopener" href="https://tomcat.apache.org/">Apache Tomcat官网</a> ，在左侧 <code>Download</code>中，点击选择指定的版本，这里我建议选择 <code>Tomcat9</code>，因为实现在<code>JDK8</code>，这也是目前建议的版本。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520175044385.png" alt="image-20210520175044385"></p>
+<p>选择 Core 中的 <code>tar.gz</code> 版本，右键复制链接（不要点到后面的pgp，sha512）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520175422955.png" alt="image-20210520175422955"></p>
+<p>随后回到命令行，按照 <a href="#jump1">点击此处</a> 的方法，使用 <code>wget</code> 命令下载即可。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><p>获取 <code>root</code> 权限</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su root</span><br></pre></td></tr></table></figure>
+
+<p>将下载的此文件解压到 <code>/opt/</code> 目录下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -xvf apache-tomcat-9.0.46.tar.gz -C /opt/ </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/ii.png"></p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>进入启动文件夹目录 <code>/opt/apache-tomcat-9.0.46/bin</code>:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /opt/apache-tomcat-9.0.46/bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520213752976.png" alt="image-20210520213752976"></p>
+<p>执行 <code>startup.sh</code>  , 启动 <code>Tomcat</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./startup.sh</span><br></pre></td></tr></table></figure>
+
+<p>若能看到如下图，则说明 <code>Tomcat</code>安装并启动成功</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520214033544.png" alt="image-20210520214033544"></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>若是在服务器上，大多数时候，我们的 <code>Tomcat</code> 不会和我们在本地一样运行完就关闭。</p>
+<p>接下来，我们则来配置如何将Tomcat设置为服务并自启动。</p>
+<h3 id="设置服务"><a href="#设置服务" class="headerlink" title="设置服务"></a>设置服务</h3><p><code>Linux</code>系统中所有的服务都对应有一个脚本在 <code>/etc/init.d/</code> 目录下，新建一个服务也即新建一个脚本在该目录下。</p>
+<p>这里，我们新建 <code>Tomcat</code>的启动脚本。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/init.d/tomcat9</span><br></pre></td></tr></table></figure>
+
+<p>将以下内容填写进入其中：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/bin/sh -e</span><br><span class="line">#chkconfig:2345 61 61</span><br><span class="line">####上行必须添加，才能使用chkconfig命令设为自启动，2345参数表示,在哪些运行级别启动,启动序号61;关闭序号61；两位数字即可</span><br><span class="line"></span><br><span class="line">### BEGIN TOMCAT SERVICE</span><br><span class="line">### END INIT INFO</span><br><span class="line"></span><br><span class="line">### 这里是你的环境变量，Java 环境变量配置自己安装的JDK目录</span><br><span class="line">### 详细可参照我前面的文章。</span><br><span class="line">export JAVA_HOME=/usr/work/jdk1.8.0</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.</span><br><span class="line">export CATALINA_HOME=/opt/opt/apache-tomcat-9.0.46</span><br><span class="line"> </span><br><span class="line">case &quot;$1&quot; in</span><br><span class="line">start)</span><br><span class="line">        $&#123;CATALINA_HOME&#125;/bin/startup.sh</span><br><span class="line">        exit 0</span><br><span class="line">        ;;</span><br><span class="line">stop)</span><br><span class="line">        $&#123;CATALINA_HOME&#125;/bin/shutdown.sh</span><br><span class="line">        exit 0</span><br><span class="line">        ;;</span><br><span class="line">debug)</span><br><span class="line">        $&#123;CATALINA_HOME&#125;/bin/shutdown.sh</span><br><span class="line">        $&#123;CATALINA_HOME&#125;/bin/catalina.sh run</span><br><span class="line">        exit 0</span><br><span class="line">        ;;</span><br><span class="line">force-reload|restart)</span><br><span class="line">        $&#123;CATALINA_HOME&#125;/bin/startup.sh</span><br><span class="line">        $&#123;CATALINA_HOME&#125;/bin/shutdown.sh</span><br><span class="line">        exit 0</span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">*)</span><br><span class="line">        echo &quot;Usage: /etc/init.d/tomcat9 &#123;start|stop|restart|force-reload|debug&#125;&quot;</span><br><span class="line">        exit 1</span><br><span class="line">        ;;</span><br><span class="line">esac</span><br><span class="line"> </span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+
+<p>修改文件为可执行权限：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod o+x /etc/init.d/tomcat9</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520220848411.png" alt="image-20210520220848411"></p>
+<p>执行服务并启动：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service tomcat9 start</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/image-20210520221139448.png" alt="image-20210520221139448"></p>
+<h3 id="自启动"><a href="#自启动" class="headerlink" title="自启动"></a>自启动</h3><p>使用 <code>chkconfig</code> 命令添加为自启动：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chkconfig --add tomcat9</span><br></pre></td></tr></table></figure>
+
+<h2 id="访问测试"><a href="#访问测试" class="headerlink" title="访问测试"></a>访问测试</h2><h3 id="系统内访问"><a href="#系统内访问" class="headerlink" title="系统内访问"></a>系统内访问</h3><p>若你安装的系统有GUI图形化界面，最简单且最方便的方式就是用默认浏览器访问 <code>http://127.0.0.1:8080</code>。</p>
+<p>若没有，可以使用 <code>wget http://127.0.0.1:8080</code> ，若能获取到一个名为 <strong>index.html</strong> 的文件，则访问成功。  </p>
+<h3 id="外部主机访问"><a href="#外部主机访问" class="headerlink" title="外部主机访问"></a>外部主机访问</h3><p>如果你的系统安装在云服务器上，在本机电脑输入 <code>http://服务ip地址:8080</code>。</p>
+<p>这有可能会访问不到，确定你的服务器安全组中放行了<code>8080</code> 端口，再次访问即可。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/gybshen/article/details/79564613">Linux tomcat作为服务开机自启动_Cloud-Future的博客</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>您的支持是我前进的动力！</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/wechatpay.png" alt="千帆过烬 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="//cdn.jsdelivr.net/gh//qianfanguojin/CDN/next/images/alipay.png" alt="千帆过烬 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>千帆过烬
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://qianfanguojin.top/2021/06/07/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85Tomcat/" title="Linux之路：Centos安装Tomcat">https://qianfanguojin.top/2021/06/07/Linux之路：Centos安装Tomcat/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tomcat/" rel="tag"># Tomcat</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Centos/" rel="tag"># Centos</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/29/DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98/" rel="prev" title="新知识！虚拟机网卡造成你的DNS解析变慢">
+                  <i class="fa fa-chevron-left"></i> 新知识！虚拟机网卡造成你的DNS解析变慢
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">赣ICP备20003353号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2019.07 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">谢同学</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">171k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{&quot;lang&quot;:&quot;zh-cn&quot;,&quot;enable&quot;:true,&quot;serverURL&quot;:&quot;https:&#x2F;&#x2F;hexo-waline-three.vercel.app&quot;,&quot;placeholder&quot;:&quot;为了更好地收到通知，记得点击左边登录哦&quot;,&quot;avatar&quot;:&quot;&quot;,&quot;meta&quot;:[&quot;nick&quot;,&quot;mail&quot;,&quot;link&quot;],&quot;pageSize&quot;:10,&quot;visitor&quot;:false,&quot;comment_count&quot;:true,&quot;requiredFields&quot;:[],&quot;libUrl&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;@waline&#x2F;client&#x2F;dist&#x2F;Waline.min.js&quot;,&quot;dark&quot;:&quot;auto&quot;,&quot;el&quot;:&quot;#waline-comments&quot;,&quot;path&quot;:&quot;&#x2F;2021&#x2F;06&#x2F;07&#x2F;Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85Tomcat&#x2F;&quot;}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>

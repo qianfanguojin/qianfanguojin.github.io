@@ -24,7 +24,7 @@
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;qianfanguojin.top&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
 <meta name="description" content="前言对于 DNS 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 本机网卡的DNS地址 ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DNS解析巨慢的另一种可能，Vmware网卡驱动问题">
+<meta property="og:title" content="新知识！虚拟机网卡造成你的DNS解析变慢">
 <meta property="og:url" content="https://qianfanguojin.top/2021/01/29/DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="谢同学的博客">
 <meta property="og:description" content="前言对于 DNS 解析的问题，其实对于会上网查询问题的来说可能都是一个老生常谈的问题，大多数时候，我们都会得到一个结论，即去修改 本机网卡的DNS地址 ，但是，笔者却遇到了不同的情况，最终摸索出了答案，在此记录下来，希望能帮助到有相同情况的读者。">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129220912.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210129221050.png">
 <meta property="article:published_time" content="2021-01-29T13:29:35.000Z">
-<meta property="article:modified_time" content="2021-03-08T02:05:35.991Z">
+<meta property="article:modified_time" content="2021-06-07T10:48:57.973Z">
 <meta property="article:author" content="千帆过烬">
 <meta property="article:tag" content="DNS">
 <meta property="article:tag" content="杂七杂八">
@@ -50,10 +50,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;qianfanguojin.top&#x2F;2021&#x2F;01&#x2F;29&#x2F;DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;01&#x2F;29&#x2F;DNS解析巨慢的另一种可能，Vmware网卡驱动问题&#x2F;&quot;,&quot;title&quot;:&quot;DNS解析巨慢的另一种可能，Vmware网卡驱动问题&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;qianfanguojin.top&#x2F;2021&#x2F;01&#x2F;29&#x2F;DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;01&#x2F;29&#x2F;DNS解析巨慢的另一种可能，Vmware网卡驱动问题&#x2F;&quot;,&quot;title&quot;:&quot;新知识！虚拟机网卡造成你的DNS解析变慢&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>DNS解析巨慢的另一种可能，Vmware网卡驱动问题 | 谢同学的博客</title><script src="/js/config.js"></script><link rel="dns-prefetch" href="https://hexo-waline-three.vercel.app">
+<title>新知识！虚拟机网卡造成你的DNS解析变慢 | 谢同学的博客</title><script src="/js/config.js"></script><link rel="dns-prefetch" href="https://hexo-waline-three.vercel.app">
   
 
 
@@ -99,9 +99,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
   </ul>
 </nav>
 
@@ -148,7 +148,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -240,7 +240,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          DNS解析巨慢的另一种可能，Vmware网卡驱动问题
+          新知识！虚拟机网卡造成你的DNS解析变慢
         </h1>
 
         <div class="post-meta-container">
@@ -258,7 +258,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-08 10:05:35" itemprop="dateModified" datetime="2021-03-08T10:05:35+08:00">2021-03-08</time>
+        <time title="修改时间：2021-06-07 18:48:57" itemprop="dateModified" datetime="2021-06-07T18:48:57+08:00">2021-06-07</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -379,7 +379,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://qianfanguojin.top/2021/01/29/DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98/" title="DNS解析巨慢的另一种可能，Vmware网卡驱动问题">https://qianfanguojin.top/2021/01/29/DNS解析巨慢的另一种可能，Vmware网卡驱动问题/</a>
+      <a href="https://qianfanguojin.top/2021/01/29/DNS%E8%A7%A3%E6%9E%90%E5%B7%A8%E6%85%A2%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%8F%AF%E8%83%BD%EF%BC%8CVmware%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98/" title="新知识！虚拟机网卡造成你的DNS解析变慢">https://qianfanguojin.top/2021/01/29/DNS解析巨慢的另一种可能，Vmware网卡驱动问题/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -402,6 +402,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/06/07/Linux%E4%B9%8B%E8%B7%AF%EF%BC%9ACentos%E5%AE%89%E8%A3%85Tomcat/" rel="next" title="Linux之路：Centos安装Tomcat">
+                  Linux之路：Centos安装Tomcat <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -437,14 +440,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">168k</span>
+    <span title="站点总字数">171k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:33</span>
+    <span title="站点阅读时长">2:35</span>
   </span>
 </div>
 <div class="busuanzi-count">
