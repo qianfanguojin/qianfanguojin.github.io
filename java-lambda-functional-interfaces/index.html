@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msvalidate.01" content="88D4E0537A435134228F952F8B00D1DD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flash.css">
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qianfanguojin.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto","path":"search.xml","field":"post","content":true,"format":"html"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Java8 又称 Java 1.8 版本是自 Java 1.5 版本以来最大的一个版本变动，这一次带来了许多的新特性，首当其冲的莫过于 lambda 表达式，为了配合 lambda 表达式的使用，加入了 函数式 接口。 本文通过几个例子，描述 lambda 表达式结合函数式接口的基本使用方式。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Java基础加强：lambda 表达式之四大函数式接口">
+<meta property="og:url" content="https://qianfanguojin.top/java-lambda-functional-interfaces/index.html">
+<meta property="og:site_name" content="小谢的小站">
+<meta property="og:description" content="Java8 又称 Java 1.8 版本是自 Java 1.5 版本以来最大的一个版本变动，这一次带来了许多的新特性，首当其冲的莫过于 lambda 表达式，为了配合 lambda 表达式的使用，加入了 函数式 接口。 本文通过几个例子，描述 lambda 表达式结合函数式接口的基本使用方式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-23T13:42:24.000Z">
+<meta property="article:modified_time" content="2022-02-23T13:42:24.000Z">
+<meta property="article:author" content="千帆过烬">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="lambda 表达式">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://qianfanguojin.top/java-lambda-functional-interfaces/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qianfanguojin.top/java-lambda-functional-interfaces/","path":"java-lambda-functional-interfaces/","title":"Java基础加强：lambda 表达式之四大函数式接口"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java基础加强：lambda 表达式之四大函数式接口 | 小谢的小站</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-waline.qianfanguojin.top">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+  <link rel="preconnect" href="https://static.zeoseven.com" crossorigin />
+  <link rel="stylesheet" href="https://static.zeoseven.com/zsft/292/main/result.css" />
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小谢的小站</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">41</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="nav-text">一、什么是函数式接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%9E%84%E6%88%90"><span class="nav-text">二、函数式接口的构成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="nav-text">三、如何使用函数式接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%99%AE%E9%80%9A%E6%96%B9%E5%BC%8F"><span class="nav-text">3.1 普通方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%96%B9%E5%BC%8F"><span class="nav-text">3.2 lambda 表达式方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%9B%9B%E5%A4%A7%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="nav-text">四、四大函数式接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Consumer-T-%EF%BC%9A%E6%B6%88%E8%B4%B9%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-text">4.1 Consumer &lt; T &gt;：消费型接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Supplier-T-%EF%BC%9A%E4%BE%9B%E7%BB%99%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-text">4.2 Supplier &lt; T &gt;：供给型接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Function-T-R-%EF%BC%9A%E5%87%BD%E6%95%B0%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-text">4.3 Function &lt; T, R &gt; ：函数型接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Predicate-T-%EF%BC%9A%E6%96%AD%E8%A8%80%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-text">4.4 Predicate &lt; T &gt;：断言型接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%85%B6%E4%BB%96%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="nav-text">五、其他函数式接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">六、参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千帆过烬"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">千帆过烬</p>
+  <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianfanguojin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiunian_2761"><i class="fab fa-codiepie fa-fw"></i>CSDN</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlpZmFuLnhpZUBmb3htYWlsLmNvbQ==" title="E-Mail → mailto:yifan.xie@foxmail.com"><i class="far fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="dGVuY2VudDovL21lc3NhZ2UvP3Vpbj0xNjU3MDk4NjE3JlNpdGU9Jk1lbnU9eWVz" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1657098617&amp;Site&#x3D;&amp;Menu&#x3D;yes"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/java-lambda-functional-interfaces/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="千帆过烬">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小谢的小站">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java基础加强：lambda 表达式之四大函数式接口 | 小谢的小站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java基础加强：lambda 表达式之四大函数式接口<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4vaGV4by1ibG9nLXNvdXJjZS90cmVlL21haW4vc291cmNlL19wb3N0cy9KYXZhL2phdmEtbGFtYmRhLWZ1bmN0aW9uYWwtaW50ZXJmYWNlcy5tZA==" title="编辑"><i class="fa fa-pen-nib"></i></span>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-23 21:42:24" itemprop="dateCreated datePublished" datetime="2022-02-23T21:42:24+08:00">2022-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/java-lambda-functional-interfaces/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/java-lambda-functional-interfaces/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><code>Java8</code> 又称 <code>Java 1.8</code> 版本是自 <code>Java 1.5</code> 版本以来最大的一个版本变动，这一次带来了许多的新特性，首当其冲的莫过于 <code>lambda</code> 表达式，为了配合 <code>lambda</code> 表达式的使用，加入了 <code>函数式</code> 接口。</p>
+<p>本文通过几个例子，描述 lambda 表达式结合函数式接口的基本使用方式。</p>
+<span id="more"></span>
+
+<p><strong>在开始之前，请确定你已经了解并会使用 <code>lambda</code> 表达式</strong></p>
+<p>废话不多说，开始！</p>
+<h2 id="一、什么是函数式接口"><a href="#一、什么是函数式接口" class="headerlink" title="一、什么是函数式接口"></a>一、什么是函数式接口</h2><p>正如其名，函数式接口其实就是表示为函数方式的接口，虽然是函数式，但依然还是一个接口。<br>这样讲可能有点拗口，通俗点来说，函数式接口就是 <strong>只有一个抽象方法的接口</strong>。<br>如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Com</span>&#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">test</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接口 <code>Com</code> 可被称作一个函数式接口</p>
+<hr>
+<h2 id="二、函数式接口的构成"><a href="#二、函数式接口的构成" class="headerlink" title="二、函数式接口的构成"></a>二、函数式接口的构成</h2><p>一个函数式接口通常来说必须满足以下两个必要条件</p>
+<ul>
+<li>首先，它必须是一个 <strong>标准的接口定义</strong>，不是注解，类，或者枚举。</li>
+<li>其次，它的接口体内有且仅有一个 <strong>抽象方法</strong></li>
+</ul>
+<blockquote>
+<p>接口内的方法默认都是 <strong>抽象方法</strong>，没有方法体。虽然 Java 1.8 引入了接口默认方法，其中可以有方法体，但其并不能成为抽象方法。所以，在函数式接口中可以存在多个方法，但 <strong>抽象方法</strong> 必须只有一个。</p>
+</blockquote>
+<p><strong>FunctionalInterface 注解</strong></p>
+<p><strong>@FunctionalInterface</strong> 是 Java 1.8 引入的注解，是为了配合函数式接口、<code>lambda</code> 表达式而设计的，目的是<strong>检查某个接口是否满足函数式接口的定义</strong>。</p>
+<p>若在接口上标记该注解，编译器将会强制检查该接口是否确实有且仅有一个抽象方法，否则将会报错。</p>
+<p>需要注意的是，即使不使用该注解，只要满足函数式接口的定义，这仍然是一个函数式接口，使用起来都一样。总的来说，这个注解可以帮助我们检查接口定义是否符合函数式接口的规范。</p>
+<p><strong>泛型</strong></p>
+<p>由于函数式接口的特殊性，通常我们都会给其加上泛型。</p>
+<p>所以，标准的函数式接口定义为：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//方式一：无默认方法</span></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Runn</span> &lt;T&gt;&#123;</span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">test</span><span class="params">(T a)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//方式二：有默认方法</span></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Tunn</span> &lt;T&gt;&#123;</span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">test</span><span class="params">(T a)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//无论有多少个默认方法</span></span><br><span class="line">  <span class="comment">//只要满足只有一个抽象方法的接口就是函数式接口</span></span><br><span class="line">   <span class="keyword">default</span> <span class="title function_">go</span><span class="params">()</span>&#123;</span><br><span class="line">   4<span class="comment">//方法体</span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">default</span> <span class="title function_">to</span><span class="params">(<span class="type">int</span> a)</span>&#123;</span><br><span class="line">     <span class="comment">//方法体</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、如何使用函数式接口"><a href="#三、如何使用函数式接口" class="headerlink" title="三、如何使用函数式接口"></a>三、如何使用函数式接口</h2><h3 id="3-1-普通方式"><a href="#3-1-普通方式" class="headerlink" title="3.1 普通方式"></a>3.1 普通方式</h3><p>和普通接口一样，函数式接口一样可以通过定义实现类或者匿名内部类的方式进行使用。</p>
+<p>定义实现类方式：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Goo</span> <span class="keyword">implements</span> <span class="title class_">Runn</span>&lt;String&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">(String a)</span>&#123;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">Goo</span> <span class="variable">go</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Goo</span>();</span><br><span class="line">        go.test(<span class="string">&quot;定义实现类方式实现Runn&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>匿名内部类方式:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Runn&lt;String&gt; runn = <span class="keyword">new</span> <span class="title class_">Runn</span>&lt;String&gt;()&#123;</span><br><span class="line">    <span class="comment">//必须实现Runn接口的方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">(String a)</span>&#123;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">runn.test(<span class="string">&quot;匿名内部类实现Runn&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>但这些并不是我们的重点，关键看 <code>lambda</code> 表达式是如何使用函数式接口的。</p>
+<h3 id="3-2-lambda-表达式方式"><a href="#3-2-lambda-表达式方式" class="headerlink" title="3.2 lambda 表达式方式"></a>3.2 lambda 表达式方式</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Runn&lt;String&gt; runn = (a) -&gt; &#123;System.out.println(a)&#125;;</span><br><span class="line">runn.test(<span class="string">&quot;lambda表达式方式&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，在使用 <code>lambda</code> 表达式之后，整个式子变得非常的简洁。可以说，函数式接口和  <code>lambda</code> 表达式是完全相互融合的。那么，这么简洁的代码是如何执行的呢？又或者说 lambda 表达式的工作又是什么呢？</p>
+<p>事实上，lambda 表达式的工作分为 <strong>三个部分</strong>：</p>
+<ul>
+<li><p>自动实现了等号左边的接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Runn&lt;String&gt; runn =</span></span><br><span class="line">Runn&lt;String&gt; runn = <span class="keyword">new</span> <span class="title class_">Goo</span>&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将箭头前的参数作为实现的test方法中的参数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Runn&lt;String&gt; runn = (a) -&gt;</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">(String a)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将箭头后的语句作为实现的 test 方法中的方法体</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Runn&lt;String&gt; runn = (a) -&gt; &#123;System.out.println(a)&#125;;</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">(String a)</span>&#123;</span><br><span class="line">    System.out.println(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="四、四大函数式接口"><a href="#四、四大函数式接口" class="headerlink" title="四、四大函数式接口"></a>四、四大函数式接口</h2><p>Java 1.8 引入函数式接口就是为了解决完全面向对象在某些领域内的痛点，而为了让开发者更高效的使用函数式接口，Java 1.8 还在 <code>java.util.function</code> 包下定义了许多内置的函数式接口，其中最常用的莫过于以下四种：</p>
+<ul>
+<li>Consumer</li>
+<li>Supplier</li>
+<li>Function</li>
+<li>Predicate</li>
+</ul>
+<h3 id="4-1-Consumer-T-：消费型接口"><a href="#4-1-Consumer-T-：消费型接口" class="headerlink" title="4.1 Consumer &lt; T &gt;：消费型接口"></a>4.1 Consumer &lt; T &gt;：消费型接口</h3><p>消费型接口即指该接口内的唯一抽象方法（<code>void accept(T t)</code> 方法） <strong>只接受输入</strong>(有参数) ，<strong>没有返回值</strong>。<strong>只进不出</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 消费型接口，只输入(有参)不输出(无返回值)</span></span><br><span class="line"><span class="comment">*  <span class="doctag">@FunctionalInterface</span></span></span><br><span class="line"><span class="comment">    // 根据给定的参数 t 执行 accept 方法，无返回值.</span></span><br><span class="line"><span class="comment">    // Params：t 输入的参数</span></span><br><span class="line"><span class="comment">    public interface Consumer&lt;T&gt; &#123;</span></span><br><span class="line"><span class="comment">        void accept(T t);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">consumerInterfaceTest</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * lambda表达式方式</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//lambda 表达式实际上是自动实现了等号左边的接口</span></span><br><span class="line">    <span class="comment">//然后再将箭头前的参数名作为实现的accept方法中的参数名</span></span><br><span class="line">    <span class="comment">//箭头后的语句作为实现的accept方法中的方法体（&#123;&#125;内的内容为 accept 方法的方法体）</span></span><br><span class="line">    Consumer&lt;String&gt; conn = (t) -&gt; &#123;</span><br><span class="line">        <span class="comment">//方法体</span></span><br><span class="line">        System.out.println(t);</span><br><span class="line">    &#125;</span><br><span class="line">    conn.accept(<span class="string">&quot;Consumer 消费型接口&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：Consumer 消费型接口</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-Supplier-T-：供给型接口"><a href="#4-2-Supplier-T-：供给型接口" class="headerlink" title="4.2 Supplier &lt; T &gt;：供给型接口"></a>4.2 Supplier &lt; T &gt;：供给型接口</h3><p>供给型接口即指该接口内的唯一抽象方法 <strong>无输入</strong>(无参数) ，<strong>有返回值</strong>。<strong>只出不进</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 供给型接口,只输出(有返回值)不输入(无参)</span></span><br><span class="line"><span class="comment">* <span class="doctag">@FunctionalInterface</span></span></span><br><span class="line"><span class="comment">    public interface Supplier&lt;T&gt; &#123;</span></span><br><span class="line"><span class="comment">        // 获取一个结果.</span></span><br><span class="line"><span class="comment">        T get();</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">suppierInerfaceTest</span><span class="params">()</span> &#123;</span><br><span class="line">    Supplier&lt;String&gt; sup = () -&gt; &#123;</span><br><span class="line">         <span class="comment">//方法体</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">a</span> <span class="operator">=</span> <span class="string">&quot;Supplier 供给型接口&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;;</span><br><span class="line">    System.out.println(sup.get());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：Supplier 供给型接口</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-Function-T-R-：函数型接口"><a href="#4-3-Function-T-R-：函数型接口" class="headerlink" title="4.3 Function &lt; T, R &gt; ：函数型接口"></a>4.3 Function &lt; T, R &gt; ：函数型接口</h3><p>函数型接口即指该接口内的唯一抽象方法 <strong>既有输入</strong>(有参数) ，<strong>又有返回值</strong>。<strong>有出有进</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 函数型接口,既输入又输出</span></span><br><span class="line"><span class="comment">  <span class="doctag">@FunctionalInterface</span></span></span><br><span class="line"><span class="comment">  public interface Function&lt;T, R&gt; &#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    // 用给定的参数 t 生成函数.</span></span><br><span class="line"><span class="comment">    // <span class="doctag">@param</span> t 函数的参数</span></span><br><span class="line"><span class="comment">    // <span class="doctag">@return</span> 函数的返回值</span></span><br><span class="line"><span class="comment">    R apply(T t);</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">functionInterfaceTest</span><span class="params">()</span> &#123;</span><br><span class="line">    Function&lt;String, String&gt; function = a -&gt; &#123;</span><br><span class="line">        <span class="comment">//方法体</span></span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;;</span><br><span class="line">    System.out.println(function.apply(<span class="string">&quot;Function 函数型接口&quot;</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：Function 函数型接口</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-Predicate-T-：断言型接口"><a href="#4-4-Predicate-T-：断言型接口" class="headerlink" title="4.4 Predicate &lt; T &gt;：断言型接口"></a>4.4 Predicate &lt; T &gt;：断言型接口</h3><p>断言型接口即指该接口内的唯一抽象方法 <strong>有输入</strong>(有参数) ，<strong>且返回值必须为布尔值</strong>。<strong>有出有进</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 断言型接口即指该接口内的唯一抽象方法有输入(有参数) ,</span></span><br><span class="line"><span class="comment">* 且返回值必须为布尔值。既出且进。</span></span><br><span class="line"><span class="comment"><span class="doctag">@FunctionalInterface</span></span></span><br><span class="line"><span class="comment">public interface Predicate&lt;T&gt; &#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   // 根据给定的参数执行 test 方法</span></span><br><span class="line"><span class="comment">   // <span class="doctag">@param</span> t 输入的参数</span></span><br><span class="line"><span class="comment">   // <span class="doctag">@return</span> &#123;<span class="doctag">@code</span> true&#125; 返回布尔值,</span></span><br><span class="line"><span class="comment">   // otherwise &#123;<span class="doctag">@code</span> false&#125;</span></span><br><span class="line"><span class="comment">   boolean test(T t);</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">predicateInterfaceTest</span><span class="params">()</span> &#123;</span><br><span class="line">    Predicate&lt;String&gt; predicate = (str) -&gt;&#123;</span><br><span class="line">        <span class="comment">//方法体</span></span><br><span class="line">        <span class="keyword">if</span>(str.equals(<span class="string">&quot;1&quot;</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(predicate.test(<span class="string">&quot;1&quot;</span>))</span><br><span class="line">        System.out.println(<span class="string">&quot;Predicate 断言型接口测试&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：Predicate 断言型接口测试</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、其他函数式接口"><a href="#五、其他函数式接口" class="headerlink" title="五、其他函数式接口"></a>五、其他函数式接口</h2><p>除了上述 4 种类型的接口外，还有其他的一些接口供我们使用：</p>
+<ul>
+<li><p>BiFunction &lt; T, U, R &gt;  参数类型有2个，为 T，U，返回值为 R，其中方法为 <code>R apply(T t, U u)</code>。</p>
+</li>
+<li><p>UnaryOperator &lt; T &gt; (Function子接口) 参数为T，对参数为 T 的对象进行一元操作，并返回 T 类型结果，其中方法为 <code>T apply(T t)</code>。</p>
+</li>
+<li><p>BinaryOperator &lt; T &gt; (BiFunction子接口) 参数为T，对参数为 T 得对象进行二元操作，并返回 T 类型得结果，其中方法为 <code>T apply（T t1， T t2）</code>。</p>
+</li>
+<li><p>BiConsumer &lt;T, R&gt; 为 <code>void accept(T t, U u)</code>。</p>
+</li>
+<li><p>ToIntFunction &lt; T &gt;、ToLongFunction &lt; T &gt;、ToDoubleFunction &lt; T &gt; 参数类型为 T，返回值分别为 int，long，double，分别计算 int，long，double 的函数。</p>
+</li>
+<li><p>IntFunction &lt; R &gt;、LongFunction &lt; R &gt;、DoubleFunction &lt; R &gt; 参数分别为 int，long，double，返回值为 R。</p>
+<p>等等…….</p>
+</li>
+</ul>
+<p>以上就是 Java 8 内置的核心函数式接口，其中包括了大部分的方法类型，可以在使用的时候根据不同的使用场景去选择不同的接口使用。</p>
+<h2 id="六、参考链接"><a href="#六、参考链接" class="headerlink" title="六、参考链接"></a>六、参考链接</h2><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20veWFubDU1NTU1L3AvMTM1NTAxMzIuaHRtbA==">Java新特性-四大函数式接口<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>千帆过烬
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://qianfanguojin.top/java-lambda-functional-interfaces/" title="Java基础加强：lambda 表达式之四大函数式接口">https://qianfanguojin.top/java-lambda-functional-interfaces/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag"># lambda 表达式</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/javascript-intro-part2-datatypes-variables/" rel="prev" title="JavaScript入门（二）：引入方式、数据类型和变量">
+                  <i class="fa fa-angle-left"></i> JavaScript入门（二）：引入方式、数据类型和变量
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hexo-next-theme-add-post-expiry-notice/" rel="next" title="Hexo博客进阶：为 Next 主题的 Hexo 博客内容添加文章过期/时效提示">
+                  Hexo博客进阶：为 Next 主题的 Hexo 博客内容添加文章过期/时效提示 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">谢同学</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">85k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script class="next-config" data-name="wavedrom" type="application/json">{"enable":true,"js":{"url":"https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/wavedrom/3.5.0/wavedrom.min.js","integrity":"sha256-INLAoJc6quTNfiMWkGZniYO2cxE8mHpddnLow1m6RFs="}}</script>
+  <script class="next-config" data-name="wavedrom_skin" type="application/json">{"enable":true,"js":{"url":"https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/wavedrom/3.5.0/skins/default.js","integrity":"sha256-fduc/Zszk5ezWws2uInY/ALWVmIrmV6VTgXbsYSReFI="}}</script>
+  <script src="/js/third-party/tags/wavedrom.js"></script>
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"ignores":null,"url":"https://qianfanguojin.top/java-lambda-functional-interfaces/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-waline.qianfanguojin.top","cssUrl":"https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.css","commentCount":false,"pageview":false,"libUrl":"https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.umd.js","locale":{"nick":"昵称（不少于3个字符）","nickError":"昵称不能少于3个字符","mail":"邮箱（随意）","mailError":"请填写正确的邮件地址","link":"网址","optional":"可选","placeholder":"可以直接匿名评论，填写上方邮箱信息或者登录，还可收到评论邮件提醒"},"avatar":"","commentSorting":"hottest","highlighter":true,"copyright":true,"reaction":false,"emoji":["https://fastly.jsdelivr.net/npm/@waline/emojis/weibo","https://fastly.jsdelivr.net/npm/@waline/emojis/tieba","https://fastly.jsdelivr.net/npm/@waline/emojis/coolapk","https://fastly.jsdelivr.net/npm/@waline/emojis/alus","https://fastly.jsdelivr.net/npm/@waline/emojis/qq","https://fastly.jsdelivr.net/npm/@waline/emojis/bilibili","https://fastly.jsdelivr.net/npm/@waline/emojis/tw-emoji"],"requiredMeta":[],"login":"enable","pageSize":10,"dark":"auto","el":"#waline","comment":true,"path":"/java-lambda-functional-interfaces/"}</script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+<!-- hexo injector body_end start -->
+  <script src="/js/outdate.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>
