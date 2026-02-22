@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msvalidate.01" content="88D4E0537A435134228F952F8B00D1DD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flash.css">
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qianfanguojin.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto","path":"search.xml","field":"post","content":true,"format":"html"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Java 在互联网上的飞速发展和使用，离不开诸如 Spring 、SpringMVC、Mybatis 等框架的推出，其极大简化了开发者的精力。 对于各式各样的框架，它们底层使用的依然是 Java 代码，只是它们通过利用 Java 提供的多种特性和技术，简化程序员所需要编写的代码，大大减少了开发时间。 而这篇，就是讲述 Java 框架的核心技术之一，Java 反射。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Java基础加强：Java反射">
+<meta property="og:url" content="https://qianfanguojin.top/java-reflection/index.html">
+<meta property="og:site_name" content="小谢的小站">
+<meta property="og:description" content="Java 在互联网上的飞速发展和使用，离不开诸如 Spring 、SpringMVC、Mybatis 等框架的推出，其极大简化了开发者的精力。 对于各式各样的框架，它们底层使用的依然是 Java 代码，只是它们通过利用 Java 提供的多种特性和技术，简化程序员所需要编写的代码，大大减少了开发时间。 而这篇，就是讲述 Java 框架的核心技术之一，Java 反射。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171612316.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171611131.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171611349.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171611066.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171612571.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171612310.png">
+<meta property="article:published_time" content="2019-08-02T09:21:02.000Z">
+<meta property="article:modified_time" content="2021-08-17T08:23:07.000Z">
+<meta property="article:author" content="千帆过烬">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Java 反射">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171612316.png">
+
+
+<link rel="canonical" href="https://qianfanguojin.top/java-reflection/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qianfanguojin.top/java-reflection/","path":"java-reflection/","title":"Java基础加强：Java反射"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java基础加强：Java反射 | 小谢的小站</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-waline.qianfanguojin.top">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+  <link rel="preconnect" href="https://static.zeoseven.com" crossorigin />
+  <link rel="stylesheet" href="https://static.zeoseven.com/zsft/292/main/result.css" />
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小谢的小站</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">41</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8F%8D%E5%B0%84%E7%9A%84%E5%87%BA%E7%8E%B0"><span class="nav-text">1. 反射的出现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Java-%E4%BB%A3%E7%A0%81%E7%BB%8F%E5%8E%86%E7%9A%84%E4%B8%89%E4%B8%AA%E8%BF%87%E7%A8%8B"><span class="nav-text">1.1 Java 代码经历的三个过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%8F%8D%E5%B0%84%E7%9A%84%E6%80%9D%E6%83%B3"><span class="nav-text">1.2 反射的思想</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%8D%E5%B0%84%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">2. 反射的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E8%8E%B7%E5%8F%96Class%E5%AF%B9%E8%B1%A1"><span class="nav-text">2.1 获取Class对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%BD%BF%E7%94%A8Class%E5%AF%B9%E8%B1%A1"><span class="nav-text">2.2 使用Class对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-%E4%BD%BF%E7%94%A8Field%E7%B1%BB%E6%93%8D%E4%BD%9C%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F"><span class="nav-text">2.2.1 使用Field类操作成员变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-%E4%BD%BF%E7%94%A8Constructor%E7%B1%BB"><span class="nav-text">2.2.2 使用Constructor类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-%E4%BD%BF%E7%94%A8Method%E7%B1%BB"><span class="nav-text">2.2.3 使用Method类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-%E8%8E%B7%E5%8F%96%E7%B1%BB%E5%90%8D"><span class="nav-text">2.2.4 获取类名</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5%EF%BC%9A"><span class="nav-text">3. 参考链接：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千帆过烬"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">千帆过烬</p>
+  <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianfanguojin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiunian_2761"><i class="fab fa-codiepie fa-fw"></i>CSDN</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlpZmFuLnhpZUBmb3htYWlsLmNvbQ==" title="E-Mail → mailto:yifan.xie@foxmail.com"><i class="far fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="dGVuY2VudDovL21lc3NhZ2UvP3Vpbj0xNjU3MDk4NjE3JlNpdGU9Jk1lbnU9eWVz" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1657098617&amp;Site&#x3D;&amp;Menu&#x3D;yes"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/java-reflection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="千帆过烬">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小谢的小站">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java基础加强：Java反射 | 小谢的小站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java基础加强：Java反射<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4vaGV4by1ibG9nLXNvdXJjZS90cmVlL21haW4vc291cmNlL19wb3N0cy9KYXZhL2phdmEtcmVmbGVjdGlvbi5tZA==" title="编辑"><i class="fa fa-pen-nib"></i></span>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-02 17:21:02" itemprop="dateCreated datePublished" datetime="2019-08-02T17:21:02+08:00">2019-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-08-17 16:23:07" itemprop="dateModified" datetime="2021-08-17T16:23:07+08:00">2021-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/java-reflection/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/java-reflection/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>17 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Java 在互联网上的飞速发展和使用，离不开诸如 Spring 、SpringMVC、Mybatis 等框架的推出，其极大简化了开发者的精力。</p>
+<p>对于各式各样的框架，它们底层使用的依然是 Java 代码，只是它们通过利用 Java 提供的多种特性和技术，简化程序员所需要编写的代码，大大减少了开发时间。</p>
+<p>而这篇，就是讲述 Java 框架的核心技术之一，<strong>Java 反射</strong>。</p>
+<span id="more"></span>
+
+<h2 id="1-反射的出现"><a href="#1-反射的出现" class="headerlink" title="1. 反射的出现"></a>1. 反射的出现</h2><p>将类的各个组成部分封装成其他对象，这就是 Java 的反射机制，通过反射，我们可以得到每个类的各个组成部分。</p>
+<p>由于反射的优秀特性，现代的主流 Web 中使用到的框架 Spring &#x2F; MyBatis 等都大量使用了反射的技术，可以说，反射是框架的灵魂。</p>
+<hr>
+<h3 id="1-1-Java-代码经历的三个过程"><a href="#1-1-Java-代码经历的三个过程" class="headerlink" title="1.1 Java 代码经历的三个过程"></a>1.1 Java 代码经历的三个过程</h3><p>那么反射是什么？作用在什么地方？要搞清楚这个问题，我们首先看一张图：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171612316.png"></p>
+<p>这张图简略的描述了一个 Java 程序从编写完成到执行经历的过程。</p>
+<p>首先在 <strong>Source 源代码阶段</strong>，假设我们新建了一个 <code>Person.java</code> 文件 ，在里面有一个公有的 Person 类，类里面有成员变量，构造方法，成员方法。</p>
+<p>编写好代码之后，我们要运行的话，首先需要 <strong>编译</strong>，使用 Java 自带的<code>javac</code> 命令编译后，此时在我们的目录下会生成一个 Java 字节码文件 <code>Person.class</code>。</p>
+<p><code>Person.class</code> 文件中包含这个类文件的所有信息，主要有三部分内容。一部分是我们所有的成员变量，一部分是我们的构造方法，一部分是我们的成员方法。当然其中不止这些内容，还有类名等等其他信息，<code>.class</code> 文件是 Java 跨平台的基础。</p>
+<p>编译好的 Java 字节码文件（<code>.class</code> 后缀）开始是在硬盘中的，而程序都是在内存中运行的，在使用之前我们应将其加载到内存中去。</p>
+<p>如何将字节码加载到内存中呢？在 Java 中，负责加载硬盘上的字节码文件到内存中的工具称为 <strong>类加载器（ClassLoader）</strong> ，它是一个对象，它负责将类对应的字节码文件加载到内存中。</p>
+<p>而在Java中，万物皆对象，在内存中，也有一个对象负责存储描述字节码文件中的信息，该对象为<code>Class</code> 类的对象，在 Java 的 api 中，我们也可以找到这个类：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171611131.png"></p>
+<p>在被加载的类 Class 对象中，包含了这个<strong>类所有共同的类型信息</strong>。什么是共同的类型信息呢？就比如 <strong>每个类的成员变量，构造方法，成员方法，类名</strong>….等等。<br>这里我们也要注意一个点，一个 class 字节码文件对应一个 Class 对象，也就是说，无论你创建了多少个实例对象，在 JVM（Java 虚拟机） 或者说内存中只会存在一个 Class 对象，其负责描述类的共同类型信息。具体对应关系看下图：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171611349.png"></p>
+<p>于是在<code>Class</code>对象中，每一个成员变量都被封装成一个<code>Field</code>对象，而多个成员变量就形成了<code>Field []</code>对象数组。构造方法，成员方法也是如此，在 Class 类中，他们的对应关系为：</p>
+<table>
+<thead>
+<tr>
+<th align="center">组成部分</th>
+<th align="left">对象名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">成员变量</td>
+<td align="left">Field</td>
+</tr>
+<tr>
+<td align="center">构造方法</td>
+<td align="left">Constructor</td>
+</tr>
+<tr>
+<td align="center">成员方法</td>
+<td align="left">Method</td>
+</tr>
+</tbody></table>
+<p>第二阶段加载类的步骤执行完后，JVM再根据<code>Class</code>对象中的信息实例对象，至此，对象才被真正创建。</p>
+<h3 id="1-2-反射的思想"><a href="#1-2-反射的思想" class="headerlink" title="1.2 反射的思想"></a>1.2 反射的思想</h3><p>根据我们上面的分析，类在被使用前，应先被类加载器加载到内存中以<code>Class</code>对象的方式存在，<code>Class</code> 对象将类的成员变量，构造函数，成员方法封装成不同的对象。</p>
+<p>那么我们可不可以这样想，当一个Person类的对象在使用时，由于其共有的<code>Class</code> 对象中将该对象的成员变量，构造函数，成员方法等封装成了对象，我们是不是可以通过操作这些封装好的对象来操控Person对象中的相关信息？</p>
+<p>答案时肯定的，这也就是反射的实现思想，在程序的运行过程中，能够知道程序的所有属性和方法，也能够随时调用改变其中的属性和方法，这就是<span style="color:red">反射机制</span></p>
+<p>使用反射的优点如下：</p>
+<ul>
+<li>可以在程序的运行过程中去操作这些对象</li>
+<li>可以解耦，提高程序的阿可扩展性</li>
+</ul>
+<hr>
+<blockquote>
+<p>知道了反射的概念之后，我们使用一些案例来分析反射的基本使用</p>
+</blockquote>
+<h2 id="2-反射的基本使用"><a href="#2-反射的基本使用" class="headerlink" title="2. 反射的基本使用"></a>2. 反射的基本使用</h2><h3 id="2-1-获取Class对象"><a href="#2-1-获取Class对象" class="headerlink" title="2.1 获取Class对象"></a>2.1 获取Class对象</h3><p>通过上面的分析，我们知道了反射可以操控类的<code>Class</code> 对象，那么在使用反射之前，我们应该先获得类的<code>Class</code> 对象。</p>
+<p>我们可以使用如下三种方式获得<code>Class</code> 对象，对应Java代码经历的三个阶段。</p>
+<ol>
+<li><p>类还未被加载进内存，也就是源代码阶段使用</p>
+<p><span style="color:blue">Class.forName(“全类名”) ：将字节码文件加载进内存，返回Class对象。</span></p>
+</li>
+<li><p>类已经被加载进内存了，但是实例对象还没创建时使用</p>
+<p><span style="color:blue">类名.class：通过类名的属性class获取</span></p>
+</li>
+<li><p>类已经被实例化，也就是已经有了实例对象时使用</p>
+<p><span style="color:blue">对象名.getClass()：利用Object类中定义的getClass()方法</span></p>
+</li>
+</ol>
+<p>文字描述可能不够透彻，我们使用代码来验证以下我们的结果。</p>
+<p>我们打开idea ，新建一个java项目，名字为ReflectDemo，然后新建一个实体类Person，一个ReflectDemo1，此时项目结构如下：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171611066.png"></p>
+<p>然后我们在Person类中添加如下代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span> <span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(<span class="type">int</span> age, String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>相应的ReflectDemo1的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReflectDemo1</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 三种不同的获取Class对象的方式：</span></span><br><span class="line"><span class="comment">     * 1、Class.forName(&quot;全类名&quot;) ：将字节码文件加载进内存，返回Class对象。</span></span><br><span class="line"><span class="comment">     * 2、类名.class：通过类名的属性class获取</span></span><br><span class="line"><span class="comment">     * 3、对象名.getClass()：利用Object类中定义的getClass()方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">        <span class="comment">//1.Class.forName(&quot;类名&quot;)</span></span><br><span class="line">        <span class="comment">//注意这里的字符串是全类名，也就是包名+类名，我这直接写类名的原因是我没有定义包。</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">cla1</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;Person&quot;</span>);</span><br><span class="line">        System.out.println(cla1);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.类名.class</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">cla2</span> <span class="operator">=</span> Person.class;</span><br><span class="line">        System.out.println(cla2);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.对象名.getClass()</span></span><br><span class="line">        <span class="type">Person</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">        <span class="type">Class</span> <span class="variable">cla3</span> <span class="operator">=</span> p.getClass();</span><br><span class="line">        System.out.println(cla3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171612571.png"></p>
+<p>可以看到，输出的结果是一样的，那么是不是他们都是同一个Class对象吗？</p>
+<p>我也不确定，单纯靠输出不能完全判定，我们还需要通过一些验证代码来确定。</p>
+<p>根据我们以前学过的知识，判断两个对象是否相等，也就是引用指向的内存空间是否相同，我们可以使用 <code>==</code>运算符。</p>
+<p>那么我们添加代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断三个对象是否相等</span></span><br><span class="line">      System.out.println(cla1 == cla2);</span><br><span class="line">      System.out.println(cla1 == cla3);</span><br><span class="line">      System.out.println(cla2 == cla3);</span><br></pre></td></tr></table></figure>
+
+<p>然后运行：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171612310.png"></p>
+<p>结果都为true，他们的对象都是一样的。这说明了什么？</p>
+<p>我们整理一下思路</p>
+<ol>
+<li>首先<code>cla1</code>对象我们通过<code>Class.forName(&quot;Person&quot;)</code> 获得，而此时类还为被加载。</li>
+<li><code>cla2</code> 对象我们通过<code>Person.class</code> 获得，此时类已经加载但是没有实例化。</li>
+<li><code>cla3</code>对象我们通过<code>p.getClass()</code>获得，此时类已经实例化。</li>
+</ol>
+<p>通过对比，三个对象都是同一个对象，也就是说，对于同一个类，它在依次运行时只会被加载一次，且只存在一个<code>Class</code> 对象。</p>
+<h3 id="2-2-使用Class对象"><a href="#2-2-使用Class对象" class="headerlink" title="2.2 使用Class对象"></a>2.2 使用Class对象</h3><p>关于Class对象的使用，主要分为四类：</p>
+<ol>
+<li>成员变量Field对象的使用</li>
+<li>构造方法Constructor对象的使用</li>
+<li>成员方法Method对象的使用</li>
+<li>对类名的获取</li>
+</ol>
+<p>下面我们来分析他们的具体用法。</p>
+<h4 id="2-2-1-使用Field类操作成员变量"><a href="#2-2-1-使用Field类操作成员变量" class="headerlink" title="2.2.1 使用Field类操作成员变量"></a>2.2.1 使用Field类操作成员变量</h4><p>Class类中有关Field类的基本操作如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法返回值</th>
+<th align="center">方法名</th>
+<th align="center">方法功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>Field</code></td>
+<td align="center"><code>getField(String name)</code></td>
+<td align="center">获取指定name名称、具有public修饰符的变量（字段），包括继承字段。</td>
+</tr>
+<tr>
+<td align="center"><code>Field[]</code></td>
+<td align="center"><code>getFields()</code></td>
+<td align="center">获取所有具有public修饰符的变量（字段），包括继承字段</td>
+</tr>
+<tr>
+<td align="center"><code>Field</code></td>
+<td align="center"><code>getDeclaredField(String name )</code></td>
+<td align="center">获取指定name名称的变量（字段），且不考虑修饰符（包括private修饰的），不包括继承字段。</td>
+</tr>
+<tr>
+<td align="center"><code>Field[]</code></td>
+<td align="center"><code>getDeclaredFields()</code></td>
+<td align="center">获取类中所有变量（字段），不考虑修饰符（包括private修饰的），不包括继承字段</td>
+</tr>
+</tbody></table>
+<p>Field类中常用的方法：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法返回值</th>
+<th align="center">方法名</th>
+<th align="center">方法功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>Object</code></td>
+<td align="center"><code>get(Object obj)</code></td>
+<td align="center">返回指定对象上此 Field 对象所表示的字段的值</td>
+</tr>
+<tr>
+<td align="center"><code>void</code></td>
+<td align="center"><code>set(Object obj ,  Object value)</code></td>
+<td align="center">将指定对象(obj)变量上此 Field 对象表示的字段设置为指定的新值(value)</td>
+</tr>
+<tr>
+<td align="center"><code>void</code></td>
+<td align="center"><code>setAccessible(boolean flag)</code></td>
+<td align="center">将此对象的 accessible 标志设置为指定的布尔值，accessible 属性默认为false，设置为true后我们称为《暴力反射》</td>
+</tr>
+</tbody></table>
+<p>首先在<code>Person</code>类修改代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用作测试Filed类的使用</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="variable">height</span> <span class="operator">=</span> <span class="number">180</span>;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">String</span> <span class="variable">sex</span> <span class="operator">=</span> <span class="string">&quot;male&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="variable">weight</span> <span class="operator">=</span> <span class="number">120</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">hobby</span> <span class="operator">=</span> <span class="string">&quot;篮球&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span> <span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(<span class="type">int</span> age, String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, height=&quot;</span> + height +</span><br><span class="line">                <span class="string">&quot;, sex=&#x27;&quot;</span> + sex + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, hobby=&#x27;&quot;</span> + hobby + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后新建一个ReflecField文件，添加如下代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReflectField</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Class对象中关于Field的操作</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">//获取Person类的class对象</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">pes</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;Person&quot;</span>);</span><br><span class="line">        <span class="comment">//创建一个Person对象</span></span><br><span class="line">        <span class="type">Person</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;**********输出结果**********&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//getField(String name )的使用</span></span><br><span class="line">        System.out.println(<span class="string">&quot;----------getField(String name )的使用----------&quot;</span>);</span><br><span class="line">        <span class="comment">//注意这里name对应的字段一定要是public修饰的，且该字段存在</span></span><br><span class="line">        <span class="comment">//如不满足上述条件，会抛出 NoSuchFieldException 异常</span></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="type">Field</span> <span class="variable">age</span> <span class="operator">=</span> pes.getField(<span class="string">&quot;age&quot;</span>);</span><br><span class="line">            System.out.println(age);<span class="comment">//age为private修饰，这里不会输出任何值，且抛出NoSuchFieldException异常</span></span><br><span class="line">        &#125;<span class="keyword">catch</span> (NoSuchFieldException nfe)&#123;</span><br><span class="line">            nfe.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Field</span> <span class="variable">height</span> <span class="operator">=</span> pes.getField(<span class="string">&quot;height&quot;</span>);</span><br><span class="line">        System.out.println(height);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;----------getFields()的使用----------&quot;</span>);</span><br><span class="line">        <span class="comment">//获取所有具有public修饰符的变量（字段），包括继承字段</span></span><br><span class="line">        Field[] fields = pes.getFields();</span><br><span class="line">        <span class="keyword">for</span>(Field f: fields)&#123;</span><br><span class="line">            System.out.println(f);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;----------getDeclaredField(String name )的使用----------&quot;</span>);</span><br><span class="line">        <span class="comment">//获取指定name名称的变量（字段），且不考虑修饰符（包括private修饰的），不包括继承字段。</span></span><br><span class="line">        <span class="type">Field</span> <span class="variable">age1</span> <span class="operator">=</span> pes.getDeclaredField(<span class="string">&quot;age&quot;</span>); <span class="comment">//age为private修饰</span></span><br><span class="line">        <span class="type">Field</span> <span class="variable">name1</span> <span class="operator">=</span> pes.getDeclaredField(<span class="string">&quot;name&quot;</span>);<span class="comment">//name字段为private修饰</span></span><br><span class="line">        <span class="type">Field</span> <span class="variable">sex</span> <span class="operator">=</span> pes.getDeclaredField(<span class="string">&quot;sex&quot;</span>);  <span class="comment">//sex为protected修饰</span></span><br><span class="line">        System.out.println(sex);</span><br><span class="line">        System.out.println(age1);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;----------getDeclaredFields()的使用----------&quot;</span>);</span><br><span class="line">        <span class="comment">//获取类中所有变量（字段），不考虑修饰符（包括private修饰的），不包括继承字段</span></span><br><span class="line">        Field[] fields1 = pes.getDeclaredFields();</span><br><span class="line">        <span class="keyword">for</span> (Field f : fields1)&#123;</span><br><span class="line">            System.out.println(f);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;----------获取变量的值----------&quot;</span>);</span><br><span class="line">        <span class="comment">//返回指定对象上Field表示的值</span></span><br><span class="line">        <span class="comment">//会对你访问的字段进行权限修饰符检查。也就是private的不可访问</span></span><br><span class="line">        <span class="comment">//如想访问私有，必须使用setAccessible(true)《暴力反射》来忽略权限修饰符的检查</span></span><br><span class="line">        <span class="comment">//否则抛出IllegalAccessException异常</span></span><br><span class="line">        System.out.println(height.get(p));</span><br><span class="line">        System.out.println(sex.get(p));</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//age1为获取到的私有对象</span></span><br><span class="line">            System.out.println(age1.get(p));</span><br><span class="line">        &#125;<span class="keyword">catch</span> (IllegalAccessException iae)&#123;</span><br><span class="line">            iae.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//暴力反射</span></span><br><span class="line">        age1.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        System.out.println(age1.get(p));<span class="comment">//输出为0，这是因为int类型默认值为0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;----------设置变量的值----------&quot;</span>);</span><br><span class="line">        <span class="comment">//将指定对象变量上此 Field 对象表示的字段设置为指定的新值。</span></span><br><span class="line">        <span class="comment">//会对你访问的字段进行权限修饰符检查。也就是private的不可访问</span></span><br><span class="line">        <span class="comment">//如想访问私有，必须使用setAccessible(true)《暴力反射》来忽略权限修饰符的检查</span></span><br><span class="line">        <span class="comment">//否则抛出IllegalAccessException异常</span></span><br><span class="line">        System.out.println(<span class="string">&quot;修改所有属性值：&quot;</span> + p.toString());</span><br><span class="line">        height.set(p,<span class="number">170</span>);</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//name1为获取到的私有对象</span></span><br><span class="line">            name1.set(p,<span class="string">&quot;小千&quot;</span>);</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">catch</span> (IllegalAccessException iae)&#123;</span><br><span class="line">            iae.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//查看name字段设定可访问之前属性值</span></span><br><span class="line">        System.out.println(p.toString());</span><br><span class="line">        name1.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        name1.set(p,<span class="string">&quot;小千&quot;</span>);</span><br><span class="line">        <span class="comment">//查看name字段设置可访问之后的属性值</span></span><br><span class="line">        System.out.println(p.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行结果为：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">**********输出结果**********</span><br><span class="line"></span><br><span class="line">----------getField(String name )的使用----------</span><br><span class="line">java.lang.NoSuchFieldException: age</span><br><span class="line">4at java.lang.Class.getField(Class.java:<span class="number">1703</span>)</span><br><span class="line">4at ReflectField.main(ReflectField.java:<span class="number">23</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> Person.height</span><br><span class="line"></span><br><span class="line">----------getFields()的使用----------</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> Person.height</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> Person.weight</span><br><span class="line"></span><br><span class="line">----------getDeclaredField(String name )的使用----------</span><br><span class="line"><span class="keyword">protected</span> java.lang.String Person.sex</span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> Person.age</span><br><span class="line"></span><br><span class="line">----------getDeclaredFields()的使用----------</span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> Person.age</span><br><span class="line"><span class="keyword">private</span> java.lang.String Person.name</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> Person.height</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> Person.weight</span><br><span class="line"><span class="keyword">protected</span> java.lang.String Person.sex</span><br><span class="line">java.lang.String Person.hobby</span><br><span class="line"></span><br><span class="line">----------获取变量的值----------</span><br><span class="line">heght：<span class="number">180</span></span><br><span class="line">sex：male</span><br><span class="line"></span><br><span class="line">java.lang.IllegalAccessException: Class ReflectField can not access a member of <span class="keyword">class</span> <span class="title class_">Person</span> with modifiers <span class="string">&quot;private&quot;</span></span><br><span class="line">4at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:<span class="number">102</span>)</span><br><span class="line">4at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:<span class="number">296</span>)</span><br><span class="line">4at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:<span class="number">288</span>)</span><br><span class="line">4at java.lang.reflect.Field.get(Field.java:<span class="number">390</span>)</span><br><span class="line">4at ReflectField.main(ReflectField.java:<span class="number">67</span>)</span><br><span class="line"></span><br><span class="line">age：<span class="number">0</span></span><br><span class="line"></span><br><span class="line">----------设置变量的值----------</span><br><span class="line">修改所有属性值：Person&#123;age=<span class="number">0</span>, name=<span class="string">&#x27;null&#x27;</span>, height=<span class="number">180</span>, sex=<span class="string">&#x27;male&#x27;</span>, hobby=<span class="string">&#x27;篮球&#x27;</span>&#125;</span><br><span class="line">java.lang.IllegalAccessException: Class ReflectField can not access a member of <span class="keyword">class</span> <span class="title class_">Person</span> with modifiers <span class="string">&quot;private&quot;</span></span><br><span class="line">4at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:<span class="number">102</span>)</span><br><span class="line">4at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:<span class="number">296</span>)</span><br><span class="line">4at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:<span class="number">288</span>)</span><br><span class="line">4at java.lang.reflect.Field.set(Field.java:<span class="number">761</span>)</span><br><span class="line">4at ReflectField.main(ReflectField.java:<span class="number">84</span>)</span><br><span class="line">Person&#123;age=<span class="number">0</span>, name=<span class="string">&#x27;小千&#x27;</span>, height=<span class="number">170</span>, sex=<span class="string">&#x27;male&#x27;</span>, hobby=<span class="string">&#x27;篮球&#x27;</span>&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-2-使用Constructor类"><a href="#2-2-2-使用Constructor类" class="headerlink" title="2.2.2 使用Constructor类"></a>2.2.2 使用Constructor类</h4><p>Class类中有关Constructor类的基本方法如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法返回值</th>
+<th align="center">方法名</th>
+<th align="center">方法功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>Constructor&lt;T&gt;</code></td>
+<td align="center"><code>getConstructor(Class&lt;?&gt;....parameterTypes)</code></td>
+<td align="center">返回指定参数类型、具有public访问权限的构造函数对象</td>
+</tr>
+<tr>
+<td align="center"><code>Constructor&lt;?&gt; []</code></td>
+<td align="center"><code>getConstructors()</code></td>
+<td align="center">返回所有具有public访问权限的构造函数的Constructor对象数组</td>
+</tr>
+<tr>
+<td align="center"><code>Constructor&lt;T&gt;</code></td>
+<td align="center"><code>getDeclaredConstructor(Class&lt;?&gt;...parameterTypes)</code></td>
+<td align="center">返回指定参数类型、且不考虑权限修饰符（包括private）声明的构造函数对象</td>
+</tr>
+<tr>
+<td align="center"><code>Constructor&lt;?&gt;[]</code></td>
+<td align="center"><code>getDeclaredConstructors()</code></td>
+<td align="center">返回所有声明的构造函数对象、且不考虑权限修饰符（包括private）</td>
+</tr>
+<tr>
+<td align="center"><code>T</code></td>
+<td align="center"><code>newInstance()</code></td>
+<td align="center">调用类的空参构造创建此 Class 对象所表示类的一个实例，返回创建的实例，</td>
+</tr>
+</tbody></table>
+<p>在Person类中添加如下代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 私有构造方法</span></span><br><span class="line"><span class="comment">    * 用作测试Constructor类使用</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="title function_">Person</span><span class="params">(String name)</span> &#123;</span><br><span class="line">       <span class="built_in">this</span>.name = name;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>新建一个ReflectConstructor，添加如下代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReflectConstructor</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * Class对象中关于Constructor的操作</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">//获取Person类的class对象</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">pes</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;Person&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;**********输出结果**********&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//getConstructor(Class&lt;?&gt;....parameterTypes)的使用</span></span><br><span class="line">        System.out.println(<span class="string">&quot;------------getConstructor(Class&lt;?&gt;....parameterTypes)的使用-----------&quot;</span>);</span><br><span class="line">        <span class="comment">//获取带int,String 参数的构造方法对象</span></span><br><span class="line">        <span class="comment">//获取的构造方法一定要是 public 修饰且存在的</span></span><br><span class="line">        <span class="comment">//否则抛出NoSuchMethodException</span></span><br><span class="line">        <span class="type">Constructor</span> <span class="variable">constructor</span> <span class="operator">=</span> pes.getConstructor(<span class="type">int</span>.class,String.class);</span><br><span class="line">        <span class="comment">//Constructor 对象通过调用 newInstance()方法来运行构造方法实例化对象</span></span><br><span class="line">        <span class="comment">//newInstance() 方法中的参数填写根据获得Constructor对象时传入的参数</span></span><br><span class="line">        <span class="comment">//我这里上面传入了int.class , String.class 所以这里带的参数为int，String型</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">p1</span> <span class="operator">=</span> constructor.newInstance(<span class="number">10</span>, <span class="string">&quot;小千&quot;</span>);</span><br><span class="line">        System.out.println(p1);</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//getConstructors()的使用</span></span><br><span class="line">        System.out.println(<span class="string">&quot;------------getConstructors()的使用-----------&quot;</span>);</span><br><span class="line">        Constructor[] constructors = pes.getConstructors();</span><br><span class="line">        <span class="keyword">for</span> (Constructor c: constructors)&#123;</span><br><span class="line">            System.out.println(c);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//getDeclaredConstructor(Class&lt;?&gt;...parameterTypes)的使用的使用</span></span><br><span class="line">        System.out.println(<span class="string">&quot;------------getDeclaredConstructor(Class&lt;?&gt;...parameterTypes)的使用-----------&quot;</span>);</span><br><span class="line">        <span class="comment">//获取修饰符为私有的构造方法对象</span></span><br><span class="line">        <span class="type">Constructor</span> <span class="variable">constructor1</span> <span class="operator">=</span> pes.getDeclaredConstructor(String.class);</span><br><span class="line">        <span class="comment">//注意这里使用私有构造之前必须将其设为可访问,否则会抛异常</span></span><br><span class="line">        constructor1.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">p2</span> <span class="operator">=</span> constructor1.newInstance(<span class="string">&quot;大千&quot;</span>);</span><br><span class="line">        System.out.println(p1);</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//getDeclaredConstructors()的使用</span></span><br><span class="line">        System.out.println(<span class="string">&quot;------------getDeclaredConstructors()的使用-----------&quot;</span>);</span><br><span class="line">        Constructor[] constructors1 = pes.getDeclaredConstructors();</span><br><span class="line">        <span class="keyword">for</span> (Constructor c: constructors1)&#123;</span><br><span class="line">            System.out.println(c);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//newInstance()的使用</span></span><br><span class="line">        System.out.println(<span class="string">&quot;------------newInstance()的使用-----------&quot;</span>);</span><br><span class="line">        <span class="comment">//通过Class对象调用其newInstance()方法，实例化该类的对象</span></span><br><span class="line">        <span class="comment">//newInstance()方法实际上是调用了类的空参构造函数来实例对象的</span></span><br><span class="line">        <span class="comment">//注意这里newInstance()方法参数必须为空</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">p3</span> <span class="operator">=</span> pes.newInstance();</span><br><span class="line">        System.out.println(p3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">**********输出结果**********</span><br><span class="line"></span><br><span class="line">------------getConstructor(Class&lt;?&gt;....parameterTypes)的使用-----------</span><br><span class="line">Person&#123;age=10, name=&#x27;小千&#x27;, height=180, sex=&#x27;male&#x27;, hobby=&#x27;篮球&#x27;&#125;</span><br><span class="line"></span><br><span class="line">------------getConstructors()的使用-----------</span><br><span class="line">public Person(int,java.lang.String)</span><br><span class="line">public Person()</span><br><span class="line"></span><br><span class="line">------------getDeclaredConstructor(Class&lt;?&gt;...parameterTypes)的使用-----------</span><br><span class="line">Person&#123;age=10, name=&#x27;小千&#x27;, height=180, sex=&#x27;male&#x27;, hobby=&#x27;篮球&#x27;&#125;</span><br><span class="line"></span><br><span class="line">------------getDeclaredConstructors()的使用-----------</span><br><span class="line">public Person(int,java.lang.String)</span><br><span class="line">public Person()</span><br><span class="line">private Person(java.lang.String)</span><br><span class="line"></span><br><span class="line">------------newInstance()的使用-----------</span><br><span class="line">Person&#123;age=0, name=&#x27;null&#x27;, height=180, sex=&#x27;male&#x27;, hobby=&#x27;篮球&#x27;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-3-使用Method类"><a href="#2-2-3-使用Method类" class="headerlink" title="2.2.3 使用Method类"></a>2.2.3 使用Method类</h4><p>Class 类中有关Method类的基本操作如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法返回值</th>
+<th align="center">方法名</th>
+<th align="center">方法功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>Method</code></td>
+<td align="center"><code>getMethod(String name, Class&lt;?&gt;....parameterTypes)</code></td>
+<td align="center">返回一个指定参数类型的已声明的 Method 对象，包括继承的父类 public 方法。</td>
+</tr>
+<tr>
+<td align="center"><code>Method []</code></td>
+<td align="center"><code>getMethods()</code></td>
+<td align="center">返回该Class对象中所有由 public 权限修饰符且已声明的 Method 方法对象，包括继承的父类 public 方法。</td>
+</tr>
+<tr>
+<td align="center"><code>Method</code></td>
+<td align="center"><code>getDeclaredMethod(String name, Class&lt;?&gt;...parameterTypes)</code></td>
+<td align="center">返回指定参数类型、且不考虑权限修饰符（包括private）的已声明的声明的方法 Method 对象，但不包括继承的方法。</td>
+</tr>
+<tr>
+<td align="center"><code>Method[]</code></td>
+<td align="center"><code>getDeclaredMethods()</code></td>
+<td align="center">返回所有已声明的方法 Method 对象、且不考虑权限修饰符（包括private），但不包括继承的方法</td>
+</tr>
+</tbody></table>
+<p>在Person类中添加如下代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用作测试Method类的使用</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(String s)</span>&#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">        System.out.println(<span class="string">&quot;运行 public show&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;运行 private display&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>新建一个 ReflectMethod 类，添加代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReflectMethod</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Class对象中关于Method的操作</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">//获取Person类的class对象</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">pes</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;Person&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建一个Person实例</span></span><br><span class="line">        <span class="type">Person</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;**********输出结果**********&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;----------getMethod(String name, Class&lt;?&gt;....parameterTypes)的使用----------&quot;</span>);</span><br><span class="line">        <span class="comment">//获得Class对象中public修饰的已声明的指定参数的方法的对象，传入参数</span></span><br><span class="line">        <span class="comment">//由于一个方法都是由方法名和参数列表指定的，这里方法参数需要指定方法名，后面接参数列表的class</span></span><br><span class="line">        <span class="type">Method</span> <span class="variable">show</span> <span class="operator">=</span> pes.getMethod(<span class="string">&quot;show&quot;</span>, String.class);</span><br><span class="line">        <span class="comment">//invoke 负责执行方法对象指定的方法，传入指定执行的实例对象，和参数列表</span></span><br><span class="line">        show.invoke(p,<span class="string">&quot;千&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;----------getMethods()的使用----------&quot;</span>);</span><br><span class="line">        <span class="comment">//获的Class对象中所有public权限修饰符修饰的方伐，包括父类的方法</span></span><br><span class="line">        <span class="comment">//这里打印出来了Object类的方法，验证结论</span></span><br><span class="line">        Method[] methods = pes.getMethods();</span><br><span class="line">        <span class="keyword">for</span> (Method m : methods) &#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(m);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;----------getDeclaredMethod(String name, Class&lt;?&gt;...parameterTypes)的使用----------&quot;</span>);</span><br><span class="line">        <span class="comment">//获取指定参数类型、且不考虑权限修饰符（包括private）的已声明的方法 Method 对象，但不包括继承的方法。</span></span><br><span class="line">        <span class="type">Method</span> <span class="variable">display</span> <span class="operator">=</span> pes.getDeclaredMethod(<span class="string">&quot;display&quot;</span>);</span><br><span class="line">        System.out.println(display);</span><br><span class="line">        <span class="comment">//忽略权限修饰符，暴力反射</span></span><br><span class="line">        display.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        display.invoke(p);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;----------getDeclaredMethods()的使用----------&quot;</span>);</span><br><span class="line">        <span class="comment">//获取所有已声明的方法 Method 对象、且不考虑权限修饰符（包括private），但不包括继承的方法</span></span><br><span class="line">        <span class="comment">//这里没有打印出来Object类的方法，无法获得继承（父类）的方法对象</span></span><br><span class="line">        Method[] declaredMethods = pes.getDeclaredMethods();</span><br><span class="line">        <span class="keyword">for</span> (Method m : declaredMethods) &#123;</span><br><span class="line">            System.out.println(m);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>输出结果：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">**********输出结果**********</span><br><span class="line">----------getMethod(String name, Class&lt;?&gt;....parameterTypes)的使用----------</span><br><span class="line">千</span><br><span class="line">运行 <span class="keyword">public</span> show</span><br><span class="line">----------getMethods()的使用----------</span><br><span class="line">能够获得Object类的方法对象</span><br><span class="line"><span class="keyword">public</span> java.lang.String Person.toString()</span><br><span class="line"><span class="keyword">public</span> java.lang.String Person.getName()</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> Person.setName(java.lang.String)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> Person.show(java.lang.String)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> Person.setAge(<span class="type">int</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> Person.getAge()</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> java.lang.Object.wait() <span class="keyword">throws</span> java.lang.InterruptedException</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> java.lang.Object.wait(<span class="type">long</span>,<span class="type">int</span>) <span class="keyword">throws</span> java.lang.InterruptedException</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> java.lang.Object.wait(<span class="type">long</span>) <span class="keyword">throws</span> java.lang.InterruptedException</span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> java.lang.Object.equals(java.lang.Object)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">native</span> <span class="type">int</span> java.lang.Object.hashCode()</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> java.lang.Class java.lang.Object.getClass()</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> java.lang.Object.notify()</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> java.lang.Object.notifyAll()</span><br><span class="line">----------getDeclaredMethod(String name, Class&lt;?&gt;...parameterTypes)的使用----------</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> Person.display()</span><br><span class="line">运行 <span class="keyword">private</span> display</span><br><span class="line">----------getDeclaredMethods()的使用----------</span><br><span class="line">不能获得Object类的方法对象</span><br><span class="line"><span class="keyword">public</span> java.lang.String Person.toString()</span><br><span class="line"><span class="keyword">public</span> java.lang.String Person.getName()</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> Person.setName(java.lang.String)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> Person.display()</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> Person.show(java.lang.String)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> Person.setAge(<span class="type">int</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> Person.getAge()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-4-获取类名"><a href="#2-2-4-获取类名" class="headerlink" title="2.2.4 获取类名"></a>2.2.4 获取类名</h4><p>获取类名的方法相对简单，通过以下代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取Person类的class对象</span></span><br><span class="line">      <span class="type">Class</span> <span class="variable">pes</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;Person&quot;</span>);</span><br><span class="line">      <span class="comment">//返回由类对象表示的实体（类，接口，数组类，原始类型或空白）的名称，作为 String</span></span><br><span class="line">      <span class="type">String</span> <span class="variable">className</span> <span class="operator">=</span> pes.getName();</span><br><span class="line">      System.out.println(className);</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">类名：Person</span><br></pre></td></tr></table></figure>
+
+
+
+<p>OK，反射使用基本结束。</p>
+<h2 id="3-参考链接："><a href="#3-参考链接：" class="headerlink" title="3. 参考链接："></a>3. 参考链接：</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2phdmF6ZWppYW4vYXJ0aWNsZS9kZXRhaWxzLzcwNzY4MzY5">深入理解Java类型信息(Class对象)与反射机制<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>千帆过烬
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://qianfanguojin.top/java-reflection/" title="Java基础加强：Java反射">https://qianfanguojin.top/java-reflection/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Java-%E5%8F%8D%E5%B0%84/" rel="tag"># Java 反射</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/java-junit-unit-testing/" rel="prev" title="Java基础加强：JUnit 单元测试">
+                  <i class="fa fa-angle-left"></i> Java基础加强：JUnit 单元测试
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/java-annotations/" rel="next" title="Java基础加强：Java注解">
+                  Java基础加强：Java注解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">谢同学</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">85k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script class="next-config" data-name="wavedrom" type="application/json">{"enable":true,"js":{"url":"https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/wavedrom/3.5.0/wavedrom.min.js","integrity":"sha256-INLAoJc6quTNfiMWkGZniYO2cxE8mHpddnLow1m6RFs="}}</script>
+  <script class="next-config" data-name="wavedrom_skin" type="application/json">{"enable":true,"js":{"url":"https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/wavedrom/3.5.0/skins/default.js","integrity":"sha256-fduc/Zszk5ezWws2uInY/ALWVmIrmV6VTgXbsYSReFI="}}</script>
+  <script src="/js/third-party/tags/wavedrom.js"></script>
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"ignores":null,"url":"https://qianfanguojin.top/java-reflection/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-waline.qianfanguojin.top","cssUrl":"https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.css","commentCount":false,"pageview":false,"libUrl":"https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.umd.js","locale":{"nick":"昵称（不少于3个字符）","nickError":"昵称不能少于3个字符","mail":"邮箱（随意）","mailError":"请填写正确的邮件地址","link":"网址","optional":"可选","placeholder":"可以直接匿名评论，填写上方邮箱信息或者登录，还可收到评论邮件提醒"},"avatar":"","commentSorting":"hottest","highlighter":true,"copyright":true,"reaction":false,"emoji":["https://fastly.jsdelivr.net/npm/@waline/emojis/weibo","https://fastly.jsdelivr.net/npm/@waline/emojis/tieba","https://fastly.jsdelivr.net/npm/@waline/emojis/coolapk","https://fastly.jsdelivr.net/npm/@waline/emojis/alus","https://fastly.jsdelivr.net/npm/@waline/emojis/qq","https://fastly.jsdelivr.net/npm/@waline/emojis/bilibili","https://fastly.jsdelivr.net/npm/@waline/emojis/tw-emoji"],"requiredMeta":[],"login":"enable","pageSize":10,"dark":"auto","el":"#waline","comment":true,"path":"/java-reflection/"}</script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+<!-- hexo injector body_end start -->
+  <script src="/js/outdate.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>
