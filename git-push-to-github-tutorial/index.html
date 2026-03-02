@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msvalidate.01" content="88D4E0537A435134228F952F8B00D1DD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flash.css">
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qianfanguojin.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto","path":"search.xml","field":"post","content":true,"format":"html"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Git  是一个开源的分布式版本控制系统，它可以高效地帮你管理项目中的文件，作为一个开发人员，了解并学习 Git 是我们的必修课。 Github 是世界上最大的代码托管中心，可以说 ，不知道 Github 不算一个合格的 Coder。 今天，我就以推送一个本地项目到 Github 为例，带你体验一下 Github 以及 Git 的魅力。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="保姆级教程，教你使用Git推送你的项目到Github">
+<meta property="og:url" content="https://qianfanguojin.top/git-push-to-github-tutorial/index.html">
+<meta property="og:site_name" content="小谢的小站">
+<meta property="og:description" content="Git  是一个开源的分布式版本控制系统，它可以高效地帮你管理项目中的文件，作为一个开发人员，了解并学习 Git 是我们的必修课。 Github 是世界上最大的代码托管中心，可以说 ，不知道 Github 不算一个合格的 Coder。 今天，我就以推送一个本地项目到 Github 为例，带你体验一下 Github 以及 Git 的魅力。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806114318.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806114407.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806154904.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806162232.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806170124.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806170236.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806170646.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806171739.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806171840.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806172502.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806174641.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806181456.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806181917.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806195930.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806192327.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806192935.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806193145.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806193742.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806194149.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806194742.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806195528.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806200426.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806200940.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806202153.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806202534.png">
+<meta property="article:published_time" content="2021-08-06T12:55:05.000Z">
+<meta property="article:modified_time" content="2026-03-02T13:36:46.787Z">
+<meta property="article:author" content="千帆过烬">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806114318.png">
+
+
+<link rel="canonical" href="https://qianfanguojin.top/git-push-to-github-tutorial/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qianfanguojin.top/git-push-to-github-tutorial/","path":"git-push-to-github-tutorial/","title":"保姆级教程，教你使用Git推送你的项目到Github"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>保姆级教程，教你使用Git推送你的项目到Github | 小谢的小站</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-waline.qianfanguojin.top">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+  <link rel="preconnect" href="https://static.zeoseven.com" crossorigin />
+  <link rel="stylesheet" href="https://static.zeoseven.com/zsft/292/main/result.css" />
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小谢的小站</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">41</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D"><span class="nav-text">写在最前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%B3%A8%E5%86%8CGithub%E8%B4%A6%E5%8F%B7"><span class="nav-text">1、注册Github账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85Git"><span class="nav-text">2、安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-text">3、创建远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="nav-text">4、初始化本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E4%BD%BF%E7%94%A8SSH%E5%AF%86%E9%92%A5"><span class="nav-text">5、使用SSH密钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E6%8F%90%E4%BA%A4%E6%8E%A8%E9%80%81"><span class="nav-text">6、提交推送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千帆过烬"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">千帆过烬</p>
+  <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianfanguojin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiunian_2761"><i class="fab fa-codiepie fa-fw"></i>CSDN</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlpZmFuLnhpZUBmb3htYWlsLmNvbQ==" title="E-Mail → mailto:yifan.xie@foxmail.com"><i class="far fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="dGVuY2VudDovL21lc3NhZ2UvP3Vpbj0xNjU3MDk4NjE3JlNpdGU9Jk1lbnU9eWVz" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1657098617&amp;Site&#x3D;&amp;Menu&#x3D;yes"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/git-push-to-github-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="千帆过烬">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小谢的小站">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="保姆级教程，教你使用Git推送你的项目到Github | 小谢的小站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          保姆级教程，教你使用Git推送你的项目到Github<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4vaGV4by1ibG9nLXNvdXJjZS90cmVlL21haW4vc291cmNlL19wb3N0cy9HaXQvZ2l0LXB1c2gtdG8tZ2l0aHViLXR1dG9yaWFsLm1k" title="编辑"><i class="fa fa-pen-nib"></i></span>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-06 20:55:05" itemprop="dateCreated datePublished" datetime="2021-08-06T20:55:05+08:00">2021-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-02 21:36:46" itemprop="dateModified" datetime="2026-03-02T21:36:46+08:00">2026-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/git-push-to-github-tutorial/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/git-push-to-github-tutorial/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git <i class="fa fa-external-link-alt"></i></span> 是一个开源的分布式版本控制系统，它可以高效地帮你管理项目中的文件，作为一个开发人员，了解并学习 Git 是我们的必修课。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw==">Github<i class="fa fa-external-link-alt"></i></span> 是世界上最大的代码托管中心，可以说 ，不知道 Github 不算一个合格的 Coder。</p>
+<p>今天，我就以推送一个本地项目到 Github 为例，带你体验一下 Github 以及 Git 的魅力。</p>
+<span id="more"></span>
+
+<h2 id="写在最前"><a href="#写在最前" class="headerlink" title="写在最前"></a>写在最前</h2><p>在开始本教程之前，首先需要提醒几句话。</p>
+<ol>
+<li>对于新学习 Git 人来说，我一般建议使用命令来操作 Git 仓库，这可以让你更快熟悉 Git 的工作；同样地 ，学好了命令操作便可以在多种不同的系统中无缝切换使用 Git，不用依赖 IDE 以及 GUI 。</li>
+<li>由于国内网络的特性，Github在国内常常都是表示为接近 <strong>无法访问</strong>，或者速度很慢，所以，<strong>希望在阅读此文章之前，您已经了解并能够使用 《科学工具》 浏览外国网站。</strong></li>
+</ol>
+<h2 id="1、注册Github账号"><a href="#1、注册Github账号" class="headerlink" title="1、注册Github账号"></a>1、注册Github账号</h2><p>既然是个网站，为了管理我们自己的仓库，我们需要一个 Github 账号，你可以点击 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpZ251cA==">这里 Join GitHub <i class="fa fa-external-link-alt"></i></span>或者百度搜索 Github 官网进入注册页面：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806114318.png" alt="image-20210806114311586"></p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806114407.png" alt="image-20210806114406931"></p>
+<p>注册的内容就不细说了，按照流程来便是了，最后会有一步验证邮箱，会给你邮箱发送验证信息，将验证的代码填写上去，即注册成功。</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806154904.png" alt="image-20210806154857264"></p>
+<p>最后点击左上角的 Github 图标，回到首页</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806162232.png" alt="image-20210806162232044"></p>
+<h2 id="2、安装Git"><a href="#2、安装Git" class="headerlink" title="2、安装Git"></a>2、安装Git</h2><p>Git 是分布式的，每个 Git 仓库在不同的位置都拥有不同的版本。 <strong>本地仓库</strong> 和 <strong>远程仓库</strong> 就是两个不同的仓库。</p>
+<p>可以把本地仓库和远程仓库类比为分享文件，假设你拥有一套学习视频，你要通过网盘分享给别人，别人可以通过你的网盘链接下载该文件。</p>
+<p>其中：</p>
+<p>本地拥有的学习视频类似于 Git 的<strong>本地仓库</strong>，你可以随时更新学习视频的内容，然后将其上传到网盘。</p>
+<p>网盘中的视频类似于 Git 的<strong>远程仓库</strong>，你同样可以通过浏览器，网盘客户端等更新操作网盘中的内容，与本地仓库的区别在于存储的位置不一样而已。</p>
+<p>网盘的分享链接就是 Git <code>clone</code> 链接，只要拥有了该链接，任何人都可以 <code>clone</code>该项目。</p>
+<p>远程的 Git 仓库由 Github 提供管理，而本地我们需要 Git 程序来管理 Git 仓库。</p>
+<p>Git 程序是开源的，意味着你在互联网上很容易就能下载到它，Git的官网就有下载地址：<span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9kb3dubG9hZHM=">Git - Downloads (git-scm.com)<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>但是，由于国内网络的特性，官网下载的速度奇慢，犹记得作者第一次下载时那 <code>22kB/s</code> 的龟速，对于无法科学上网的同学，这里我给出几个国内的镜像源地址，以供参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9taXJyb3JzLnR1bmEudHNpbmdodWEuZWR1LmNuL2dpdGh1Yi1yZWxlYXNlL2dpdC1mb3Itd2luZG93cy9naXQvTGF0ZXN0UmVsZWFzZS8=">git-for-windows&#x2F;git&#x2F;LatestRelease&#x2F; | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9yZXBvLmh1YXdlaWNsb3VkLmNvbS9naXQtZm9yLXdpbmRvd3MvdjIuMzIuMC53aW5kb3dzLjEv">Git for Windows | 华为开源镜像站<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p>记得下载64位且为 <code>.exe</code> 后缀的版本。</p>
+<p>下载后，直接运行安装就是了，除了在这里注意修改一下软件的安装位置之外，建议不做任何改动，直接 <code>Next</code> ：</p>
+<p> <img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806170124.png" alt="image-20210806170124937"></p>
+<p>最后 <code>Finish</code> 完成安装：</p>
+<p> <img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806170236.png" alt="image-20210806170236314"></p>
+<h2 id="3、创建远程仓库"><a href="#3、创建远程仓库" class="headerlink" title="3、创建远程仓库"></a>3、创建远程仓库</h2><p>回到 Github 的主页面，点击右上角加号图标，选择 New repository 新建仓库 ：<br><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806170646.png" alt="image-20210806170646128"></p>
+<p>填写必要信息：</p>
+<p> <img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806171739.png" alt="image-20210806171739064"></p>
+<p>点击 Create repository 创建仓库，创建成功自动跳转到该仓库：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806171840.png" alt="image-20210806171840807"></p>
+<h2 id="4、初始化本地仓库"><a href="#4、初始化本地仓库" class="headerlink" title="4、初始化本地仓库"></a>4、初始化本地仓库</h2><p>打开文件管理器，进入你的项目文件夹的根目录，笔者这里的项目根文件夹为 MyProject ，然后在空白处右击鼠标右键，选择 Git Bash Here：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806172502.png" alt="image-20210806172502717"></p>
+<p>这时会自动弹出一个命令行窗口，这是 Git 自带的命令行程序，和 Git 结合性较好，推荐使用。如果你想其他命令行程序，甚至是 cmd 都可以，只需使用 cd 命令进入这个项目目录即可。</p>
+<p>第一步，配置用户信息。上文中提到，Git 是分布式的，一个相同的仓库在不同的人的电脑上可能有不同的版本，Github的远程仓库类似于中央仓库。如果这个仓库是公开的（<code>public</code>），任何人都有可能修改这个仓库的内容。为了知道是谁向仓库产生了修改，必须在本地设置用户信息。</p>
+<p>分别输入以下两条命令，设置用户信息：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config user.name <span class="string">&quot;your name&quot;</span> --global</span><br><span class="line">git config user.email <span class="string">&quot;your email&quot;</span> --global</span><br></pre></td></tr></table></figure>
+
+<p>上面的 <code>user.name</code>，<code>user.email</code> 可以任意，不必和 Github 上注册的相同，因为这只是你在本地的一个代号而已。</p>
+<p>第二步，初始化仓库。确定自己已经在命令行进入该项目目录，输入初始化命令，初始化该目录为一个 Git 仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806174641.png" alt="image-20210806174641309"></p>
+<p>此时，项目根目录会自动生成 <code>.git</code> 隐藏文件夹，存储该仓库的信息，同时代表这个项目目录由 <code>Git</code>管理。</p>
+<blockquote>
+<p>Windows 10 查看隐藏文件的办法：</p>
+<p>在文件资源管理器中，选择左上角的 <strong>查看</strong>，然后在显示的菜单中找到 <strong>隐藏的项目</strong> 并勾选，此时隐藏的文件就会显示出来。</p>
+</blockquote>
+<p>第三步，添加远程仓库。初始化好本地仓库后，该仓库中所有的文件都会受到 Git 的管理，但是，我们似乎和远程仓库没有任何联系。为了将该仓库推送到远程，我们必须添加远程仓库的位置，让本地仓库能够知道这个仓库应该推送到哪里。</p>
+<p>打开我们之前在 Github 上创建的仓库，单击 SSH按钮，然后点击 ssh 链接右方的复制图标复制该链接：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806181456.png" alt="image-20210806181456193"></p>
+<p>切换回命令行，使用 <code>git remote add </code> 添加该链接：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add 别名 <span class="string">&quot;链接地址&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个<strong>链接地址</strong>就代表仓库的位置，别名和链接地址就类似于域名和ip地址的关系，这个别名一般为 origin：</p>
+<p> <img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806181917.png" alt="image-20210806181917353"></p>
+<p>输入命令 <code>git remote -vv</code> 可以看到添加的仓库信息：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806195930.png" alt="image-20210806195930536"></p>
+<p>这样，本地仓库就拥有了远程仓库的位置，可以在后期推送的时候指定该位置。</p>
+<h2 id="5、使用SSH密钥"><a href="#5、使用SSH密钥" class="headerlink" title="5、使用SSH密钥"></a>5、使用SSH密钥</h2><p>配置好本地仓库的信息，接下本来应该是推送了。但是，由于我们用的是 SSH 链接，我们还必须配置密钥信息。</p>
+<p>第一步，生成密钥对。依然是在Git Bash的命令行，输入生成 SSH 密钥对的命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -C <span class="string">&quot;comment&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>comment 的内容为备注，即备注改密钥对的信息，可不写。</p>
+</blockquote>
+<p>接下来会出现几行提示需要要你输入，可以不管，直接回车即可，最终效果如下：</p>
+<p> <img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806192327.png" alt="image-20210806192326998"></p>
+<p>第二步，获取生成的公钥。接下来打开系统的文件管理器，进入用户家目录的 <code>.ssh</code> 文件夹，找到刚才建立的 <code>id_rsa.pub</code> 文件，以文本方式打开，复制其中的内容：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806192935.png" alt="image-20210806192935687"></p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806193145.png" alt="image-20210806193145334"></p>
+<p>第三步，将公钥配置到 Github。在 Github 网站右上角找到个人头像的位置，点击头像，在弹出的菜单中点击 <code>Settings</code></p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806193742.png" alt="image-20210806193742545"></p>
+<p>在左边的菜单中点击 SSH and GPG Keys：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806194149.png" alt="image-20210806194149098"></p>
+<p>点击 New SSH Keys，将复制的公钥内容粘贴到 Key 输入框，并给该 SSH Key 定义一个 Title；然后点击下方的 Add SSH key 添加该 Key。</p>
+<p> <img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806194742.png" alt="image-20210806194742776"></p>
+<p>添加时可能需要验证密码，正常输入便是，最后添加成功的结果如下：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806195528.png" alt="image-20210806195528612"></p>
+<p>OK，SSh密钥到此配置成功，接下来就是推送了。</p>
+<h2 id="6、提交推送"><a href="#6、提交推送" class="headerlink" title="6、提交推送"></a>6、提交推送</h2><p>第一步，添加文件。切回命令行，要提交，首先得添加要提交的文件，使用 <code>git add</code> 命令添加文件进入 git 管理：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>git add .</strong><br><strong>提交所有修改的和新建的数据暂存区</strong></p>
+<p><strong>git add -u &lt;&#x3D;&#x3D;&gt; git add –update</strong><br><strong>提交所有被删除和修改的文件到数据暂存区</strong></p>
+<p><strong>git add -A &lt;&#x3D;&#x3D;&gt;git add –all</strong><br><strong>提交所有被删除、被替换、被修改和新增的文件到数据暂存区</strong></p>
+<p>来自：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RheWV3YW5kb3UvYXJ0aWNsZS9kZXRhaWxzLzc4NTEzNTc4">git add -A &#x2F;git add -u&#x2F;git add .的用法_dayewandou的博客-CSDN博客<i class="fa fa-external-link-alt"></i></span></p>
+<p>通常我们都使用 git add .</p>
+</blockquote>
+<p>第二步，查看状态。接下来，我们可以查看文件状态，看看文件是否被添加进了 git 管理：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806200426.png" alt="image-20210806200425969"></p>
+<p><code>new file</code> 代表添加到了 git 管理的文件。</p>
+<p>第三步，提交文件更改。刚才添加的文件只是到了 git 的暂存区，我们还需要提交添加的文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;input yours message&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806200940.png" alt="image-20210806200940537"></p>
+<p>第四步，推送。使用 <code>push</code> 命令 将本地仓库推送到远程仓库（Github）中：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>origin：这就是上面所说的远程仓库的 “别名”</p>
+<p>master：代表要推送的分支名称，默认为 master ，可以在 Git Bash 的路径最右端看到。</p>
+</blockquote>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806202153.png" alt="image-20210806202153462"></p>
+<p>如图，可能会出现提示是否继续连接的输入项，输入 yes 即可。</p>
+<p>最后，在 Github 主页中，点击右上角头像 》点击 Your Repositories 》点击建立的远程仓库(first-project) 》。可以看到我们刚才推送的内容已经到了仓库中：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210806202534.png" alt="image-20210806202534349"></p>
+<p>（本文完）</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RheWV3YW5kb3UvYXJ0aWNsZS9kZXRhaWxzLzc4NTEzNTc4">git add -A &#x2F;git add -u&#x2F;git add .的用法_dayewandou的博客-CSDN博客<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2l0LXNjbS5jb20v">Git (git-scm.com)<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>千帆过烬
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://qianfanguojin.top/git-push-to-github-tutorial/" title="保姆级教程，教你使用Git推送你的项目到Github">https://qianfanguojin.top/git-push-to-github-tutorial/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mysql-remote-connection-summary/" rel="prev" title="关于MySQL的远程连接的一些总结">
+                  <i class="fa fa-angle-left"></i> 关于MySQL的远程连接的一些总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/add-windows-terminal-to-context-menu/" rel="next" title="将  Windows Terminal  添加到 Windows 右键菜单（管理员方式、可选配置）">
+                  将  Windows Terminal  添加到 Windows 右键菜单（管理员方式、可选配置） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">谢同学</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">85k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script class="next-config" data-name="wavedrom" type="application/json">{"enable":true,"js":{"url":"https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/wavedrom/3.5.0/wavedrom.min.js","integrity":"sha256-INLAoJc6quTNfiMWkGZniYO2cxE8mHpddnLow1m6RFs="}}</script>
+  <script class="next-config" data-name="wavedrom_skin" type="application/json">{"enable":true,"js":{"url":"https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/wavedrom/3.5.0/skins/default.js","integrity":"sha256-fduc/Zszk5ezWws2uInY/ALWVmIrmV6VTgXbsYSReFI="}}</script>
+  <script src="/js/third-party/tags/wavedrom.js"></script>
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"ignores":null,"url":"https://qianfanguojin.top/git-push-to-github-tutorial/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-waline.qianfanguojin.top","cssUrl":"https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.css","commentCount":false,"pageview":false,"libUrl":"https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.umd.js","locale":{"nick":"昵称（不少于3个字符）","nickError":"昵称不能少于3个字符","mail":"邮箱（随意）","mailError":"请填写正确的邮件地址","link":"网址","optional":"可选","placeholder":"可以直接匿名评论，填写上方邮箱信息或者登录，还可收到评论邮件提醒"},"avatar":"","commentSorting":"hottest","highlighter":true,"copyright":true,"reaction":false,"emoji":["https://fastly.jsdelivr.net/npm/@waline/emojis/weibo","https://fastly.jsdelivr.net/npm/@waline/emojis/tieba","https://fastly.jsdelivr.net/npm/@waline/emojis/coolapk","https://fastly.jsdelivr.net/npm/@waline/emojis/alus","https://fastly.jsdelivr.net/npm/@waline/emojis/qq","https://fastly.jsdelivr.net/npm/@waline/emojis/bilibili","https://fastly.jsdelivr.net/npm/@waline/emojis/tw-emoji"],"requiredMeta":[],"login":"enable","pageSize":10,"dark":"auto","el":"#waline","comment":true,"path":"/git-push-to-github-tutorial/"}</script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+<!-- hexo injector body_end start -->
+  <script src="/js/outdate.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

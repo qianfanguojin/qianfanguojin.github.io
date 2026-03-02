@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msvalidate.01" content="88D4E0537A435134228F952F8B00D1DD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flash.css">
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qianfanguojin.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto","path":"search.xml","field":"post","content":true,"format":"html"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="文章发出之后，往往我们想要得到读者更多地反馈，那么拥有一个评论系统是至关重要的。 本篇带大家通过一些简单的配置，在 Hexo Next 主题下添加 Waline 评论系统。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Hexo博客进阶：为 Next 主题添加 Waline 评论系统">
+<meta property="og:url" content="https://qianfanguojin.top/hexo-next-theme-add-waline-comments/index.html">
+<meta property="og:site_name" content="小谢的小站">
+<meta property="og:description" content="文章发出之后，往往我们想要得到读者更多地反馈，那么拥有一个评论系统是至关重要的。 本篇带大家通过一些简单的配置，在 Hexo Next 主题下添加 Waline 评论系统。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201202316763.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210815161252.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108151614201.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211139993.png">
+<meta property="og:image" content="https://vercel.com/button">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211306146.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211309809.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211313406.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211314501.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211330222.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211333672.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211413737.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211432511.png">
+<meta property="article:published_time" content="2022-01-20T14:11:04.000Z">
+<meta property="article:modified_time" content="2022-01-20T14:11:04.000Z">
+<meta property="article:author" content="千帆过烬">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Next">
+<meta property="article:tag" content="Waline">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201202316763.png">
+
+
+<link rel="canonical" href="https://qianfanguojin.top/hexo-next-theme-add-waline-comments/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qianfanguojin.top/hexo-next-theme-add-waline-comments/","path":"hexo-next-theme-add-waline-comments/","title":"Hexo博客进阶：为 Next 主题添加 Waline 评论系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hexo博客进阶：为 Next 主题添加 Waline 评论系统 | 小谢的小站</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-waline.qianfanguojin.top">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+  <link rel="preconnect" href="https://static.zeoseven.com" crossorigin />
+  <link rel="stylesheet" href="https://static.zeoseven.com/zsft/292/main/result.css" />
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小谢的小站</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">41</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E9%85%8D%E7%BD%AE%E8%AF%84%E8%AE%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">1. 第一步，配置评论数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">2. 安装服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%9C%A8Hexo-Next%E4%B8%BB%E9%A2%98%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="nav-text">3. 在Hexo Next主题中配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">4. 登录服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%85%B6%E4%BB%96"><span class="nav-text">5. 其他</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%B4%E5%83%8F"><span class="nav-text">5.1 自定义头像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E5%8F%82%E8%80%83"><span class="nav-text">5.2 参考</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千帆过烬"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">千帆过烬</p>
+  <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianfanguojin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiunian_2761"><i class="fab fa-codiepie fa-fw"></i>CSDN</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlpZmFuLnhpZUBmb3htYWlsLmNvbQ==" title="E-Mail → mailto:yifan.xie@foxmail.com"><i class="far fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="dGVuY2VudDovL21lc3NhZ2UvP3Vpbj0xNjU3MDk4NjE3JlNpdGU9Jk1lbnU9eWVz" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1657098617&amp;Site&#x3D;&amp;Menu&#x3D;yes"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/hexo-next-theme-add-waline-comments/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="千帆过烬">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小谢的小站">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hexo博客进阶：为 Next 主题添加 Waline 评论系统 | 小谢的小站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo博客进阶：为 Next 主题添加 Waline 评论系统<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4vaGV4by1ibG9nLXNvdXJjZS90cmVlL21haW4vc291cmNlL19wb3N0cy9IZXhvL2hleG8tbmV4dC10aGVtZS1hZGQtd2FsaW5lLWNvbW1lbnRzLm1k" title="编辑"><i class="fa fa-pen-nib"></i></span>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-20 22:11:04" itemprop="dateCreated datePublished" datetime="2022-01-20T22:11:04+08:00">2022-01-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/hexo-next-theme-add-waline-comments/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/hexo-next-theme-add-waline-comments/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>文章发出之后，往往我们想要得到读者更多地反馈，那么拥有一个评论系统是至关重要的。</p>
+<p>本篇带大家通过一些简单的配置，在 Hexo Next 主题下添加 Waline 评论系统。</p>
+<span id="more"></span>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在之前的 <a href="https://qianfanguojin.top/2019/07/23/Hexo%E5%8D%9A%E5%AE%A2%E8%BF%9B%E9%98%B6%EF%BC%9A%E4%B8%BANext%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0Valine%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/?highlight=valine">Hexo博客进阶：为Next主题添加Valine评论系统 | 谢同学的博客 (qianfanguojin.top)</a> 文章中，我叙述了如何 在 Next主题下配置 Valine 评论系统。</p>
+<p>但是，根据读者反馈，Valine 评论系统在 Next 主题高版本 (7.+) 以上已没有支持，且 Valine 已经很久没有更新维护了。不过，有大佬在 Valine 的基础之上开发了  <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">Waline<i class="fa fa-external-link-alt"></i></span> 。<br>这次，我们就来描述如何快速上手安装配置更加人性化且带后端的 <span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">Waline<i class="fa fa-external-link-alt"></i></span> 评论系统。</p>
+<h2 id="1-第一步，配置评论数据库"><a href="#1-第一步，配置评论数据库" class="headerlink" title="1. 第一步，配置评论数据库"></a>1. 第一步，配置评论数据库</h2><p><code>Waline</code> 和 Valine 一样，也是支持基于 <span class="exturl" data-url="aHR0cHM6Ly9sZWFuY2xvdWQuYXBwLw==">LeanCloud<i class="fa fa-external-link-alt"></i></span> 作为数据存储的，但是 <code>Waline</code> 支持的部署方式更多：</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">Waline</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>Client</strong></td>
+<td align="center"><strong>Server</strong></td>
+<td align="center"><strong>Storage</strong></td>
+</tr>
+<tr>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnLw==">@waline&#x2F;client<i class="fa fa-external-link-alt"></i></span></td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly92ZXJjZWwuY29tLw==">Vercel<i class="fa fa-external-link-alt"></i></span></td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9sZWFuY2xvdWQuYXBwLw==">LeanCloud<i class="fa fa-external-link-alt"></i></span></td>
+</tr>
+<tr>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9taW5pdmFsaW5lLmpzLm9yZy8=">MiniValine<i class="fa fa-external-link-alt"></i></span></td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9kZXRhLnNoLw==">Deta<i class="fa fa-external-link-alt"></i></span></td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9jbG9kYmFzZS5uZXQv">CloudBase<i class="fa fa-external-link-alt"></i></span></td>
+</tr>
+<tr>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FzZm9yZXN0L0FwcmlsQ29tbWVudA==">AprilComment<i class="fa fa-external-link-alt"></i></span></td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZGJhc2UubmV0Lw==">CloudBase<i class="fa fa-external-link-alt"></i></span></td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9tb25nb2RiLmNvbS8=">MongoDB<i class="fa fa-external-link-alt"></i></span></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9pbnNwaXJlY2xvdWQuY29tLw==">InspireCloud<i class="fa fa-external-link-alt"></i></span></td>
+<td align="center">MySQL</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9yYWlsd2F5LmFwcC8=">Railway<i class="fa fa-external-link-alt"></i></span></td>
+<td align="center">SQLite</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9yZW5kZXIuY29tLw==">Render<i class="fa fa-external-link-alt"></i></span></td>
+<td align="center">PostgreSQL</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Docker</td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw==">GitHub<i class="fa fa-external-link-alt"></i></span></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Virtual Host</td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRldGEuc2gvZG9jcy9iYXNlL2Fib3V0">Deta Base<i class="fa fa-external-link-alt"></i></span></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="exturl" data-url="aHR0cHM6Ly9pbnNwaXJlY2xvdWQuY29tL2RvY3Mvbm9kZWpzL2RhdGFiYXNlL3F1aWNrc3RhcnQuaHRtbA==">InspireCloud<i class="fa fa-external-link-alt"></i></span></td>
+</tr>
+</tbody></table>
+<p>为了方便，这里我只讲述最简单，零成本的数据库建立方法。</p>
+<p>我们需要注册一个 <span class="exturl" data-url="aHR0cHM6Ly9jb25zb2xlLmxlYW5jbG91ZC5hcHAvcmVnaXN0ZXI=">Leancloud 国际版 <i class="fa fa-external-link-alt"></i></span>的账号，注意，一定要是 <strong>国际版</strong>，国内版需要绑定备案的域名，比较麻烦。具体可以在注册时的左上角看到：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201202316763.png"></p>
+<p>注册完成后，登录，然后我们找到<code>创建应用</code></p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/20210815161252.png"></p>
+<p>在这里填写你的应用名称,名称可以自己定义，然后，下面选择<code>开发版</code> 点击<code>创建</code>。</p>
+<p>然后点击应用进入设置。</p>
+<p> <img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108151614201.png"></p>
+<p> 点击应用凭证，取得我们 <code>AppKey</code> 、<code>App id</code> 、以及 <code>MasterKey</code> ：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211139993.png"></p>
+<p>数据库配置完毕，接下来安装服务端。</p>
+<h2 id="2-安装服务端"><a href="#2-安装服务端" class="headerlink" title="2. 安装服务端"></a>2. 安装服务端</h2><p>由上面的表格可以看到，<code>Waline</code> 支持多种服务端，为了最简便上手，我们使用第一种方式，即在 <code>Vercl</code> 上安装服务端。首先，点击下面的按钮，一键部署：</p>
+<p>  <a target="_blank" rel="noopener" href="https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/main/example"><img data-src="https://vercel.com/button" alt="Vercel"></a></p>
+<p>应该需要注册一个账号，支持使用 <code>Github</code> 账号直接登录：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211306146.png"></p>
+<p>登录后重新点进来，点击 <code>Create</code>：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211309809.png"></p>
+<p>然后等待下面 <code>Deploy</code> 构建完成，点击 <code>Go to Dashboard</code></p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211313406.png"></p>
+<p>找到 Settings &#x3D;&gt; Environment Variables，配置环境变量：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211314501.png"></p>
+<p>我们需要配置三个环境变量，对应如下表：</p>
+<table>
+<thead>
+<tr>
+<th>Lean Cloud</th>
+<th>Vercel Environment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AppID</td>
+<td>LEAN_ID</td>
+</tr>
+<tr>
+<td>AppKey</td>
+<td>LEAN_KEY</td>
+</tr>
+<tr>
+<td>MasterKey</td>
+<td>LEAN_MASTER_KEY</td>
+</tr>
+</tbody></table>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211330222.png"></p>
+<blockquote>
+<p>提示</p>
+<p>如果你使用 LeanCloud 国内版，请额外配置 <code>LEAN_SERVER</code> 环境变量，值为你绑定好的域名。</p>
+</blockquote>
+<p>为了使环境变量生效，我们需要重新构建一次。在上方找到 Deployments ，选择第一个右边的三个点，点击 Redeploy 。</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211333672.png"></p>
+<p>等待其构建结束，然后记住 <code>DOMAINS</code> 中的域名地址：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211413737.png"></p>
+<p>好了，服务端部署到此结束，下面我们开始在 <code>Hexo Next</code> 主题中配置客户端。</p>
+<h2 id="3-在Hexo-Next主题中配置"><a href="#3-在Hexo-Next主题中配置" class="headerlink" title="3. 在Hexo Next主题中配置"></a>3. 在Hexo Next主题中配置</h2><p>由于 Next 主题中并不自带 <code>Waline</code> 的评论配置，我们需要安装官方提供的插件。在 <code>Hexo</code> 根目录执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
+
+<p>找到 Next 的主题配置文件，在最后加上</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Waline</span></span><br><span class="line"><span class="comment"># For more information: https://waline.js.org, https://github.com/walinejs/waline</span></span><br><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-pearl.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">请文明评论呀</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>, <span class="string">mail</span>, <span class="string">link</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="comment"># Warning: 不要同时启用 `waline.visitor` 以及 `leancloud_visitors`.</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="comment"># Set custom library cdn url</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>重新部署 <code>Hexo</code> ，就可以看到结果了。</p>
+<blockquote>
+<p>据反馈，Hexo 似乎在 8.x 的版本使用 waline 比较稳定，如果出现 <code>hexo g</code> 出错，可尝试升级 hexo 版本。</p>
+</blockquote>
+<h2 id="4-登录服务端"><a href="#4-登录服务端" class="headerlink" title="4. 登录服务端"></a>4. 登录服务端</h2><p>由于 <code>Waline</code> 有服务端，支持评论管理。我们需要注册一个账号作为管理员。</p>
+<p>找到评论框，点击 <code>登录</code> 按钮，会弹出一个窗口，找到用户注册，默认第一个注册的用户为管理员，所以部署好一定要记得及时注册。</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202201211432511.png"></p>
+<p>注册好，登录之后即可进入评论管理的后台，可以对评论进行管理。</p>
+<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h3 id="5-1-自定义头像"><a href="#5-1-自定义头像" class="headerlink" title="5.1 自定义头像"></a>5.1 自定义头像</h3><p>参考：<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2NsaWVudC9hdmF0YXIuaHRtbA==">头像配置 | Waline<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="5-2-参考"><a href="#5-2-参考" class="headerlink" title="5.2 参考"></a>5.2 参考</h3><p><span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLmh0bWw=">https://waline.js.org/guide/get-started.html<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>千帆过烬
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://qianfanguojin.top/hexo-next-theme-add-waline-comments/" title="Hexo博客进阶：为 Next 主题添加 Waline 评论系统">https://qianfanguojin.top/hexo-next-theme-add-waline-comments/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Next/" rel="tag"># Next</a>
+              <a href="/tags/Waline/" rel="tag"># Waline</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/setup-vscode-as-git-difftool-mergetool/" rel="prev" title="教你设置 VSCode 为 Git 在比较和合并冲突时的可视化工具">
+                  <i class="fa fa-angle-left"></i> 教你设置 VSCode 为 Git 在比较和合并冲突时的可视化工具
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/javascript-intro-part3-operators-control-flow/" rel="next" title="JavaScript入门（三）：运算符与流程控制语句">
+                  JavaScript入门（三）：运算符与流程控制语句 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">谢同学</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">85k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script class="next-config" data-name="wavedrom" type="application/json">{"enable":true,"js":{"url":"https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/wavedrom/3.5.0/wavedrom.min.js","integrity":"sha256-INLAoJc6quTNfiMWkGZniYO2cxE8mHpddnLow1m6RFs="}}</script>
+  <script class="next-config" data-name="wavedrom_skin" type="application/json">{"enable":true,"js":{"url":"https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/wavedrom/3.5.0/skins/default.js","integrity":"sha256-fduc/Zszk5ezWws2uInY/ALWVmIrmV6VTgXbsYSReFI="}}</script>
+  <script src="/js/third-party/tags/wavedrom.js"></script>
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"ignores":null,"url":"https://qianfanguojin.top/hexo-next-theme-add-waline-comments/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-waline.qianfanguojin.top","cssUrl":"https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.css","commentCount":false,"pageview":false,"libUrl":"https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.umd.js","locale":{"nick":"昵称（不少于3个字符）","nickError":"昵称不能少于3个字符","mail":"邮箱（随意）","mailError":"请填写正确的邮件地址","link":"网址","optional":"可选","placeholder":"可以直接匿名评论，填写上方邮箱信息或者登录，还可收到评论邮件提醒"},"avatar":"","commentSorting":"hottest","highlighter":true,"copyright":true,"reaction":false,"emoji":["https://fastly.jsdelivr.net/npm/@waline/emojis/weibo","https://fastly.jsdelivr.net/npm/@waline/emojis/tieba","https://fastly.jsdelivr.net/npm/@waline/emojis/coolapk","https://fastly.jsdelivr.net/npm/@waline/emojis/alus","https://fastly.jsdelivr.net/npm/@waline/emojis/qq","https://fastly.jsdelivr.net/npm/@waline/emojis/bilibili","https://fastly.jsdelivr.net/npm/@waline/emojis/tw-emoji"],"requiredMeta":[],"login":"enable","pageSize":10,"dark":"auto","el":"#waline","comment":true,"path":"/hexo-next-theme-add-waline-comments/"}</script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+<!-- hexo injector body_end start -->
+  <script src="/js/outdate.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

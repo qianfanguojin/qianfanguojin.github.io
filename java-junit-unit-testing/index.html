@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="msvalidate.01" content="88D4E0537A435134228F952F8B00D1DD">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flash.css">
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qianfanguojin.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto","path":"search.xml","field":"post","content":true,"format":"html"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="作为一个 Java 开发人员，为了编写出优秀的代码，我们要既要懂得在编写时注意各种规范和逻辑，也要懂得如何对代码进行测试。 本篇文章就带领大家体验使用 JUnit 测试框架来对 Java 代码进行测试。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Java基础加强：JUnit 单元测试">
+<meta property="og:url" content="https://qianfanguojin.top/java-junit-unit-testing/index.html">
+<meta property="og:site_name" content="小谢的小站">
+<meta property="og:description" content="作为一个 Java 开发人员，为了编写出优秀的代码，我们要既要懂得在编写时注意各种规范和逻辑，也要懂得如何对代码进行测试。 本篇文章就带领大家体验使用 JUnit 测试框架来对 Java 代码进行测试。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202202131602241.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171617194.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171618147.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171617981.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171618469.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619617.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619070.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619318.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619567.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619395.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619166.png">
+<meta property="og:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619902.png">
+<meta property="article:published_time" content="2019-08-02T09:07:33.000Z">
+<meta property="article:modified_time" content="2021-08-17T08:23:23.000Z">
+<meta property="article:author" content="千帆过烬">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JUnit 单元测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202202131602241.png">
+
+
+<link rel="canonical" href="https://qianfanguojin.top/java-junit-unit-testing/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qianfanguojin.top/java-junit-unit-testing/","path":"java-junit-unit-testing/","title":"Java基础加强：JUnit 单元测试"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java基础加强：JUnit 单元测试 | 小谢的小站</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blog-waline.qianfanguojin.top">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+  <link rel="preconnect" href="https://static.zeoseven.com" crossorigin />
+  <link rel="stylesheet" href="https://static.zeoseven.com/zsft/292/main/result.css" />
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小谢的小站</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">41</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-text">什么是单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8-JUnit"><span class="nav-text">1. 初步使用 JUnit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E9%A1%B9%E7%9B%AE"><span class="nav-text">1.1 新建一个测试项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%96%B0%E5%BB%BA%E6%B5%8B%E8%AF%95%E7%B1%BB"><span class="nav-text">1.2 新建测试类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%9C%A8%E6%B5%8B%E8%AF%95%E7%B1%BB%E4%B8%AD%E6%96%B0%E5%BB%BA%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="nav-text">1.3 在测试类中新建测试方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E6%B7%BB%E5%8A%A0%E6%B3%A8%E8%A7%A3%E7%8B%AC%E7%AB%8B%E8%BF%90%E8%A1%8C"><span class="nav-text">1.4 添加注解独立运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E6%96%AD%E8%A8%80"><span class="nav-text">2. 使用断言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%AD%E8%A8%80%EF%BC%9F"><span class="nav-text">2.1 什么是断言？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%96%AD%E8%A8%80%EF%BC%9F"><span class="nav-text">2.2 为什么使用断言？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8%E6%96%AD%E8%A8%80"><span class="nav-text">2.3 开始使用断言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%A1%A5%E5%85%85%E5%86%85%E5%AE%B9"><span class="nav-text">3. 补充内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千帆过烬"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">千帆过烬</p>
+  <div class="site-description" itemprop="description">愿面朝大海，春暖花开</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qianfanguojin"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppdW5pYW5fMjc2MQ==" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiunian_2761"><i class="fab fa-codiepie fa-fw"></i>CSDN</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlpZmFuLnhpZUBmb3htYWlsLmNvbQ==" title="E-Mail → mailto:yifan.xie@foxmail.com"><i class="far fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="dGVuY2VudDovL21lc3NhZ2UvP3Vpbj0xNjU3MDk4NjE3JlNpdGU9Jk1lbnU9eWVz" title="QQ → tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1657098617&amp;Site&#x3D;&amp;Menu&#x3D;yes"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qianfanguojin.top/java-junit-unit-testing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="千帆过烬">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小谢的小站">
+      <meta itemprop="description" content="愿面朝大海，春暖花开">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java基础加强：JUnit 单元测试 | 小谢的小站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java基础加强：JUnit 单元测试<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4vaGV4by1ibG9nLXNvdXJjZS90cmVlL21haW4vc291cmNlL19wb3N0cy9KYXZhL2phdmEtanVuaXQtdW5pdC10ZXN0aW5nLm1k" title="编辑"><i class="fa fa-pen-nib"></i></span>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-02 17:07:33" itemprop="dateCreated datePublished" datetime="2019-08-02T17:07:33+08:00">2019-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-08-17 16:23:23" itemprop="dateModified" datetime="2021-08-17T16:23:23+08:00">2021-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/java-junit-unit-testing/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/java-junit-unit-testing/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>作为一个 Java 开发人员，为了编写出优秀的代码，我们要既要懂得在编写时注意各种规范和逻辑，也要懂得如何对代码进行测试。</p>
+<p>本篇文章就带领大家体验使用 JUnit 测试框架来对 Java 代码进行测试。</p>
+<span id="more"></span>
+
+<h2 id="什么是单元测试"><a href="#什么是单元测试" class="headerlink" title="什么是单元测试"></a>什么是单元测试</h2><p>在软件行业，测试方法大致分为两大类：</p>
+<ol>
+<li><p>黑盒测试。</p>
+<p>在黑盒测试中，测试人员不考虑程序内部结构和内部特性，不需要写代码。例如我对该程序输入测试后，黑盒测试随后<strong>只检查程序执行之后的输出的结果是否正确，着眼考虑于程序的外部结构</strong>。</p>
+</li>
+<li><p>白盒测试。</p>
+<p>相对于黑盒测试，白盒测试需要测试人员<strong>关注程序内部功能实现的流程</strong>，需要写代码。白盒测试在输入测试后，用户可以看到程序中的内部结构，逻辑，算法…. 等。</p>
+</li>
+</ol>
+<p>可以看到，白盒测试对于测试人员的要求更高，但是相应地，白盒测试能够发现程序的更多细致的问题，所以白盒测试对于开发人员来说是一项不可或缺的技能。</p>
+<p>在 Java 中，使用 JUnit 单元测试框架对代码测试就是一种白盒测试的方式，接下来，我们就来一步步开始了解和使用 JUnit 。</p>
+<h2 id="1-初步使用-JUnit"><a href="#1-初步使用-JUnit" class="headerlink" title="1. 初步使用 JUnit"></a>1. 初步使用 JUnit</h2><p>对于使用 JUnit 单元测试来说，有以下几个步骤：</p>
+<ul>
+<li>定义一个测试类</li>
+<li>导入 JUnit 测试环境</li>
+<li>在测试类中定义一个可以独立运行的测试方法</li>
+<li>给方法加 <code>@Test</code> 注解</li>
+</ul>
+<p>下面我使用一个用例来具体解析如何使用 JUnit 进行测试。</p>
+<h3 id="1-1-新建一个测试项目"><a href="#1-1-新建一个测试项目" class="headerlink" title="1.1 新建一个测试项目"></a>1.1 新建一个测试项目</h3><p>打开 IDEA， 点击 File&gt;New&gt;Project，左边选择 Java ，选择好 JDK 的路径 ，点击 Next ，再点击 Next，将项目名命名为<code>JunitTest</code>，然后点击 FINISH ，创建项目。</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/hexo/202202131602241.png"></p>
+<p>在<code>src</code> 目录下新建一个名为 junit 的包：鼠标右键单击<code>src</code> 目录，然后点击 New&gt;Package，输入名字为 junit，点击 OK。</p>
+<p>最后在 junit 包下新建我们想要测试的 Calculator 类：鼠标右键单击 junit 目录，然后点击 New&gt;Java Class，输入名字为Calculator，点击OK。</p>
+<p>此时我们的项目结构如下：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171617194.png"></p>
+<p>然后我们在<code>Calculator</code>类中定义两个方法用作被测试，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> junit;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计算器类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加法操作</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> a</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> b</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span> <span class="params">(<span class="type">int</span> a , <span class="type">int</span> b)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 减法操作</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> a</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> b</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">substract</span> <span class="params">(<span class="type">int</span> a , <span class="type">int</span> b)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a - b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>至此，项目基本框架建立完成。</p>
+<h3 id="1-2-新建测试类"><a href="#1-2-新建测试类" class="headerlink" title="1.2 新建测试类"></a>1.2 新建测试类</h3><p>上面我们已经建好了项目且编写好了被测试类的方法，若要对 Calculator 中的方法进行测试的话，还需要编写一个测试类。</p>
+<p>对于开发人员来说，将测试代码和源代码分开是一个好习惯。对于测试类，我们在<code>src</code> 同级目录下新建<code>test</code>文件夹，专门用来放测试代码。接着在 IDEA里还要把这个 test 文件夹要设置成测试文件的根目录，右键选中 <code>Mark Directory As - Test Sources Root</code>。</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171618147.png"></p>
+<p>建好目录之后，我们在同样在 <code>test</code>  目录下新建一个与要测试的类相同的包 <code>junit</code>。</p>
+<p>同时在该包下新建类名为 <code>CalculatorTest</code> 的类。<strong>在编写代码的过程中，将测试类的包名和被测试的包名保持一致是一个好习惯</strong>。</p>
+<p>良好的命名往往具有锦上添花的作用。对于测试类的命名，我们推荐使用<code>要测试的类名 + Test</code> 。</p>
+<p>此时项目结构如下：</p>
+<p> <img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171617981.png"></p>
+<h3 id="1-3-在测试类中新建测试方法"><a href="#1-3-在测试类中新建测试方法" class="headerlink" title="1.3 在测试类中新建测试方法"></a>1.3 在测试类中新建测试方法</h3><p>打开 CalculatorTest 类，在里面输入以下内容：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> jnnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> junit.Calculator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CalculatorTest</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试add方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testAdd</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//1.创建计算器对象</span></span><br><span class="line">        <span class="type">Calculator</span> <span class="variable">ca</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Calculator</span>();</span><br><span class="line">        <span class="comment">//调用add方法</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> ca.add(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，我们定义了一个<code>testAdd</code>方法，用于对 Calculator 类中的 add 方法进行测试。</p>
+<p>在这个方法中，我们首先是创建了一个计算器 Calculator 对象，然后调用它的 add 方法将 1，3 相加，最后输出相加的结果。</p>
+<h3 id="1-4-添加注解独立运行"><a href="#1-4-添加注解独立运行" class="headerlink" title="1.4 添加注解独立运行"></a>1.4 添加注解独立运行</h3><p>但是，这样的方法并不能直接运行。Java 是完全面向对象的，要使用<code>testAdd</code>方法，我们必须先 new 一个对象出来，然后调用该方法，该方法才会被直接执行。</p>
+<p>但是 JUnit 测试框架通过注解将该操作简化，我们只需在测试的方法上加上<code>@Test</code> 注解，就可以实现独立运行，下面是加上注解后的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> jnnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> junit.Calculator;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CalculatorTest</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试add方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testAdd</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//1.创建计算器对象</span></span><br><span class="line">        <span class="type">Calculator</span> <span class="variable">ca</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Calculator</span>();</span><br><span class="line">        <span class="comment">//调用add方法</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> ca.add(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第一次使用的话，注解会报红，这是没有导入包的原因，我们点击 <code>@Test</code> 注解，按键盘的 Alt+Enter 键：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171618469.png"></p>
+<p>选择第一个，然后 IDEA 就会自动加载该包。</p>
+<p>加上注解后，我们可以看到在方法左边多了个绿色箭头，这代表该方法可以直接运行。在 <code>main</code> 方法上，左边也有同样的箭头，。</p>
+<p> <img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619617.png"></p>
+<p>我们点击该箭头运行，出现如下结果：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619070.png"></p>
+<p>可以看到，左边显示绿色提示，右边的控制台打印了我们输出的相加结果，表示测试成功。</p>
+<p>当测试出现异常时，左边的提示会变成红色。</p>
+<p>我们在测试时，都是通过是否出现提示红色来判断测试的程序段是否有问题，这就要求我们的测试代码在编写时要有一定的严谨性。</p>
+<p>下面我来介绍增加测试代码严谨性的方法。</p>
+<h2 id="2-使用断言"><a href="#2-使用断言" class="headerlink" title="2. 使用断言"></a>2. 使用断言</h2><h3 id="2-1-什么是断言？"><a href="#2-1-什么是断言？" class="headerlink" title="2.1 什么是断言？"></a>2.1 什么是断言？</h3><p>断言就是对你的测试结果确定一个事先的肯定结果。在对这个测试结果做了断言之后，测试结果会与你事先希望的结果比较，结果一样，测试提示为绿色，结果不一样，测试提示为红色。</p>
+<h3 id="2-2-为什么使用断言？"><a href="#2-2-为什么使用断言？" class="headerlink" title="2.2 为什么使用断言？"></a>2.2 为什么使用断言？</h3><p>在我们上面的测试中，我们调用<code>Calculator</code> 中的 add 方法，然后输出结果。</p>
+<p>但是这样的测试存在很多弊端，也就是只通过结果无法判断程序的逻辑是否正确。</p>
+<p>例如，我将<code>Calculator</code> 类中的add方法修改：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span> <span class="params">(<span class="type">int</span> a , <span class="type">int</span> b)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> a - b;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们再次运行测试类的 testAdd 方法：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619318.png"></p>
+<p>左边提示为绿色，没有发现问题。</p>
+<p>我修改 add 方法的代码之后，其逻辑已经出现了问题，但是测试并没有出现问题，<strong>可以看出单纯通过打印输出结果无法判断程序是否正确</strong>。</p>
+<h3 id="2-3-开始使用断言"><a href="#2-3-开始使用断言" class="headerlink" title="2.3 开始使用断言"></a>2.3 开始使用断言</h3><p>JUnit 提供了一个类 Assert ，它有许多静态重载方法来定义断言：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619567.png"></p>
+<p>修改之前的 testAdd 方法为使用断言的方式：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testAdd</span><span class="params">()</span>&#123;</span><br><span class="line">      <span class="comment">//1.创建计算器对象</span></span><br><span class="line">      <span class="type">Calculator</span> <span class="variable">ca</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Calculator</span>();</span><br><span class="line">      <span class="comment">//2.调用add方法</span></span><br><span class="line">      <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> ca.add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">   <span class="comment">//System.out.println(result);</span></span><br><span class="line">      <span class="comment">//3.使用断言</span></span><br><span class="line">      Assert.assertEquals(<span class="number">3</span>,result);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>assertEquals()</code>接收两个值，前者为我们期望的值也就是断言的值，后者时测试的真正结果值，此时我们再次运行测试方法：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619395.png"></p>
+<p>可以看到，左边并没有变为绿色，这里没显示红色是我主题的原因。但是我们可以通过右边看到，上面提示 Test failed ，即测试失败。</p>
+<p>然后列出了原因 :</p>
+<p>Expected ：3           期望为3<br>Actual：-1                实际为-1</p>
+<p>此时我们将<code>Calculator</code> 中的 add 方法修改回正常：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span> <span class="params">(<span class="type">int</span> a , <span class="type">int</span> b)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行测试方法，测试成功：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619166.png"></p>
+<h2 id="3-补充内容"><a href="#3-补充内容" class="headerlink" title="3. 补充内容"></a>3. 补充内容</h2><p>使用<code>@Test</code>注解能够将方法设定为独立运行，但是，每次我们运行测试方法时，还是要 new 一个测试类的对象，只是这个操作由 JUnit 帮我们去完成了而已。</p>
+<p>在大多数时候，这并不会有太大的影响。然而，对于一些重复类的逻辑，比如 IO操作，我们每一个测试方法都要先获得被测试类的对象才能调用它对应的方法，而这些逻辑基本在每个测试方法都是相同的，这样就会造成代码冗余。</p>
+<p>为了减缓这种现象，我们一般会将这些操作都放在一个函数里面，在类被使用时首先就执行，使用结束后释放。</p>
+<p>而 JUnit 也提供了这样的功能，通过<code>@Before</code>注解，指定 <strong>该方法在所有测试方法执行之前执行</strong>。</p>
+<p>通过 <code>@After</code> 注解，指定 <strong>该方法在所有测试方法之后执行</strong>。</p>
+<p>我们来试验一下，修改测试类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> jnnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> junit.Calculator;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CalculatorTest</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 在所有测试方法之前执行</span></span><br><span class="line"><span class="comment">     * 一般用于数据和资源的初始化</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">beforeMethod</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Before&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 在所有测试方法之后执行</span></span><br><span class="line"><span class="comment">     * 一般用于数据和资源的释放</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;After&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试add方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testAdd</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//1.创建计算器对象</span></span><br><span class="line">        <span class="type">Calculator</span> <span class="variable">ca</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Calculator</span>();</span><br><span class="line">        <span class="comment">//2.调用add方法</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> ca.add(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="comment">//        System.out.println(result);</span></span><br><span class="line">        <span class="comment">//3.使用断言</span></span><br><span class="line">        Assert.assertEquals(<span class="number">3</span>,result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后我们运行测试方法：</p>
+<p><img data-src="https://fastly.jsdelivr.net/gh/qianfanguojin/ImageHosting_1/others/202108171619902.png"></p>
+<p>可以看到打印的顺序和我们设想的一样。</p>
+<p>JUnit4 利用 JDK5 的新特性 <code>Annotation</code>，使用注解来定义测试规则。<br>以下为几个常用的注解：</p>
+<ul>
+<li>@Test：把一个方法标记为测试方法</li>
+<li>@Before：每一个测试方法执行前自动调用一次</li>
+<li>@After：每一个测试方法执行完自动调用一次</li>
+<li>@BeforeClass：所有测试方法执行前执行一次，在测试类还没有实例化就已经被加载，所以用static修饰</li>
+<li>@AfterClass：所有测试方法执行完执行一次，在测试类还没有实例化就已经被加载，所以用static修饰</li>
+<li>@Ignore：暂不执行该测试方法</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RyZWFtd2VhdmVyX3pob3UvYXJ0aWNsZS9kZXRhaWxzLzc5ODUwMjAy">https://blog.csdn.net/dreamweaver_zhou/article/details/79850202<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>千帆过烬
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://qianfanguojin.top/java-junit-unit-testing/" title="Java基础加强：JUnit 单元测试">https://qianfanguojin.top/java-junit-unit-testing/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/JUnit-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" rel="tag"># JUnit 单元测试</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/HTML/javaweb-learning-part1-html-basics/" rel="prev" title="JavaWeb学习记录（一）：HTML概念以及基本标签">
+                  <i class="fa fa-angle-left"></i> JavaWeb学习记录（一）：HTML概念以及基本标签
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/java-reflection/" rel="next" title="Java基础加强：Java反射">
+                  Java基础加强：Java反射 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2019 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">谢同学</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">85k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpYW5mYW5ndW9qaW4=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script class="next-config" data-name="wavedrom" type="application/json">{"enable":true,"js":{"url":"https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/wavedrom/3.5.0/wavedrom.min.js","integrity":"sha256-INLAoJc6quTNfiMWkGZniYO2cxE8mHpddnLow1m6RFs="}}</script>
+  <script class="next-config" data-name="wavedrom_skin" type="application/json">{"enable":true,"js":{"url":"https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/wavedrom/3.5.0/skins/default.js","integrity":"sha256-fduc/Zszk5ezWws2uInY/ALWVmIrmV6VTgXbsYSReFI="}}</script>
+  <script src="/js/third-party/tags/wavedrom.js"></script>
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"ignores":null,"url":"https://qianfanguojin.top/java-junit-unit-testing/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://blog-waline.qianfanguojin.top","cssUrl":"https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.css","commentCount":false,"pageview":false,"libUrl":"https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.umd.js","locale":{"nick":"昵称（不少于3个字符）","nickError":"昵称不能少于3个字符","mail":"邮箱（随意）","mailError":"请填写正确的邮件地址","link":"网址","optional":"可选","placeholder":"可以直接匿名评论，填写上方邮箱信息或者登录，还可收到评论邮件提醒"},"avatar":"","commentSorting":"hottest","highlighter":true,"copyright":true,"reaction":false,"emoji":["https://fastly.jsdelivr.net/npm/@waline/emojis/weibo","https://fastly.jsdelivr.net/npm/@waline/emojis/tieba","https://fastly.jsdelivr.net/npm/@waline/emojis/coolapk","https://fastly.jsdelivr.net/npm/@waline/emojis/alus","https://fastly.jsdelivr.net/npm/@waline/emojis/qq","https://fastly.jsdelivr.net/npm/@waline/emojis/bilibili","https://fastly.jsdelivr.net/npm/@waline/emojis/tw-emoji"],"requiredMeta":[],"login":"enable","pageSize":10,"dark":"auto","el":"#waline","comment":true,"path":"/java-junit-unit-testing/"}</script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/3.3.2/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+<!-- hexo injector body_end start -->
+  <script src="/js/outdate.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>
